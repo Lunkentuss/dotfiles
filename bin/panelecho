@@ -1,0 +1,71 @@
+#!/bin/bash
+
+STD="#ffb5b2af"
+BKG="#ff002b36"
+DBL="#ff4C626D"
+LBL="#ff6A7A8F"
+GRN="#ff838A60"
+MAG="#ff7D6A79"
+RED="#ff8C4C4C"
+YLW="#ff907245"
+
+battery(){
+	BATPERC=$(acpi --battery | cut -d, -f2)
+	echo -e "BAT: $BATPERC"
+}
+
+clock(){
+	date "+%H:%M"
+}
+
+volume(){
+	VOL=$(amixer get Master | egrep -o "[0-9]+%" | tail -n 1)
+	#echo -e "\uf028 $VOL"
+	echo -e "VOL: $VOL"
+}
+
+network(){
+	CONN=$(ping -c 1 www.google.se | egrep -o "ms" | tail -n 1)
+
+	if [[ -z "${CONN}" ]]; then
+		ONOFF="OFF"
+	else
+		ONOFF="ON"
+	fi
+
+	echo -e "WIFI: $ONOFF"
+}
+
+left(){
+	echo -e	"\u3B6" 
+	#echo -e	"Kali linux" 
+	#echo -e "\u39B" 
+	echo -e "$USER" 
+}
+
+backlight(){
+	BRIGHT=$(xbacklight -get)
+	BRIGHTINT=${BRIGHT%.*}
+	if [ $(echo "$BRIGHT - $BRIGHTINT > 0.5" | bc) -eq 1 ]; then
+		BRIGHTINT=$((BRIGHTINT+1))
+	fi	
+	echo "BRI: $BRIGHTINT%"
+}
+
+while true; do
+
+	output="%{l} "
+	output="$output $(left)"
+	output="$output %{c}"
+	output="$output $(clock)"
+	output="$output %{r}"
+	output="$output %{B$YLW} $(backlight)"
+	output="$output %{B$RED} $(battery)"
+	output="$output %{B$GRN} $(volume)"
+	output="$output %{B$LBL} $(network)"
+	output="$output %{B$BKG}"
+
+	echo -e $output
+	sleep 1;
+done
+
