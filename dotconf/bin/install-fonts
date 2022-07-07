@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -eu
+
+if [[ -d "$HOME/.local/share/fonts/ttf/SourceCodePro" ]] ; then
+  echo "Fonts are already installed"
+  exit 0
+fi
+
+target_ttf_dir=~/.local/share/fonts/ttf
+
+tmpdir="$(mktemp -d)"
+trap 'rm -rf $tmpdir' EXIT
+cd "$tmpdir"
+# TODO: Fetch archive package instead of cloning whole reoo.
+git clone git@github.com:adobe-fonts/source-code-pro.git
+cd *
+mkdir -p "$target_ttf_dir"
+cp -r TTF "$target_ttf_dir"
+mv "$target_ttf_dir/TTF" "$target_ttf_dir/SourceCodePro"

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "Installing plugged to nvim"
+plug_vim_file="$HOME/.config/nvim/autoload/plug.vim"
+[[ -f "$plug_vim_file" ]] || echo "TODO: Install plugged vim"
+
+echo "Installing fonts"
+install-fonts

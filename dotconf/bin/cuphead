@@ -1,0 +1,2 @@
+#!/bin/bash
+PROTON_USE_WINED3D=1 steam steam://run/268910

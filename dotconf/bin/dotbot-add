@@ -1,0 +1,16 @@
+#!/bin/bash
+set -eu
+
+dotfiles_repo="$HOME/.dotfiles"
+file="$(realpath "$1")"
+target=$(echo "$file" | sed -E "s|$HOME|~|")
+src=$(echo "$file" | sed -E "s|$HOME|dotconf|")
+cp_dest=$(echo "$file" | sed -E "s|$HOME|$HOME/.dotfiles/dotconf|")
+mkdir -p "$(dirname $cp_dest)"
+echo "    $target: $src" >> "$dotfiles_repo/install.conf.yaml"
+cp "$file" "$cp_dest"
+cd "$dotfiles_repo"
+git add "$cp_dest"
+mkdir -p "$HOME/.dotfiles_backup"
+mv "$file" "$HOME/.dotfiles_backup/$(basename "$file")"
+"$dotfiles_repo/install"

@@ -1,0 +1,10 @@
+run keycloak in docker--:docker run -p 8080:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin quay.io/keycloak/keycloak:16.1.0
+run markdownlint--:markdownlint -c markdownlint.yml .
+docker run shell: docker run -ti --entrypoint /bin/sh $(docker build -q .)
+black --target-version py310 .
+bluetoothctlw.py
+docker stop $(docker ps -q)
+List to port 80:sudo gor --input-raw :80 --input-raw-track-response --output-stdout --output-http-track-response
+git push -o merge_request.create
+Redis: docker run -ti -p 6379:6379 redis:latest
+Pacman query local: pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'
