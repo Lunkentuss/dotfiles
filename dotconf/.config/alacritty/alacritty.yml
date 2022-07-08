@@ -29,6 +29,9 @@ font:
   normal:
     family: SourceCodePro
   size: 11.5
+cursor:
+  style:
+    shape: Block  # default
 hints:
   alphabet: "jfkdls;ahgurieowpq"
   enabled:
@@ -58,3 +61,8 @@ hints:
      binding:
        key: L
        mods: Control|Shift
+key_bindings:
+  - key: V
+    mods: Control
+    mode: ~Vi
+    action: Paste
