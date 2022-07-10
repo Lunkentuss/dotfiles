@@ -1,26 +1,29 @@
 #!/bin/bash
 set -eu
 
-# Script which makes it easy to add dotfiles to track to dotbot.
-# The script is useful if:
+# Script which simplifies adding dotfiles to track to dotbot. The script makes
+# some assumptions of the structure of the the dotfiles repository and and is
+# only useful if:
 # 1. The dotfiles repository has a directory (set from env variable
 #    DOTBOT_ADD_DIR) which mirrors the locations of the users home directory,
-#    i.e., if a file is available in $DOTDOT_ADD_REPO_PAT/my/path, then it
-#    is copied/linked to $HOME/my/path.
+#    i.e., if a file is available in
+#    $DOTDOT_ADD_REPO_PATH/$DOTBOT_ADD_DIR/my/path, then it is copied/linked to
+#    $HOME/my/path.
 # 2. The dotbot configuration file is located in ./install.conf.yaml in the
 #    root of the repository. Also, the link link object in the configuration
 #    file must be the last defined configuration in the file. The script simple
 #    appends entries to the end of the file with four (4) spaces idention.
-#    For examplem the following is a valid dotbot configuration file compatible
+#    For example the following is a valid dotbot configuration file compatible
 #    with this script:
 #
 #     (...)
 #     - defaults:
 #     - clean: ['¨']
-#     - link:                                     # <- Last cofiguration in the file.
+#     - link:                                     # <- Last cofiguration in the file
 #         ~/.bashrc: dotconf/.bashrc              # <- Four spaces indention
 #         ~/.bash_profile: dotconf/.bash_profile
-# 3. Using git as a VCS.
+# 3. The install dotbot script is available at $DOTBOT_ADD_REPO_PATH/install.
+# 4. Using git as a VCS.
 #
 # Configuration:
 #   DOTBOT_ADD_REPO_PATH      (default: $HOME/.dotfiles)
