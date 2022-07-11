@@ -61,6 +61,22 @@ hints:
      binding:
        key: L
        mods: Control|Shift
+   - regex: "[^\\s]+"
+     action: Copy
+     mouse:
+       enabled: true
+       mods: None
+     binding:
+       key: W
+       mods: Alt
+   - regex: "[^\\s].+"
+     action: Copy
+     mouse:
+       enabled: true
+       mods: None
+     binding:
+       key: L
+       mods: Alt
 key_bindings:
   - key: V
     mods: Control
