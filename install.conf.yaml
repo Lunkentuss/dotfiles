@@ -21,3 +21,4 @@
     ~/.config/cmds/cmds: dotconf/.config/cmds/cmds
     ~/bin/repo_homepage: dotconf/bin/repo_homepage
     ~/bin/jwt_decode: dotconf/bin/jwt_decode
+    ~/.config/nvim/init.vim: dotconf/.config/nvim/init.vim
