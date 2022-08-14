@@ -77,8 +77,3 @@ hints:
      binding:
        key: L
        mods: Alt
-key_bindings:
-  - key: V
-    mods: Control
-    mode: ~Vi
-    action: Paste
