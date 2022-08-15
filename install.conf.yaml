@@ -1,25 +1,26 @@
 - defaults:
     link:
-      relink: true
       create: true
-- clean: ['~']
+      relink: true
+- clean:
+    - "~"
 - link:
     ~/.Xresources: dotconf/.Xresources
-    ~/.config/bspwmrc/bspwmrc: dotconf/.config/bspwmrc/bspwmrc
-    ~/.config/alacritty/alacritty.yml: dotconf/.config/alacritty/alacritty.yml
-    ~/.xinitrc: dotconf/.xinitrc
     ~/.bash_profile: dotconf/.bash_profile
     ~/.bashrc: dotconf/.bashrc
-    ~/bin/shellcheck_recursive: dotconf/bin/shellcheck_recursive
-    ~/bin/cuphead: dotconf/bin/cuphead
-    ~/bin/clean_whitespace: dotconf/bin/clean_whitespace
-    ~/bin/random-wallpaper: dotconf/bin/random-wallpaper
-    ~/bin/install-fonts: dotconf/bin/install-fonts
-    ~/bin/bluetoothctlw.py: dotconf/bin/bluetoothctlw.py
-    ~/bin/dotbot-add: dotconf/bin/dotbot-add
-    ~/bin/rsed: dotconf/bin/rsed
+    ~/.config/alacritty/alacritty.yml: dotconf/.config/alacritty/alacritty.yml
+    ~/.config/bspwmrc/bspwmrc: dotconf/.config/bspwmrc/bspwmrc
     ~/.config/cmds/cmds: dotconf/.config/cmds/cmds
-    ~/bin/repo_homepage: dotconf/bin/repo_homepage
-    ~/bin/jwt_decode: dotconf/bin/jwt_decode
     ~/.config/nvim/init.vim: dotconf/.config/nvim/init.vim
+    ~/.xinitrc: dotconf/.xinitrc
     ~/bin/arch_install_packages: dotconf/bin/arch_install_packages
+    ~/bin/bluetoothctlw.py: dotconf/bin/bluetoothctlw.py
+    ~/bin/clean_whitespace: dotconf/bin/clean_whitespace
+    ~/bin/cuphead: dotconf/bin/cuphead
+    ~/bin/dotbot-add: dotconf/bin/dotbot-add
+    ~/bin/install-fonts: dotconf/bin/install-fonts
+    ~/bin/jwt_decode: dotconf/bin/jwt_decode
+    ~/bin/random-wallpaper: dotconf/bin/random-wallpaper
+    ~/bin/repo_homepage: dotconf/bin/repo_homepage
+    ~/bin/rsed: dotconf/bin/rsed
+    ~/bin/shellcheck_recursive: dotconf/bin/shellcheck_recursive
