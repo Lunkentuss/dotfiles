@@ -1,6 +1,12 @@
 #!/bin/bash
 
-PACKAGE_INSTALLER="pacman"
+PACKAGE_INSTALLER="${1:-"pacman"}"
+
+echo "Using ${PACKAGE_INSTALLER} to install packages"
+echo "
+If using pacman as the installer, please note that some of the packages in this
+script are only available on the AUR.
+"
 
 # Notes for arch post installation
 # Keymaps:
@@ -49,6 +55,7 @@ systemctl enable --now NetworkManager
 "$PACKAGE_INSTALLER" -S --noconfirm npm
 "$PACKAGE_INSTALLER" -S --noconfirm kotlin
 "$PACKAGE_INSTALLER" -S --noconfirm jsonnet
+"$PACKAGE_INSTALLER" -S --noconfirm go-yq
 # Linters
 "$PACKAGE_INSTALLER" -S --noconfirm shellcheck
 # Formatter
