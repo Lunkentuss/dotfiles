@@ -1,0 +1,100 @@
+#!/bin/bash
+
+PACKAGE_INSTALLER="pacman"
+
+# Notes for arch post installation
+# Keymaps:
+# Keymaps are set independently for virtual consoles
+# and xorg.
+
+# Terminal
+"$PACKAGE_INSTALLER" -S --noconfirm urxvt
+
+# Services to enable
+systemctl enable --now NetworkManager
+
+# === X server related
+# xorg, implemetation of X11 (X Window System)
+"$PACKAGE_INSTALLER" -S --noconfirm xorg
+
+# === Network related
+"$PACKAGE_INSTALLER" -S --noconfirm dhcpcd
+"$PACKAGE_INSTALLER" -S --noconfirm dnsutils
+
+# === Sound
+# Install alsa
+# Install pulseaudio or pipewire(pavucontrol)
+"$PACKAGE_INSTALLER" -S --noconfirm udev
+
+# === Etc
+# Not only of course useful for development,
+# but is a requirement for my config since
+# it is needed in perl for preprocessing
+# .Xresources file.
+"$PACKAGE_INSTALLER" -S --noconfirm base-devel
+"$PACKAGE_INSTALLER" -S --noconfirm ttyplot
+
+# === Bluetooth
+# Either blueman and run bluetooth-applet for gui
+
+# === Personal rice
+"$PACKAGE_INSTALLER" -S --noconfirm bspwm
+"$PACKAGE_INSTALLER" -S --noconfirm sxhkd
+
+# === Personal dev tools
+# Programming
+"$PACKAGE_INSTALLER" -S --noconfirm python
+"$PACKAGE_INSTALLER" -S --noconfirm ghc
+"$PACKAGE_INSTALLER" -S --noconfirm nodejs
+"$PACKAGE_INSTALLER" -S --noconfirm npm
+"$PACKAGE_INSTALLER" -S --noconfirm kotlin
+"$PACKAGE_INSTALLER" -S --noconfirm jsonnet
+# Linters
+"$PACKAGE_INSTALLER" -S --noconfirm shellcheck
+# Formatter
+"$PACKAGE_INSTALLER" -S --noconfirm tidy
+# IaC
+"$PACKAGE_INSTALLER" -S --noconfirm terraform
+"$PACKAGE_INSTALLER" -S --noconfirm ansible
+# OCI
+"$PACKAGE_INSTALLER" -S --noconfirm docker
+"$PACKAGE_INSTALLER" -S --noconfirm docker-scan
+"$PACKAGE_INSTALLER" -S --noconfirm docker-compose
+"$PACKAGE_INSTALLER" -S --noconfirm podman
+"$PACKAGE_INSTALLER" -S --noconfirm kubectl
+"$PACKAGE_INSTALLER" -S --noconfirm cosign
+# Network dev
+"$PACKAGE_INSTALLER" -S --noconfirm nmap
+"$PACKAGE_INSTALLER" -S --noconfirm socat
+"$PACKAGE_INSTALLER" -S --noconfirm netcat
+# Etc
+"$PACKAGE_INSTALLER" -S --noconfirm tree
+"$PACKAGE_INSTALLER" -S --noconfirm pandoc
+"$PACKAGE_INSTALLER" -S --noconfirm texlive-most
+"$PACKAGE_INSTALLER" -S --noconfirm zathura
+"$PACKAGE_INSTALLER" -S --noconfirm zathura-pdf-poppler
+"$PACKAGE_INSTALLER" -S --noconfirm ripgrep
+"$PACKAGE_INSTALLER" -S --noconfirm fd
+"$PACKAGE_INSTALLER" -S --noconfirm htop
+"$PACKAGE_INSTALLER" -S --noconfirm bash-completion
+"$PACKAGE_INSTALLER" -S --noconfirm lsof
+"$PACKAGE_INSTALLER" -S --noconfirm fzf
+"$PACKAGE_INSTALLER" -S --noconfirm dmenu
+"$PACKAGE_INSTALLER" -S --noconfirm figlet
+"$PACKAGE_INSTALLER" -S --noconfirm kazam
+"$PACKAGE_INSTALLER" -S --noconfirm viddy
+# Benchmarking & performance testing
+"$PACKAGE_INSTALLER" -S --noconfirm siege
+"$PACKAGE_INSTALLER" -S --noconfirm hey
+
+# === pip
+pip install --user black
+pip install --user mypy
+pip install --user pytest
+pip install --user j2cli
+
+# === npm
+npm install -g reveal-md
+
+# === Laptop
+pip install --user acpi

@@ -22,3 +22,4 @@
     ~/bin/repo_homepage: dotconf/bin/repo_homepage
     ~/bin/jwt_decode: dotconf/bin/jwt_decode
     ~/.config/nvim/init.vim: dotconf/.config/nvim/init.vim
+    ~/bin/arch_install_packages: dotconf/bin/arch_install_packages
