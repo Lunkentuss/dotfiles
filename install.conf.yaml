@@ -18,6 +18,7 @@
     ~/bin/clean_whitespace: dotconf/bin/clean_whitespace
     ~/bin/cuphead: dotconf/bin/cuphead
     ~/bin/dotbot-add: dotconf/bin/dotbot-add
+    ~/bin/extract: dotconf/bin/extract
     ~/bin/install-fonts: dotconf/bin/install-fonts
     ~/bin/jwt_decode: dotconf/bin/jwt_decode
     ~/bin/random-wallpaper: dotconf/bin/random-wallpaper
