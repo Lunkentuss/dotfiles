@@ -1,11 +1,19 @@
 #!/bin/bash
 
-echo "Installing plugged to nvim"
-plug_vim_file="$HOME/.config/nvim/autoload/plug.vim"
-[[ -f "$plug_vim_file" ]] || echo "TODO: Install plugged vim"
+set -eu
+
+VIM_EDITOR="nvim"
 
 echo "Installing fonts"
 install-fonts
 
+echo "Installing plugged to $VIM_EDITOR"
+plug_vim_file="$HOME/.config/$VIM_EDITOR/autoload/plug.vim"
+[[ -f "$plug_vim_file" ]] || \
+  curl -fLo ~/".config/$VIM_EDITOR/autoload/plug.vim" \
+  --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+echo "Installing vim plugins with plug"
 # Run :PlugInstall in vim non-interactively to install plugins
 vim +'PlugInstall --sync' +qa
