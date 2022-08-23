@@ -14,7 +14,7 @@ trap 'rm -rf $tmpdir' EXIT
 cd "$tmpdir"
 # TODO: Fetch archive package instead of cloning whole reoo.
 git clone git@github.com:adobe-fonts/source-code-pro.git
-cd *
+cd ./*
 mkdir -p "$target_ttf_dir"
 cp -r TTF "$target_ttf_dir"
 mv "$target_ttf_dir/TTF" "$target_ttf_dir/SourceCodePro"
