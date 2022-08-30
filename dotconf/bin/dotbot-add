@@ -34,6 +34,7 @@ usage="Usage: $(basename "$0") homedir_file_to_track"
 [[ "$1" == "-h" || "$1" == "--help" ]] && { echo "$usage" ; exit 0 ; }
 
 dotfiles_repo="${DOTBOT_ADD_REPO_PATH:-$HOME/.dotfiles}"
+install_conf_file="$dotfiles_repo/install.conf.yaml"
 dotfiles_dir="${DOTBOT_ADD_DIR:-dotconf}"
 dotfiles_link_indent=${DOTBOT_ADD_LINK_INDENT:-"4"}
 git -C "$dotfiles_repo" diff --quiet || {
@@ -46,7 +47,10 @@ src=$(echo "$file" | sed -E "s|$HOME|$dotfiles_dir|")
 cp_dest=$(echo "$file" | sed -E "s|$HOME|$dotfiles_repo/$dotfiles_dir|")
 mkdir -p "$(dirname "$cp_dest")"
 link_indent="$(printf "%${dotfiles_link_indent}s")"
-echo "$link_indent$target: $src" >> "$dotfiles_repo/install.conf.yaml"
+echo "$link_indent$target: $src" >> "$install_conf_file"
+sorted_install_conf_file=$(mktemp)
+yq 'sort_keys(...)' "$install_conf_file" > "$sorted_install_conf_file"
+mv "$sorted_install_conf_file" "$install_conf_file"
 cp "$file" "$cp_dest"
 cd "$dotfiles_repo"
 git add "$cp_dest"
