@@ -21,6 +21,7 @@
     ~/bin/extract: dotconf/bin/extract
     ~/bin/install-fonts: dotconf/bin/install-fonts
     ~/bin/jwt_decode: dotconf/bin/jwt_decode
+    ~/bin/meme: dotconf/bin/meme
     ~/bin/random-wallpaper: dotconf/bin/random-wallpaper
     ~/bin/repo_homepage: dotconf/bin/repo_homepage
     ~/bin/rsed: dotconf/bin/rsed
