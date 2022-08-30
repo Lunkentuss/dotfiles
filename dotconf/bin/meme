@@ -2,7 +2,7 @@
 
 set -eu
 
-# Usage: meme <title> <footer>
+# Usage: meme [title footer]
 # The script requires curl & fzf
 
 requireCmd() {
@@ -13,11 +13,22 @@ requireCmd "fzf"
 requireCmd "curl"
 
 rawTextToArg() {
-  echo "$(echo "$1" | awk '{print tolower($0)}' | sed -e 's/ /_/g')"
+  echo "$1" | awk '{print tolower($0)}' | sed -e 's/ /_/g'
 }
 
 bg="$(curl -qs https://api.memegen.link/templates | jq -r .[].id | fzf)"
-title="$(rawTextToArg "$1")"
-footer="$(rawTextToArg "$2")"
+
+if [[ "$#" == 2 ]] ; then
+  title_raw="$1"
+  footer_raw="$1"
+else
+  echo "Title: "
+  read -r title_raw
+  echo "Footer: "
+  read -r footer_raw
+fi
+
+title="$(rawTextToArg "$title_raw")"
+footer="$(rawTextToArg "$footer_raw")"
 
 curl -Ls "https://memegen.link/$bg/$title/$footer.jpg" > "meme.png"
