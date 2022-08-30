@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -eu
+
+# Usage: meme <title> <footer>
+# The script requires curl & fzf
+
+requireCmd() {
+  command -v "$1" || { echo "The script requires $1 installed" ; exit 1 ; }
+}
+
+requireCmd "fzf"
+requireCmd "curl"
+
+rawTextToArg() {
+  echo "$(echo "$1" | awk '{print tolower($0)}' | sed -e 's/ /_/g')"
+}
+
+bg="$(curl -qs https://api.memegen.link/templates | jq -r .[].id | fzf)"
+title="$(rawTextToArg "$1")"
+footer="$(rawTextToArg "$2")"
+
+curl -Ls "https://memegen.link/$bg/$title/$footer.jpg" > "meme.png"
