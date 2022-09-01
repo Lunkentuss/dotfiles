@@ -49,8 +49,12 @@ mkdir -p "$(dirname "$cp_dest")"
 link_indent="$(printf "%${dotfiles_link_indent}s")"
 echo "$link_indent$target: $src" >> "$install_conf_file"
 sorted_install_conf_file=$(mktemp)
-yq 'sort_keys(...)' "$install_conf_file" > "$sorted_install_conf_file"
-mv "$sorted_install_conf_file" "$install_conf_file"
+if command -v yq ; then
+  yq 'sort_keys(...)' "$install_conf_file" > "$sorted_install_conf_file"
+  mv "$sorted_install_conf_file" "$install_conf_file"
+else
+  echo "WARNING: Missing yq, so keys will not be sorted in $install_conf_file"
+fi
 cp "$file" "$cp_dest"
 cd "$dotfiles_repo"
 git add "$cp_dest"
