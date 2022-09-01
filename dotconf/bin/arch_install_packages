@@ -46,6 +46,7 @@ systemctl enable --now NetworkManager
 # === Personal rice
 "$PACKAGE_INSTALLER" -S --noconfirm bspwm
 "$PACKAGE_INSTALLER" -S --noconfirm sxhkd
+"$PACKAGE_INSTALLER" -S --noconfirm i3lock-color
 
 # === Personal dev tools
 # Programming

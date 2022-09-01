@@ -12,6 +12,7 @@
     ~/.config/bspwmrc/bspwmrc: dotconf/.config/bspwmrc/bspwmrc
     ~/.config/cmds/cmds: dotconf/.config/cmds/cmds
     ~/.config/nvim/init.vim: dotconf/.config/nvim/init.vim
+    ~/.config/sxhkd/sxhkdrc: dotconf/.config/sxhkd/sxhkdrc
     ~/.xinitrc: dotconf/.xinitrc
     ~/bin/arch_install_packages: dotconf/bin/arch_install_packages
     ~/bin/bluetoothctlw.py: dotconf/bin/bluetoothctlw.py
@@ -25,4 +26,5 @@
     ~/bin/random-wallpaper: dotconf/bin/random-wallpaper
     ~/bin/repo_homepage: dotconf/bin/repo_homepage
     ~/bin/rsed: dotconf/bin/rsed
+    ~/bin/run_i3lock_color: dotconf/bin/run_i3lock_color
     ~/bin/shellcheck_recursive: dotconf/bin/shellcheck_recursive
