@@ -17,6 +17,7 @@ rawTextToArg() {
 }
 
 bg="$(curl -qs https://api.memegen.link/templates | jq -r .[].id | fzf)"
+echo "Using meme: $bg"
 
 if [[ "$#" == 2 ]] ; then
   title_raw="$1"
