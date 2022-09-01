@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH2WALL="$HOME/Pictures/bspwm-wallpapers/"
+PATH2WALL="$HOME/images/"
 
 NBRLINES=$(( $(ls -l "$PATH2WALL" | wc -l) - 1 ))
 
