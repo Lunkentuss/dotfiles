@@ -1,2 +1,15 @@
 #!/bin/bash
-i3lock
+
+set -eu
+
+img="$HOME/images/blur.jpg"
+
+if [[ -f "$img" ]] ; then
+  i3lock \
+    --tiling \
+    --verif-text="" \
+    --wrong-text="" \
+    --image="$img"
+else
+  i3lock
+fi
