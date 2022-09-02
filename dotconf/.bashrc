@@ -18,6 +18,9 @@ CDPATH="$CDPATH:$HOME"
 export WEB_BROWSER="firefox"
 export EDITOR="nvim"
 
+# options
+set -o vi
+
 HISTCONTROL=erasedups
 export HISTSIZE=100000
 
