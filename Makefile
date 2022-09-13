@@ -1,4 +1,5 @@
 .PHONY: all
 all:
 	./install
-	./install_external
+	./setup/install_external
+	./setup/setup
