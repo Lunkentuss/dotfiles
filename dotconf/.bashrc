@@ -1,4 +1,7 @@
 [[ $- != *i* ]] && return
+ENABLE_BLESH=false
+# https://github.com/akinomyoga/ble.sh#13-set-up-bashrc
+[[ $- == *i* ]] && [[ "$ENABLE_BLESH" == true ]] && source /usr/share/blesh/ble.sh --noattach
 
 PS1='[\u:\[\e[1;36m\]\W\[\e[1;0m\]]\$ '
 
@@ -101,3 +104,6 @@ function androidinstall(){
 function androidreinstall(){
     adb -d install -r $1
 }
+
+# https://github.com/akinomyoga/ble.sh#13-set-up-bashrc
+[[ ${BLE_VERSION-} ]] && [[ "$ENABLE_BLESH" == true ]] && ble-attach

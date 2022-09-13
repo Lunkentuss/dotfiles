@@ -47,6 +47,7 @@ systemctl enable --now NetworkManager
 "$PACKAGE_INSTALLER" -S --noconfirm bspwm
 "$PACKAGE_INSTALLER" -S --noconfirm sxhkd
 "$PACKAGE_INSTALLER" -S --noconfirm i3lock-color
+"$PACKAGE_INSTALLER" -S --noconfirm blesh
 
 # === Personal dev tools
 # Programming
