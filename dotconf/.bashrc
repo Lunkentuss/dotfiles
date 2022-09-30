@@ -28,8 +28,12 @@ export HISTSIZE=100000
 . /usr/share/fzf/key-bindings.bash
 alias fvim='vim -p $(fzf -m)'
 
+__fetch_cmd() {
+  cat $HOME/.config/cmds/* | fzf | sed -E 's/^[^:]*:[ ]*(.*)/\1/'
+}
+
 # alt + e
-bind '"\ee":"eval $(cat $HOME/.config/cmds/* | fzf | sed -E '\''s/^[^:]*:(.*)/\\1/'\'')\n"'
+bind '"\ee":"cmd=\"$(__fetch_cmd)\" && history -s \"$cmd\" && eval \"$cmd\"\n"'
 
 alias matlab='wmname LG3D ; matlab $1'
 alias matlab-vim='wmname LG3D ; python2 $HOME/.config/nvim/plugged/vim-matlab/scripts/vim-matlab-server.py'
