@@ -2,6 +2,7 @@ run keycloak in docker--:docker run -p 8080:8080 -e KEYCLOAK_USER=admin -e KEYCL
 run markdownlint--:markdownlint -c markdownlint.yml .
 docker run shell: docker run -ti --entrypoint /bin/sh $(docker build -q .)
 docker-nix run: docker run -ti "$(docker load < "$(nix-build docker.nix)" | sed 's/Loaded image: //')"
+nix eval: nix --experimental-features nix-command eval --impure --expr "./hello-world"
 black --target-version py310 .
 bluetoothctlw.py
 docker stop $(docker ps -q)
