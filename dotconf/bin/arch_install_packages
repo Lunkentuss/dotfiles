@@ -56,10 +56,12 @@ systemctl enable --now NetworkManager
 "$PACKAGE_INSTALLER" -S --noconfirm npm
 "$PACKAGE_INSTALLER" -S --noconfirm kotlin
 "$PACKAGE_INSTALLER" -S --noconfirm jsonnet
-"$PACKAGE_INSTALLER" -S --noconfirm go-yq
 # Linters
 "$PACKAGE_INSTALLER" -S --noconfirm shellcheck
-# Formatter
+# Config tools
+"$PACKAGE_INSTALLER" -S --noconfirm go-yq
+"$PACKAGE_INSTALLER" -S --noconfirm jq
+"$PACKAGE_INSTALLER" -S --noconfirm yj
 "$PACKAGE_INSTALLER" -S --noconfirm tidy
 # IaC
 "$PACKAGE_INSTALLER" -S --noconfirm terraform
