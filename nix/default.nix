@@ -9,4 +9,5 @@ with builtins;
   fd
   hadolint
   lolcat
+  (import ./fortune-cow.nix { inherit pkgs; })
 ]
