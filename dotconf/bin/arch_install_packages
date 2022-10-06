@@ -13,6 +13,9 @@ script are only available on the AUR.
 # Keymaps are set independently for virtual consoles
 # and xorg.
 
+# Package manager
+"$PACKAGE_INSTALLER" -S --noconfirm nix
+
 # Terminal
 "$PACKAGE_INSTALLER" -S --noconfirm urxvt
 
