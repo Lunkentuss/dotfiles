@@ -7,4 +7,7 @@ all: nix-env-install
 
 .PHONY: nix-env-install
 nix-env-install:
-	nix-env -if nix/default.nix
+	nix \
+	--extra-experimental-features flakes \
+	--extra-experimental-features nix-command \
+	build
