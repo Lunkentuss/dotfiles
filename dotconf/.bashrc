@@ -83,10 +83,6 @@ function yolokill(){
 ps -e | grep "$1" | cut -c 2-5 | xargs kill
 }
 
-function xfind(){
-    find ./ -iname "*$1*"
-}
-
 # Android
 function androidcp(){
     adb -d push $1 /storage/6163-3636/

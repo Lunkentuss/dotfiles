@@ -8,6 +8,11 @@ with builtins;
   fortune
   fd
   hadolint
+  jq
   lolcat
+  shellcheck
+  html-tidy
+  yj
+  yq-go
   (import ./fortune-cow.nix { inherit pkgs; })
 ]
