@@ -11,16 +11,20 @@
       with builtins;
       let
         packages = import nix/default.nix { inherit pkgs; };
-        metaPackage = pipe
-          packages
-          [
-            (map (x: "${x}\n"))
-            concatStrings
-            (text: writeTextFile {
-              inherit text;
-              name = "lunkentuss-user-environment";
-            })
-          ];
+        metaPackage = runCommand
+          "user-environment"
+          {}
+          (
+            pipe
+              packages
+              [
+                (map (package: filesystem.listFilesRecursive "${package}/bin"))
+                flatten
+                (map (package: ''ln -fs "${package}" "$out/bin/$(basename ${package})"'' + "\n"))
+                concatStrings
+                (cmds: ''mkdir -p "$out/bin"'' + "\n" + cmds)
+              ]
+          );
       in
         {
           defaultPackage.x86_64-linux = metaPackage;
