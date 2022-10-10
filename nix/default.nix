@@ -10,6 +10,7 @@ with builtins;
   hadolint
   jq
   lolcat
+  nixfmt
   shellcheck
   html-tidy
   yj
