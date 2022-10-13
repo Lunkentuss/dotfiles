@@ -7,7 +7,7 @@
     let packages = import nix/default.nix { inherit pkgs; };
     in {
       defaultPackage.x86_64-linux = buildPackages.buildEnv {
-        name = "user-environment";
+        name = "lunkentuss-user-environment";
         paths = packages;
       };
     };
