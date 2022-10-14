@@ -11,6 +11,7 @@ with builtins;
   hadolint
   html-tidy
   jq
+  kubernetes-helm
   lolcat
   manix
   nixfmt
