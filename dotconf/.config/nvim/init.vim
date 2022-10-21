@@ -48,6 +48,7 @@ autocmd!
 " autocmd FileType asciidoc setlocal commentstring=//\\ %s
 " autocmd FileType html set tw=120
 autocmd FileType go set tw=79 sw=2 ts=2 noet
+autocmd FileType make set ts=4
 augroup END
 
 " --- Clipboard register settings ---
