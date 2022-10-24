@@ -7,6 +7,7 @@ PS1='[\u:\[\e[1;36m\]\W\[\e[1;0m\]]\$ '
     . /usr/share/bash-completion/bash_completion
 
 VISUAL="vim"
+PATH="$HOME/.krew/bin:$PATH"
 PATH="$HOME/local/ampl_linux_intel64/:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/bin:$PATH"
