@@ -2,6 +2,7 @@
 with pkgs;
 with builtins; [
   ansible
+  bspwm
   cosign
   cowsay
   curl
@@ -40,6 +41,7 @@ with builtins; [
   slack
   socat
   statix
+  sxhkd
   terraform
   tree
   vlc
