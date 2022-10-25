@@ -1,4 +1,6 @@
 NIX := nix --extra-experimental-features flakes --extra-experimental-features nix-command
+NIXPKGS_ALLOW_UNFREE := 1
+export NIXPKGS_ALLOW_UNFREE
 
 define SUCCESS_MSG
 Successfully initialized environment
@@ -18,7 +20,7 @@ all: nix-profile-install
 
 .PHONY: nix-build
 nix-build:
-	${NIX} build .
+	${NIX} build --impure .
 
 .PHONY: nix-profile-install
 nix-profile-install: nix-build
@@ -26,7 +28,7 @@ nix-profile-install: nix-build
 		| grep "lunkentuss-user-environment" \
 		| sed -E 's/([0-9]*).*/\1/' \
 		| xargs nix profile remove
-	${NIX} profile install .
+	${NIX} profile install --impure .
 
 .PHONY: nix-update
 nix-update:

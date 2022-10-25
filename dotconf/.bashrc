@@ -25,8 +25,8 @@ export EDITOR="nvim"
 HISTCONTROL=erasedups
 export HISTSIZE=100000
 
-. /usr/share/fzf/completion.bash
-. /usr/share/fzf/key-bindings.bash
+. "$HOME"/.nix-profile/share/fzf/completion.bash
+. "$HOME"/.nix-profile/share/fzf/key-bindings.bash
 alias fvim='vim -p $(fzf -m)'
 
 __fetch_cmd() {

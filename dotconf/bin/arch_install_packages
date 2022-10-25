@@ -53,51 +53,17 @@ systemctl enable --now NetworkManager
 
 # === Personal dev tools
 # Programming
-"$PACKAGE_INSTALLER" -S --noconfirm python
-"$PACKAGE_INSTALLER" -S --noconfirm ghc
 "$PACKAGE_INSTALLER" -S --noconfirm nodejs
 "$PACKAGE_INSTALLER" -S --noconfirm npm
-"$PACKAGE_INSTALLER" -S --noconfirm kotlin
-"$PACKAGE_INSTALLER" -S --noconfirm jsonnet
-# IaC
-"$PACKAGE_INSTALLER" -S --noconfirm terraform
-"$PACKAGE_INSTALLER" -S --noconfirm ansible
 # OCI
 "$PACKAGE_INSTALLER" -S --noconfirm docker
 "$PACKAGE_INSTALLER" -S --noconfirm docker-scan
 "$PACKAGE_INSTALLER" -S --noconfirm docker-compose
 "$PACKAGE_INSTALLER" -S --noconfirm podman
-"$PACKAGE_INSTALLER" -S --noconfirm kubectl
-"$PACKAGE_INSTALLER" -S --noconfirm cosign
-# Network dev
-"$PACKAGE_INSTALLER" -S --noconfirm nmap
-"$PACKAGE_INSTALLER" -S --noconfirm socat
-"$PACKAGE_INSTALLER" -S --noconfirm netcat
 # Etc
-"$PACKAGE_INSTALLER" -S --noconfirm tree
-"$PACKAGE_INSTALLER" -S --noconfirm pandoc
 "$PACKAGE_INSTALLER" -S --noconfirm texlive-most
-"$PACKAGE_INSTALLER" -S --noconfirm zathura
-"$PACKAGE_INSTALLER" -S --noconfirm zathura-pdf-poppler
-"$PACKAGE_INSTALLER" -S --noconfirm ripgrep
-"$PACKAGE_INSTALLER" -S --noconfirm fd
-"$PACKAGE_INSTALLER" -S --noconfirm htop
 "$PACKAGE_INSTALLER" -S --noconfirm bash-completion
-"$PACKAGE_INSTALLER" -S --noconfirm lsof
-"$PACKAGE_INSTALLER" -S --noconfirm fzf
 "$PACKAGE_INSTALLER" -S --noconfirm dmenu
-"$PACKAGE_INSTALLER" -S --noconfirm figlet
-"$PACKAGE_INSTALLER" -S --noconfirm kazam
-"$PACKAGE_INSTALLER" -S --noconfirm viddy
-# Benchmarking & performance testing
-"$PACKAGE_INSTALLER" -S --noconfirm siege
-"$PACKAGE_INSTALLER" -S --noconfirm hey
-
-# === pip
-pip install --user black
-pip install --user mypy
-pip install --user pytest
-pip install --user j2cli
 
 # === npm
 npm install -g reveal-md
