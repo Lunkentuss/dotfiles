@@ -24,7 +24,7 @@
     ~/bin/jwt_decode: dotconf/bin/jwt_decode
     ~/bin/meme: dotconf/bin/meme
     ~/bin/random-wallpaper: dotconf/bin/random-wallpaper
-    ~/bin/repo_homepage: dotconf/bin/repo_homepage
+    ~/bin/git-homepage: dotconf/bin/git-homepage
     ~/bin/rsed: dotconf/bin/rsed
     ~/bin/run_i3lock_color: dotconf/bin/run_i3lock_color
     ~/bin/shellcheck_recursive: dotconf/bin/shellcheck_recursive
