@@ -2,6 +2,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'abdalrahman-ali/vim-remembers'
 Plug 'daeyun/vim-matlab'
+Plug 'dense-analysis/ale'
 Plug 'LnL7/vim-nix'
 Plug 'tpope/vim-commentary'
 Plug 'udalov/kotlin-vim'
