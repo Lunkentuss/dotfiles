@@ -1,5 +1,5 @@
 export XDG_CONFIG_HOME="$HOME/.config"
-export WEB_BROWSER="chromium"
+export WEB_BROWSER="firefox"
 xset r rate 250 30
 
 if [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ]; then

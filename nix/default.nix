@@ -8,6 +8,7 @@ with builtins; [
   dhall
   fd
   figlet
+  firefox
   fortune
   fzf
   git

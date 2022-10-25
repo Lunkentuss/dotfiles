@@ -16,7 +16,6 @@ PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 
 CDPATH="$CDPATH:$HOME"
-export WEB_BROWSER="firefox"
 export EDITOR="nvim"
 
 # options
