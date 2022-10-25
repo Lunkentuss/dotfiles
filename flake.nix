@@ -1,6 +1,6 @@
 {
   description = "Lunkentuss user environment";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
   outputs = { self, nixpkgs }:
     with import nixpkgs { system = "x86_64-linux"; };
