@@ -2,6 +2,8 @@
 with pkgs;
 with builtins; [
   ansible
+  bash-completion
+  bashInteractive
   bspwm
   cosign
   cowsay

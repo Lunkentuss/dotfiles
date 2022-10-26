@@ -3,8 +3,9 @@
 PS1='[\u:\[\e[1;36m\]\W\[\e[1;0m\]]\$ '
 
 # Use bash completion if availabe.
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-    . /usr/share/bash-completion/bash_completion
+__bash_completion="$HOME"/.nix-profile/share/bash-completion/bash_completion
+[[ $PS1 && -f "$__bash_completion" ]] && \
+  . "$__bash_completion"
 
 VISUAL="vim"
 PATH="$HOME/.krew/bin:$PATH"
