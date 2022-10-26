@@ -16,7 +16,7 @@ super + b
 
 # browser
 ctrl + alt + w
-	firefox
+	$BROWSER
 
 # lock screen
 ctrl + alt + l
