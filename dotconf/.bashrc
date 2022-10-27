@@ -2,8 +2,10 @@
 
 PS1='[\u:\[\e[1;36m\]\W\[\e[1;0m\]]\$ '
 
+__user_packages_share="$HOME/.nix-profile/share"
+
 # Use bash completion if availabe.
-__bash_completion="$HOME"/.nix-profile/share/bash-completion/bash_completion
+__bash_completion="$__user_packages_share"/bash-completion/bash_completion
 [[ $PS1 && -f "$__bash_completion" ]] && \
   . "$__bash_completion"
 
@@ -25,8 +27,8 @@ export EDITOR="nvim"
 HISTCONTROL=erasedups
 export HISTSIZE=100000
 
-. "$HOME"/.nix-profile/share/fzf/completion.bash
-. "$HOME"/.nix-profile/share/fzf/key-bindings.bash
+. "$__user_packages_share"/fzf/completion.bash
+. "$__user_packages_share"/fzf/key-bindings.bash
 alias fvim='vim -p $(fzf -m)'
 
 __fetch_cmd() {
