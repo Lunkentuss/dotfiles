@@ -2,11 +2,11 @@
 
 PATH2WALL="$HOME/images/"
 
-NBRLINES=$(( $(ls -l "$PATH2WALL" | wc -l) - 1 ))
+NBRLINES=$(($(ls -l "$PATH2WALL" | wc -l) - 1))
 
 RNDNBR=$(((RANDOM % NBRLINES) + 1)) # two because of first line
 
 NAME=$(ls "$PATH2WALL" | head -n "$RNDNBR" | tail -n1)
 
-feh --bg-scale "$PATH2WALL$NAME" 
-echo "$PATH2WALL$NAME" 
+feh --bg-scale "$PATH2WALL$NAME"
+echo "$PATH2WALL$NAME"

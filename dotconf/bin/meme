@@ -6,7 +6,10 @@ set -eu
 # The script requires curl & fzf
 
 requireCmd() {
-  command -v "$1" || { echo "The script requires $1 installed" ; exit 1 ; }
+  command -v "$1" || {
+    echo "The script requires $1 installed"
+    exit 1
+  }
 }
 
 requireCmd "fzf"
@@ -19,7 +22,7 @@ rawTextToArg() {
 bg="$(curl -qs https://api.memegen.link/templates | jq -r .[].id | fzf)"
 echo "Using meme: $bg"
 
-if [[ "$#" == 2 ]] ; then
+if [[ "$#" == 2 ]]; then
   title_raw="$1"
   footer_raw="$1"
 else

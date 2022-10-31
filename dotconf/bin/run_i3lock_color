@@ -4,7 +4,7 @@ set -eu
 
 img="$HOME/images/blur.jpg"
 
-if [[ -f "$img" ]] ; then
+if [[ -f "$img" ]]; then
   i3lock \
     --tiling \
     --verif-text="" \

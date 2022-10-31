@@ -7,12 +7,12 @@
 set -eu
 
 cd_to_git_root() {
-  while true ; do
-    if [[ -d .git ]] ; then
+  while true; do
+    if [[ -d .git ]]; then
       echo "found git at $(pwd)"
       break
     fi
-    if [[ $(pwd) == "/" ]] ; then
+    if [[ $(pwd) == "/" ]]; then
       echo "ERROR: Unable to find git repository"
       exit 1
     fi
@@ -21,8 +21,16 @@ cd_to_git_root() {
 }
 
 cd_to_git_root
-url=$(grep -i url < .git/config | head -n 1 | sed -E 's/[ \t].*url[ ]*=[ ]*?//g')
+url=$(
+  grep -i url < .git/config \
+    | head -n 1 \
+    | sed -E 's/[ \t].*url[ ]*=[ ]*?//g'
+)
 # Probably not right parsing... but works for now.
-url_web=$(sed -E 's/^git@//' <<< "$url" | sed -E 's/[.]git$//' | sed -E 's/(:)([^0-9])/\/\2/')
+url_web=$(
+  sed -E 's/^git@//' <<< "$url" \
+    | sed -E 's/[.]git$//' \
+    | sed -E 's/(:)([^0-9])/\/\2/'
+)
 echo "Opening: $url_web"
 nohup "$BROWSER" "$url_web" > /dev/null 2>&1

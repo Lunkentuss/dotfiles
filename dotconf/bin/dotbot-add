@@ -31,7 +31,10 @@ set -eu
 #   DOTBOT_ADD_LINK_INDENT    (default: 4)
 
 usage="Usage: $(basename "$0") homedir_file_to_track"
-[[ "$1" == "-h" || "$1" == "--help" ]] && { echo "$usage" ; exit 0 ; }
+[[ "$1" == "-h" || "$1" == "--help" ]] && {
+  echo "$usage"
+  exit 0
+}
 
 dotfiles_repo="${DOTBOT_ADD_REPO_PATH:-$HOME/.dotfiles}"
 install_conf_file="$dotfiles_repo/install.conf.yaml"
@@ -49,7 +52,7 @@ mkdir -p "$(dirname "$cp_dest")"
 link_indent="$(printf "%${dotfiles_link_indent}s")"
 echo "$link_indent$target: $src" >> "$install_conf_file"
 sorted_install_conf_file=$(mktemp)
-if command -v yq ; then
+if command -v yq; then
   yq 'sort_keys(...)' "$install_conf_file" > "$sorted_install_conf_file"
   mv "$sorted_install_conf_file" "$install_conf_file"
 else
@@ -61,4 +64,4 @@ git add "$cp_dest"
 mkdir -p "$HOME/.dotfiles_backup"
 mv "$file" "$HOME/.dotfiles_backup/$(basename "$file")"
 "$dotfiles_repo/install"
-git -C "$dotfiles_repo"  commit -am "add $target"
+git -C "$dotfiles_repo" commit -am "add $target"

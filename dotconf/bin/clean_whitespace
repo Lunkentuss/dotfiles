@@ -3,7 +3,7 @@
 set -e
 
 # Script for removing trailing whitespace from a file
-if [[ -z "$1" ]] ; then
+if [[ -z "$1" ]]; then
   echo "SYNOPSIS: $(basename "$0") file"
   exit 1
 fi

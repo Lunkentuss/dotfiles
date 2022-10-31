@@ -33,3 +33,7 @@ nix-profile-install: nix-build
 .PHONY: nix-update
 nix-update:
 	${NIX} flake update
+
+.PHONY: fmt
+fmt:
+	./ci/format

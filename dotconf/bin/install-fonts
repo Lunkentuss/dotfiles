@@ -2,7 +2,7 @@
 
 set -eu
 
-if [[ -d "$HOME/.local/share/fonts/ttf/SourceCodePro" ]] ; then
+if [[ -d "$HOME/.local/share/fonts/ttf/SourceCodePro" ]]; then
   echo "Fonts are already installed"
   exit 0
 fi

@@ -39,6 +39,7 @@ with builtins; [
   (python310.withPackages (p: with p; [ black j2cli pyyaml pytest ]))
   ripgrep
   shellcheck
+  shfmt
   siege
   slack
   socat

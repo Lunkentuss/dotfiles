@@ -4,24 +4,19 @@ set -u
 
 failed_scripts=()
 
-while IFS= read -r -d '' f
-do
-  if file "$f" | grep -q 'shell script'
-  then
+while IFS= read -r -d '' f; do
+  if file "$f" | grep -q 'shell script'; then
     echo "===================="
     echo "Linting file: $f"
-    if ! shellcheck "$f"
-    then
+    if ! shellcheck "$f"; then
       failed_scripts+=("$f")
     fi
   fi
-done <  <(find . -not -path "./.git/*" -print0)
+done < <(find . -not -path "./.git/*" -print0)
 
-if [ ${#failed_scripts[@]} -ne 0 ]
-then
+if [ ${#failed_scripts[@]} -ne 0 ]; then
   echo "ERROR: The following scripts failed to lint with shellcheck"
-  for f in "${failed_scripts[@]}"
-  do
+  for f in "${failed_scripts[@]}"; do
     printf "\t%s\n" "$f"
   done
   exit 1

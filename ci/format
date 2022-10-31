@@ -1,0 +1,6 @@
+#!/bin/bash
+for f in dotconf/bin/* ; do
+  if file "$f" | grep -q 'shell script' ; then
+    shfmt -i 2 -sr -bn -w "$f"
+  fi
+done
