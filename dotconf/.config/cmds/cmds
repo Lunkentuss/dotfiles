@@ -10,3 +10,4 @@ List to port 80:sudo gor --input-raw :80 --input-raw-track-response --output-std
 git push -o merge_request.create
 Redis: docker run -ti -p 6379:6379 redis:latest
 Pacman query local: pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'
+run kubectl with curl interactively:kubectl run curl-debug --image=curlimages/curl -i --tty -- sh && kubectl delete pod curl-debug
