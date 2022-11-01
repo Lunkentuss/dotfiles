@@ -20,6 +20,7 @@ with builtins; [
   hey
   html-tidy
   htop
+  iputils
   jq
   jsonnet
   kazam
