@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> { } }:
 with pkgs;
-with builtins; [
+let pythonPackages = import ./python-packages.nix;
+in with builtins; [
   ansible
   bash-completion
   bashInteractive
@@ -37,7 +38,7 @@ with builtins; [
   nmap
   nixfmt
   pandoc
-  (python310.withPackages (p: with p; [ black j2cli pyyaml pytest ]))
+  (python310.withPackages pythonPackages)
   ripgrep
   shellcheck
   shfmt
