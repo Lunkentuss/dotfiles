@@ -19,11 +19,13 @@ in with builtins; [
   ghc
   hadolint
   hey
+  hlint
   html-tidy
   htop
   iputils
   jq
   jsonnet
+  k9s
   kazam
   krew
   kotlin
@@ -47,6 +49,7 @@ in with builtins; [
   socat
   statix
   sxhkd
+  tcpdump
   terraform
   tree
   vlc

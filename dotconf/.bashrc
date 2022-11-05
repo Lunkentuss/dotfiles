@@ -17,6 +17,7 @@ PATH="$HOME/bin:$PATH"
 PATH="$HOME/go/bin:$PATH"
 PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+PATH="$HOME/.nix-profile/bin:$PATH"
 
 CDPATH="$CDPATH:$HOME"
 export EDITOR="nvim"
