@@ -38,6 +38,7 @@ in with builtins; [
   neovim
   netcat
   nmap
+  nickel
   nixfmt
   pandoc
   (python310.withPackages pythonPackages)
