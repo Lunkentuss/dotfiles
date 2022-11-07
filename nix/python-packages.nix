@@ -1,1 +1,1 @@
-python: with python; [ black j2cli pyyaml pytest requests ]
+python: with python; [ black isort j2cli pyjwt pyyaml pytest requests ]
