@@ -6,6 +6,7 @@ in with builtins; [
   bash-completion
   bashInteractive
   bspwm
+  cargo
   cosign
   cowsay
   curl
@@ -43,6 +44,7 @@ in with builtins; [
   pandoc
   (python310.withPackages pythonPackages)
   ripgrep
+  rustc
   shellcheck
   shfmt
   siege
