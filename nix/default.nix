@@ -41,8 +41,9 @@ in with builtins; [
   nmap
   nickel
   nixfmt
-  pandoc
   (python310.withPackages pythonPackages)
+  pandoc
+  pulsemixer
   ripgrep
   rustc
   shellcheck
