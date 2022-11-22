@@ -16,8 +16,9 @@ in with builtins; [
   firefox
   fortune
   fzf
-  git
   ghc
+  git
+  gnumake
   hadolint
   hey
   hlint
