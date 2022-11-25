@@ -5,6 +5,7 @@ with python; [
   isort
   j2cli
   jsonnet
+  pydantic
   pyjwt
   pyyaml
   pytest
