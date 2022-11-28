@@ -6,21 +6,8 @@
 
 set -eu
 
-cd_to_git_root() {
-  while true; do
-    if [[ -d .git ]]; then
-      echo "found git at $(pwd)"
-      break
-    fi
-    if [[ $(pwd) == "/" ]]; then
-      echo "ERROR: Unable to find git repository"
-      exit 1
-    fi
-    cd ..
-  done
-}
-
-cd_to_git_root
+git_root="$(git rev-parse --show-toplevel)"
+cd "$git_root"
 url=$(
   grep -i url < .git/config \
     | head -n 1 \
