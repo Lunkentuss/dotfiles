@@ -1,6 +1,7 @@
 run keycloak in docker--:docker run -p 8080:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin quay.io/keycloak/keycloak:16.1.0
 run markdownlint--:markdownlint -c markdownlint.yml .
 docker run shell: docker run -ti --entrypoint /bin/sh $(docker build -q .)
+docker list file contents: docker export $(docker create $(docker build . -q)) | tar t
 docker-nix run: docker run -ti "$(docker load < "$(nix-build docker.nix)" | sed 's/Loaded image: //')"
 nix eval: nix --experimental-features nix-command eval --impure --expr "./hello-world"
 black --target-version py310 .
