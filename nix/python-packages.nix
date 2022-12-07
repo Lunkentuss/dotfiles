@@ -5,6 +5,7 @@ with python; [
   isort
   j2cli
   jsonnet
+  poetry
   pydantic
   pyjwt
   pyyaml

@@ -19,6 +19,7 @@ in with builtins; [
   ghc
   git
   gnumake
+  gnused
   hadolint
   hey
   hlint
