@@ -68,4 +68,5 @@ in with builtins; [
   (runCommand "kubectl-krew" { } ''
     mkdir -p "$out/bin" && ln -sf "${krew}/bin/krew" "$out/bin/kubectl-krew"'')
   (import ./fortune-cow.nix { inherit pkgs; })
+  (import ./jksutil.nix { inherit pkgs; })
 ]
