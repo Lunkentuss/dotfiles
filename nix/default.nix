@@ -7,6 +7,7 @@ in with builtins; [
   bashInteractive
   bspwm
   cargo
+  coreutils
   cosign
   cowsay
   curl
@@ -43,6 +44,7 @@ in with builtins; [
   nmap
   nickel
   nixfmt
+  openssl
   (python310.withPackages pythonPackages)
   pandoc
   pulsemixer
