@@ -1,3 +1,21 @@
+require('packer').startup(function(use)
+  use 'abdalrahman-ali/vim-remembers'
+  use 'dense-analysis/ale'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      pcall(require('nvim-treesitter.install').update { with_sync = true })
+    end,
+  }
+  use 'tpope/vim-commentary'
+  use 'wbthomason/packer.nvim'
+
+end)
+
 vim.cmd 'colorscheme solarized'
 
 local buffer_options = vim.bo
@@ -25,13 +43,17 @@ vim.api.nvim_create_autocmd(
   { command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]] }
 )
 
-return require('packer').startup(function(use)
-  use 'abdalrahman-ali/vim-remembers'
-  use 'dense-analysis/ale'
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-  use 'tpope/vim-commentary'
-  use 'wbthomason/packer.nvim'
-end)
+require('nvim-treesitter.configs').setup {
+  ensure_installed = { 'c', 'go', 'haskell', 'nix', 'python' },
+  highlight = { enable = true },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "vn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+  indent = { enable = true },
+}

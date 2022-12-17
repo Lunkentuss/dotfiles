@@ -39,7 +39,8 @@ in with builtins; [
   lsof
   manix
   minikube
-  neovim
+  # Issues with nix neovim and treesitter, so disable for now
+  # neovim
   netcat
   nmap
   nickel
