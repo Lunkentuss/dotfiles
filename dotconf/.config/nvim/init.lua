@@ -1,6 +1,7 @@
 require('packer').startup(function(use)
   use 'abdalrahman-ali/vim-remembers'
   use 'dense-analysis/ale'
+  use 'nvim-lualine/lualine.nvim'
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
@@ -10,6 +11,9 @@ require('packer').startup(function(use)
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
   }
   use 'tpope/vim-commentary'
   use 'wbthomason/packer.nvim'
@@ -43,8 +47,17 @@ vim.api.nvim_create_autocmd(
   { command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]] }
 )
 
+require('lualine').setup {
+  options = {
+    icons_enabled = false,
+    theme = 'horizon',
+    component_separators = '|',
+    section_separators = '',
+  },
+}
+
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'c', 'go', 'haskell', 'nix', 'python' },
+  ensure_installed = { 'c', 'go', 'haskell', 'lua', 'nix', 'python' },
   highlight = { enable = true },
   incremental_selection = {
     enable = true,
@@ -56,4 +69,35 @@ require('nvim-treesitter.configs').setup {
     },
   },
   indent = { enable = true },
+  textobjects = {
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        [']m'] = '@function.outer',
+        [']]'] = '@class.outer',
+      },
+      goto_next_end = {
+        [']M'] = '@function.outer',
+        [']['] = '@class.outer',
+      },
+      goto_previous_start = {
+        ['[m'] = '@function.outer',
+        ['[['] = '@class.outer',
+      },
+      goto_previous_end = {
+        ['[M'] = '@function.outer',
+        ['[]'] = '@class.outer',
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = {
+        ['<leader>a'] = '@parameter.inner',
+      },
+      swap_previous = {
+        ['<leader>A'] = '@parameter.inner',
+      },
+    },
+  }
 }
