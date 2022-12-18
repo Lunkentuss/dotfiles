@@ -1,6 +1,10 @@
 require('packer').startup(function(use)
   use 'abdalrahman-ali/vim-remembers'
   use 'dense-analysis/ale'
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = { 'hrsh7th/cmp-nvim-lsp' },
+  }
   use 'nvim-lualine/lualine.nvim'
   use {
     'nvim-telescope/telescope.nvim',
@@ -137,6 +141,20 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-require('lspconfig')['pyright'].setup{
-    on_attach = on_attach,
+require('mason').setup()
+
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls' }
+
+require('mason-lspconfig').setup {
+  ensure_installed = servers,
 }
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+for _, lsp in ipairs(servers) do
+  require('lspconfig')[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
