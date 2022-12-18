@@ -46,6 +46,7 @@ in with builtins; [
   nickel
   nixfmt
   openssl
+  pyright
   (python310.withPackages pythonPackages)
   pandoc
   pulsemixer
