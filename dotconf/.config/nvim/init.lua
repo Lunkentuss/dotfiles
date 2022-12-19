@@ -43,6 +43,10 @@ buffer_options.softtabstop = 2
 buffer_options.shiftwidth = 2
 buffer_options.tabstop = 2
 
+vim.api.nvim_command([[
+  autocmd FileType go setlocal sw=2 ts=2 noexpandtab
+]])
+
 options_global.dir = '/tmp'
 options_global.swapfile = true
 
@@ -143,7 +147,16 @@ end
 
 require('mason').setup()
 
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls' }
+local servers = {
+  'clangd',
+  -- 'hls',
+  'rust_analyzer',
+  'pyright',
+  'tsserver',
+  'sumneko_lua',
+  'gopls',
+  -- 'yamlls',
+}
 
 require('mason-lspconfig').setup {
   ensure_installed = servers,
