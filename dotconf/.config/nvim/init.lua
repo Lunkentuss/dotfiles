@@ -34,6 +34,8 @@ end)
 
 vim.cmd 'colorscheme solarized'
 
+vim.api.nvim_set_keymap('n', 'tn', ':tabnew<CR>', {})
+
 local buffer_options = vim.bo
 local options_global = vim.o
 local window_options = vim.wo
