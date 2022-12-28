@@ -49,6 +49,16 @@ vim.api.nvim_command([[
   autocmd FileType go setlocal sw=2 ts=2 noexpandtab
 ]])
 
+-- Remove default gray color of sign column
+vim.api.nvim_command([[
+  highlight clear SignColumn
+]])
+
+-- Always show sign column
+vim.api.nvim_command([[
+  set signcolumn=yes
+]])
+
 options_global.dir = '/tmp'
 options_global.swapfile = true
 
