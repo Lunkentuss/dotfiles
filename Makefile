@@ -24,10 +24,10 @@ nix-build:
 
 .PHONY: nix-profile-install
 nix-profile-install: nix-build
-	nix profile list \
+	${NIX} profile list \
 		| grep "lunkentuss-user-environment" \
 		| sed -E 's/([0-9]*).*/\1/' \
-		| xargs nix profile remove
+		| xargs ${NIX} profile remove
 	${NIX} profile install --impure .
 
 .PHONY: nix-update
