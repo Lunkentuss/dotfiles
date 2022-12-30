@@ -44,6 +44,7 @@ in with builtins; [
   netcat
   nmap
   nickel
+  nix
   nixfmt
   openssl
   pyright
