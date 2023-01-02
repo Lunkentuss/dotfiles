@@ -68,6 +68,7 @@ vim.g.mapleader = ','
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('v', '<leader>y', '"+y', {noremap=true, silent=true})
 
 -- Go to most recent visited line in buffer
 vim.api.nvim_create_autocmd(

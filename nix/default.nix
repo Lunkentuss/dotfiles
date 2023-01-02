@@ -68,6 +68,7 @@ in with builtins; [
   yj
   yq-go
   zathura
+  xclip
   # This package makes running "kubectl krew" work, instead of having to run
   # krew directly.
   (runCommand "kubectl-krew" { } ''
