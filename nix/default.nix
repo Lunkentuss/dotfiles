@@ -26,6 +26,7 @@ in with builtins; [
   hlint
   html-tidy
   htop
+  iproute2
   iputils
   jq
   jsonnet
