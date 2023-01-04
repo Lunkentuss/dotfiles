@@ -36,14 +36,10 @@ vim.cmd 'colorscheme solarized'
 
 vim.api.nvim_set_keymap('n', 'tn', ':tabnew<CR>', {})
 
-local buffer_options = vim.bo
-local options_global = vim.o
-local window_options = vim.wo
-
-buffer_options.expandtab = true
-buffer_options.softtabstop = 2
-buffer_options.shiftwidth = 2
-buffer_options.tabstop = 2
+vim.bo.expandtab = true
+vim.bo.softtabstop = 2
+vim.bo.shiftwidth = 2
+vim.bo.tabstop = 2
 
 vim.api.nvim_command([[
   autocmd FileType go setlocal sw=2 ts=2 noexpandtab
@@ -59,10 +55,10 @@ vim.api.nvim_command([[
   set signcolumn=yes
 ]])
 
-options_global.dir = '/tmp'
-options_global.swapfile = true
+vim.o.dir = '/tmp'
+vim.o.swapfile = true
 
-window_options.number = true
+vim.wo.number = true
 
 vim.g.mapleader = ','
 local builtin = require('telescope.builtin')
