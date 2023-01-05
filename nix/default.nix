@@ -35,7 +35,9 @@ in with builtins; [
   krew
   kotlin
   kubectl
+  kubepug
   kubernetes-helm
+  k6
   lolcat
   lsof
   manix
