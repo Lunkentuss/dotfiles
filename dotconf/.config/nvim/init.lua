@@ -23,6 +23,7 @@ require('packer').startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
   }
+  use 'mfussenegger/nvim-jdtls'
   use 'tpope/vim-commentary'
   use 'wbthomason/packer.nvim'
 
@@ -157,9 +158,12 @@ end
 
 require('mason').setup()
 
+-- Subset of:
+-- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 local servers = {
   'clangd',
   -- 'hls',
+  'jdtls',
   'rust_analyzer',
   'pyright',
   'tsserver',
@@ -202,7 +206,23 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
     { name = 'buffer' },
+    { name = 'luasnip' },
+    { name = 'nvim_lsp' },
   })
+})
+
+local date = function() return {os.date('%Y-%m-%d')} end
+
+luasnip.add_snippets(nil, {
+  all = {
+    luasnip.snippet({
+      trig = "date",
+      namr = "Date",
+      dscr = "Date in the form of YYYY-MM-DD",
+    },
+    {
+      luasnip.function_node(date, {}),
+    }),
+  },
 })
