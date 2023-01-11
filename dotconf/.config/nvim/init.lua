@@ -3,7 +3,11 @@ require('packer').startup(function(use)
   use 'dense-analysis/ale'
   use {
     'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-nvim-lsp' },
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+    },
   }
   use 'nvim-lualine/lualine.nvim'
   use {
@@ -178,10 +182,17 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-local cmp = require'cmp'
+local cmp = require 'cmp'
+local luasnip = require 'luasnip'
+
 cmp.setup({
   window = {
     completion = cmp.config.window.bordered(),
+  },
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
