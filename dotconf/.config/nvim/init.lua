@@ -51,10 +51,7 @@ vim.api.nvim_command([[
 ]])
 
 -- Always show sign column
-vim.api.nvim_command([[
-  set signcolumn=yes
-]])
-
+vim.o.signcolumn = "yes"
 vim.o.dir = '/tmp'
 vim.o.swapfile = true
 
