@@ -49,6 +49,7 @@ in with builtins; [
   nickel
   nix
   nixfmt
+  nodePackages.mermaid-cli
   openssl
   pyright
   (python310.withPackages pythonPackages)
