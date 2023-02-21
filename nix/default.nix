@@ -15,6 +15,7 @@ in with builtins; [
   fd
   figlet
   firefox
+  flameshot
   fortune
   fzf
   ghc
