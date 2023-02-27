@@ -70,6 +70,7 @@ in with builtins; [
   tree
   vlc
   viddy
+  wine
   yj
   yq-go
   zathura
