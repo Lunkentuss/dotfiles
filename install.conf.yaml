@@ -30,3 +30,4 @@
     ~/bin/rsed: dotconf/bin/rsed
     ~/bin/run_i3lock_color: dotconf/bin/run_i3lock_color
     ~/bin/shellcheck_recursive: dotconf/bin/shellcheck_recursive
+    ~/bin/up_harbor: dotconf/bin/up_harbor
