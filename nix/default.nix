@@ -56,6 +56,7 @@ in with builtins; [
   (python310.withPackages pythonPackages)
   pandoc
   pulsemixer
+  reveal-md
   ripgrep
   rustc
   shellcheck
