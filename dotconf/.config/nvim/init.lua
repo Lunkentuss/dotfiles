@@ -161,6 +161,7 @@ require('mason').setup()
 -- Subset of:
 -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 local servers = {
+  'bashls',
   'clangd',
   -- 'hls',
   'jdtls',
