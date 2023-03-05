@@ -29,5 +29,6 @@
     ~/bin/random-wallpaper: dotconf/bin/random-wallpaper
     ~/bin/rsed: dotconf/bin/rsed
     ~/bin/run_i3lock_color: dotconf/bin/run_i3lock_color
+    ~/bin/setup_wine: dotconf/bin/setup_wine
     ~/bin/shellcheck_recursive: dotconf/bin/shellcheck_recursive
     ~/bin/up_harbor: dotconf/bin/up_harbor
