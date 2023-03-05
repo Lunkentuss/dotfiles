@@ -22,6 +22,7 @@
     ~/bin/dotbot-add: dotconf/bin/dotbot-add
     ~/bin/extract: dotconf/bin/extract
     ~/bin/firejail-wine: dotconf/bin/firejail-wine
+    ~/bin/game: dotconf/bin/game
     ~/bin/git-homepage: dotconf/bin/git-homepage
     ~/bin/install-fonts: dotconf/bin/install-fonts
     ~/bin/jwt_decode: dotconf/bin/jwt_decode

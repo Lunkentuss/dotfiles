@@ -1,0 +1,30 @@
+#!/bin/bash
+
+firejail_wine_exe() {
+  exe="$HOME/.wine/drive_c/$1"
+  firejail --profile=<(\
+  cat << EOF
+whitelist ${HOME}/.wine
+whitelist ${HOME}/.nix-profile
+EOF
+) << EOF
+set -eu
+PATH="$HOME/.nix-profile/bin:$PATH"
+wine "$exe"
+echo "Exiting firejail"
+exit 0
+EOF
+}
+
+chosen_game=$(printf "
+Rain World
+" | fzf)
+
+case "$chosen_game" in
+  "Rain World")
+    firejail_wine_exe "Games/Rain World/RainWorld.exe"
+    ;;
+  *)
+    echo "Game $1 not found"
+    exit 1
+esac
