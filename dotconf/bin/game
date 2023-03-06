@@ -16,11 +16,15 @@ exit 0
 EOF
 }
 
-chosen_game=$(printf "
+chosen_game=$(printf \
+"Cuphead
 Rain World
 " | fzf)
 
 case "$chosen_game" in
+  "Cuphead")
+    PROTON_USE_WINED3D=1 steam steam://run/268910
+    ;;
   "Rain World")
     firejail_wine_exe "Games/Rain World/RainWorld.exe"
     ;;

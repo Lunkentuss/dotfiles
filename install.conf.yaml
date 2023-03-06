@@ -18,7 +18,6 @@
     ~/bin/arch_install_packages: dotconf/bin/arch_install_packages
     ~/bin/bluetoothctlw.py: dotconf/bin/bluetoothctlw.py
     ~/bin/clean_whitespace: dotconf/bin/clean_whitespace
-    ~/bin/cuphead: dotconf/bin/cuphead
     ~/bin/dotbot-add: dotconf/bin/dotbot-add
     ~/bin/extract: dotconf/bin/extract
     ~/bin/firejail-wine: dotconf/bin/firejail-wine
