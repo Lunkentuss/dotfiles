@@ -6,7 +6,7 @@
 # format.
 
 if [ -z "$1" ]; then
-  echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+  echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|iso|xz|ex|tar.bz2|tar.gz|tar.xz>"
 else
   if [ -f "$1" ]; then
     case $1 in
@@ -23,6 +23,7 @@ else
     *.zip) unzip "$1" ;;
     *.Z) uncompress "$1" ;;
     *.7z) 7z x "$1" ;;
+    *.iso) 7z x "$1" ;;
     *.xz) unxz "$1" ;;
     *.exe) cabextract "$1" ;;
     *) echo "extract: '$1' - unknown archive method" ;;
