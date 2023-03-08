@@ -42,12 +42,16 @@ up() {
       && rm -rf harbor-portal
   fi
   compose_file="$harbor_dir/docker-compose.yml"
-  sed -E -i 's|(EXT_ENDPOINT=)(.*)|\1http://localhost|g' "$compose_file"
+  sed -E -i 's|(EXT_ENDPOINT=)(.*)|\1http://local.harbor|g' "$compose_file"
   sed -E -i 's/(HARBOR_ADMIN_PASSWORD=)(.*)/\1admin/g' "$compose_file"
   docker-compose up -d --wait
   echo "user: admin
 password: admin
-url: http://localhost"
+url: http://local.harbor
+
+make sure to add
+127.0.0.1   local.harbor
+entry in /etc/hosts"
 }
 
 down() {
