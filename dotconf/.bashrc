@@ -1,5 +1,6 @@
 [[ $- != *i* ]] && return
 
+LANG=C
 PS1='[\u:\[\e[1;36m\]\W\[\e[1;0m\]]\$ '
 
 __user_packages_share="$HOME/.nix-profile/share"
