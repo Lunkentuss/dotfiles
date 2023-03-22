@@ -10,5 +10,6 @@ with python; [
   pyjwt
   pyyaml
   pytest
+  pytest-sugar
   requests
 ]

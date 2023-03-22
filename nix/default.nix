@@ -29,6 +29,7 @@ in with builtins; [
   htop
   iproute2
   iputils
+  istioctl
   jq
   jsonnet
   k9s
