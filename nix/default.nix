@@ -64,6 +64,7 @@ in with builtins; [
   shfmt
   siege
   slack
+  syncthing
   socat
   statix
   sxhkd
