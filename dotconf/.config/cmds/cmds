@@ -13,3 +13,4 @@ Redis: docker run -ti -p 6379:6379 redis:latest
 Pacman query local: pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'
 run kubectl with curl interactively:kubectl run curl-debug --image=curlimages/curl -i --tty -- sh && kubectl delete pod curl-debug
 uptime-kuma:docker run -p 3001:3001 -v uptime-kuma:/app/data louislam/uptime-kuma:1
+start minikube: minikube start --cpus 4 --memory 8192
