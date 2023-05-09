@@ -51,6 +51,7 @@ in with builtins; [
   nickel
   nix
   nixfmt
+  mkcert
   nodePackages.mermaid-cli
   openssl
   pyright
