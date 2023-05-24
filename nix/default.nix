@@ -30,6 +30,7 @@ in with builtins; [
   iproute2
   iputils
   istioctl
+  jdk19
   jq
   jsonnet
   k9s
