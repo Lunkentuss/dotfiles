@@ -2,6 +2,7 @@
 with pkgs;
 let pythonPackages = import ./python-packages.nix;
 in with builtins; [
+  android-tools
   ansible
   bash-completion
   bashInteractive
@@ -62,6 +63,7 @@ in with builtins; [
   reveal-md
   ripgrep
   rustc
+  scrcpy
   shellcheck
   shfmt
   siege
