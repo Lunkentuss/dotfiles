@@ -77,6 +77,7 @@ in with builtins; [
   tree
   vlc
   viddy
+  wrk
   yj
   yq-go
   zathura
