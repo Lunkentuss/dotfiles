@@ -6,6 +6,7 @@ in with builtins; [
   ansible
   bash-completion
   bashInteractive
+  bluez
   bspwm
   cargo
   coreutils
@@ -13,6 +14,7 @@ in with builtins; [
   cowsay
   curl
   dhall
+  diff-pdf
   fd
   figlet
   firefox
