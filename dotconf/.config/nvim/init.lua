@@ -168,7 +168,7 @@ local servers = {
   'rust_analyzer',
   'pyright',
   'tsserver',
-  'sumneko_lua',
+  'lua_ls',
   'gopls',
   -- 'yamlls',
 }

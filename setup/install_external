@@ -20,7 +20,8 @@ plug_vim_file="$HOME/.config/$VIM_EDITOR/autoload/plug.vim"
 
 echo "Installing vim plugins with plug"
 # Run :PlugInstall in vim non-interactively to install plugins
-vim +'PackerInstall --sync' +qa
+# Does currently not work
+# vim +'PackerInstall --sync' +qa
 
 echo "Install kubectl krew modules"
 for krew_plugin in ns ctx ; do

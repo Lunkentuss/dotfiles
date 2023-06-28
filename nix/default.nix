@@ -2,10 +2,13 @@
 with pkgs;
 let pythonPackages = import ./python-packages.nix;
 in with builtins; [
+  # OpenGL issues with alacritty
+  # alacritty
   android-tools
   ansible
   bash-completion
   bashInteractive
+  bat
   bluez
   bspwm
   cargo
@@ -15,6 +18,7 @@ in with builtins; [
   curl
   dhall
   diff-pdf
+  feh
   fd
   figlet
   firefox
@@ -25,6 +29,7 @@ in with builtins; [
   git
   gnumake
   gnused
+  go
   hadolint
   hey
   hlint
@@ -57,6 +62,7 @@ in with builtins; [
   nixfmt
   mkcert
   nodePackages.mermaid-cli
+  openssh
   openssl
   pyright
   (python310.withPackages pythonPackages)
@@ -72,11 +78,15 @@ in with builtins; [
   slack
   syncthing
   socat
+  spotify
   statix
   sxhkd
   tcpdump
   terraform
+  gnome.nautilus
+  transmission-gtk
   tree
+  unrar
   vlc
   viddy
   wrk

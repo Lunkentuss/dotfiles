@@ -17,7 +17,7 @@ script are only available on the AUR.
 "$PACKAGE_INSTALLER" -S --noconfirm nix
 
 # Terminal
-"$PACKAGE_INSTALLER" -S --noconfirm urxvt
+"$PACKAGE_INSTALLER" -S --noconfirm alacritty
 
 # Services to enable
 systemctl enable --now NetworkManager
@@ -25,6 +25,7 @@ systemctl enable --now NetworkManager
 # === X server related
 # xorg, implemetation of X11 (X Window System)
 "$PACKAGE_INSTALLER" -S --noconfirm xorg
+"$PACKAGE_INSTALLER" -S --noconfirm xorg-init
 
 # === Network related
 "$PACKAGE_INSTALLER" -S --noconfirm dhcpcd
@@ -34,6 +35,8 @@ systemctl enable --now NetworkManager
 # Install alsa
 # Install pulseaudio or pipewire(pavucontrol)
 "$PACKAGE_INSTALLER" -S --noconfirm udev
+"$PACKAGE_INSTALLER" -S --noconfirm alsa-utils
+"$PACKAGE_INSTALLER" -S --noconfirm pulseaudio
 
 # === Etc
 # Not only of course useful for development,
@@ -68,3 +71,7 @@ npm install -g reveal-md
 
 # === Laptop
 pip install --user acpi
+
+# Commands
+timedatectl set-ntp true
+pulseaudio --start

@@ -15,7 +15,6 @@ export SUCCESS_MSG
 all: nix-profile-install
 	./install
 	./setup/install_external
-	./setup/setup
 	@cowsay -f turkey "$${SUCCESS_MSG}" | lolcat
 
 .PHONY: nix-build
