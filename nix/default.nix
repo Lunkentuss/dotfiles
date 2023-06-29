@@ -27,6 +27,7 @@ in with builtins; [
   fzf
   ghc
   git
+  gitlab-runner
   gnumake
   gnused
   go
@@ -75,6 +76,7 @@ in with builtins; [
   shellcheck
   shfmt
   siege
+  skopeo
   slack
   syncthing
   socat
