@@ -18,7 +18,7 @@ $bin down
 $bin clean"
 }
 
-if [[ $# == 0 ]] ; then
+if [[ $# == 0 ]]; then
   usage
   exit 0
 fi
@@ -34,7 +34,7 @@ _cd_dir() {
 
 up() {
   _cd_dir
-  if [[ ! -d "$harbor_dir/config" ]] ; then
+  if [[ ! -d "$harbor_dir/config" ]]; then
     curl -LO https://raw.githubusercontent.com/bitnami/containers/main/bitnami/harbor-portal/docker-compose.yml
     curl -L https://github.com/bitnami/containers/archive/main.tar.gz \
       | tar xz --strip=2 containers-main/bitnami/harbor-portal \

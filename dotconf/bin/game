@@ -2,12 +2,12 @@
 
 firejail_wine_exe() {
   exe="$HOME/.wine/drive_c/$1"
-  firejail --profile=<(\
-  cat << EOF
+  firejail --profile=<(
+    cat << EOF
 whitelist ${HOME}/.wine
 whitelist ${HOME}/.nix-profile
 EOF
-) << EOF
+  ) << EOF
 set -eu
 PATH="$HOME/.nix-profile/bin:$PATH"
 wine "$exe"
@@ -17,22 +17,23 @@ EOF
 }
 
 chosen_game=$(printf \
-"Cuphead
+  "Cuphead
 Portal Collection
 Rain World
 " | fzf)
 
 case "$chosen_game" in
-  "Cuphead")
-    PROTON_USE_WINED3D=1 steam steam://run/268910
-    ;;
-  "Portal Collection")
-    firejail_wine_exe "Games/Portal Collection/Portal Collection.exe"
-    ;;
-  "Rain World")
-    firejail_wine_exe "Games/Rain World/RainWorld.exe"
-    ;;
-  *)
-    echo "Game $1 not found"
-    exit 1
+"Cuphead")
+  PROTON_USE_WINED3D=1 steam steam://run/268910
+  ;;
+"Portal Collection")
+  firejail_wine_exe "Games/Portal Collection/Portal Collection.exe"
+  ;;
+"Rain World")
+  firejail_wine_exe "Games/Rain World/RainWorld.exe"
+  ;;
+*)
+  echo "Game $1 not found"
+  exit 1
+  ;;
 esac

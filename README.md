@@ -38,8 +38,8 @@ and you'll see something like:
                 ||     ||
 ```
 
-Alternatively, the packages can be installed in the provided `Dockerfile`, by building
-and running the `Dockerfile` with:
+Alternatively, the packages can be tested with an OCI image which can be built
+from the provided `Dockerfile`, by building and running the `Dockerfile` with:
 
 ```bash
 docker run -ti --entrypoint /bin/sh $(docker build -q .)

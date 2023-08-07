@@ -27,6 +27,7 @@ in with builtins; [
   fzf
   ghc
   git
+  git-filter-repo
   gitlab-runner
   gnumake
   gnused
@@ -61,6 +62,7 @@ in with builtins; [
   nickel
   nix
   nixfmt
+  nodePackages.markdownlint-cli
   mkcert
   nodePackages.mermaid-cli
   openssh

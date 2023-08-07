@@ -10,8 +10,8 @@
 
 pwd="$PWD"
 
-firejail --profile=<(\
-cat << EOF
+firejail --profile=<(
+  cat << EOF
 whitelist ${HOME}/.wine
 whitelist ${HOME}/.nix-profile
 EOF
