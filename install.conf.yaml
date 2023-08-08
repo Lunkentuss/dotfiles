@@ -32,3 +32,4 @@
     ~/bin/setup_wine: dotconf/bin/setup_wine
     ~/bin/shellcheck_recursive: dotconf/bin/shellcheck_recursive
     ~/bin/up_harbor: dotconf/bin/up_harbor
+    ~/bin/movies-fzf: dotconf/bin/movies-fzf

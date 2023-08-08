@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -eu
+
+cd ~/torrent
+
+movie="$(\
+  fd \
+  --color never \
+  -e avi \
+  -e flv \
+  -e mkv \
+  -e mp4 \
+  | fzf)"
+vlc "$movie"
