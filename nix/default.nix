@@ -32,6 +32,7 @@ in with builtins; [
   gnumake
   gnused
   go
+  google-chrome
   hadolint
   hey
   hlint
