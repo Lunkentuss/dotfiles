@@ -33,6 +33,7 @@ in with builtins; [
   gnused
   go
   google-chrome
+  google-java-format
   hadolint
   hey
   hlint
