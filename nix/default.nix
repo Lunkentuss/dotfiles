@@ -22,6 +22,8 @@ in with builtins; [
   fd
   figlet
   firefox
+  # Can't create SUID flag on binary.
+  # firejail
   flameshot
   fortune
   fzf
@@ -86,6 +88,7 @@ in with builtins; [
   socat
   spotify
   statix
+  strace
   sxhkd
   tcpdump
   terraform

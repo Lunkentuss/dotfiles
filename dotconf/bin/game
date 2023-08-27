@@ -18,6 +18,7 @@ EOF
 
 chosen_game=$(printf \
   "Cuphead
+Planet of Lana
 Portal Collection
 Rain World
 " | fzf)
@@ -25,6 +26,9 @@ Rain World
 case "$chosen_game" in
 "Cuphead")
   PROTON_USE_WINED3D=1 steam steam://run/268910
+  ;;
+"Planet of Lana")
+  firejail_wine_exe "Games/Planet of Lana/Planet of Lana.exe"
   ;;
 "Portal Collection")
   firejail_wine_exe "Games/Portal Collection/Portal Collection.exe"
