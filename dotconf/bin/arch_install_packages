@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eu
+
 PACKAGE_INSTALLER="${1:-"pacman"}"
 
 echo "Using ${PACKAGE_INSTALLER} to install packages"
@@ -25,7 +27,7 @@ systemctl enable --now NetworkManager
 # === X server related
 # xorg, implemetation of X11 (X Window System)
 "$PACKAGE_INSTALLER" -S --noconfirm xorg
-"$PACKAGE_INSTALLER" -S --noconfirm xorg-init
+"$PACKAGE_INSTALLER" -S --noconfirm xorg-xinit
 
 # === Network related
 "$PACKAGE_INSTALLER" -S --noconfirm dhcpcd
@@ -47,15 +49,13 @@ systemctl enable --now NetworkManager
 "$PACKAGE_INSTALLER" -S --noconfirm ttyplot
 
 # === Bluetooth
-# Either blueman and run bluetooth-applet for gui
+"$PACKAGE_INSTALLER" -S --noconfirm bluez
+"$PACKAGE_INSTALLER" -S --noconfirm pulseaudio-bluetooth
 
 # === Personal rice
-"$PACKAGE_INSTALLER" -S --noconfirm i3lock-color
+# Does not work on nix for some reason
+"$PACKAGE_INSTALLER" -S --noconfirm xsecurelock
 
-# === Personal dev tools
-# Programming
-"$PACKAGE_INSTALLER" -S --noconfirm nodejs
-"$PACKAGE_INSTALLER" -S --noconfirm npm
 # OCI
 "$PACKAGE_INSTALLER" -S --noconfirm docker
 "$PACKAGE_INSTALLER" -S --noconfirm docker-scan
@@ -64,7 +64,10 @@ systemctl enable --now NetworkManager
 # Etc
 "$PACKAGE_INSTALLER" -S --noconfirm texlive-most
 "$PACKAGE_INSTALLER" -S --noconfirm bash-completion
-"$PACKAGE_INSTALLER" -S --noconfirm dmenu
+
+# Fonts
+"$PACKAGE_INSTALLER" -S --noconfirm noto-fonts
+
 
 # === npm
 npm install -g reveal-md

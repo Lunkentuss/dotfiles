@@ -1,7 +1,8 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ? import <nixpkgs> { }, old_pkgs }:
 with pkgs;
 let pythonPackages = import ./python-packages.nix;
 in with builtins; [
+  acpi
   # OpenGL issues with alacritty
   # alacritty
   android-tools
@@ -16,10 +17,12 @@ in with builtins; [
   cosign
   cowsay
   curl
+  dbeaver
   dhall
   diff-pdf
-  feh
+  dmenu
   fd
+  feh
   figlet
   firefox
   # Can't create SUID flag on binary.
@@ -27,6 +30,8 @@ in with builtins; [
   flameshot
   fortune
   fzf
+  geos
+  gdal
   ghc
   git
   git-filter-repo
@@ -36,7 +41,7 @@ in with builtins; [
   go
   google-chrome
   google-java-format
-  hadolint
+  old_pkgs."22_05".hadolint
   hey
   hlint
   html-tidy
@@ -47,14 +52,15 @@ in with builtins; [
   jdk19
   jq
   jsonnet
+  k6
   k9s
   kazam
-  krew
   kotlin
+  krew
   kubectl
   kubepug
   kubernetes-helm
-  k6
+  lm_sensors
   lolcat
   lsof
   manix
@@ -66,17 +72,21 @@ in with builtins; [
   nickel
   nix
   nixfmt
+  nodejs_20
   nodePackages.markdownlint-cli
   mkcert
   nodePackages.mermaid-cli
   openssh
   openssl
-  pyright
   (python310.withPackages pythonPackages)
   pandoc
+  parallel
+  postgresql
   pulsemixer
+  pyright
   reveal-md
   ripgrep
+  ruff
   rustc
   scrcpy
   shellcheck
@@ -92,12 +102,15 @@ in with builtins; [
   sxhkd
   tcpdump
   terraform
+  teams
   gnome.nautilus
   transmission-gtk
   tree
   unrar
+  unzip
   vlc
   viddy
+  wget
   wrk
   yj
   yq-go

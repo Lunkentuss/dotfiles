@@ -1,5 +1,6 @@
 NIX := nix --extra-experimental-features flakes --extra-experimental-features nix-command
 NIXPKGS_ALLOW_UNFREE := 1
+DMENU_CACHE := $(shell echo "$$HOME/.config/dmenu_run")
 export NIXPKGS_ALLOW_UNFREE
 
 define SUCCESS_MSG
@@ -23,11 +24,9 @@ nix-build:
 
 .PHONY: nix-profile-install
 nix-profile-install: nix-build
-	${NIX} profile list \
-		| grep "lunkentuss-user-environment" \
-		| sed -E 's/([0-9]*).*/\1/' \
-		| xargs ${NIX} profile remove
+	nix profile remove 0
 	${NIX} profile install --impure .
+	{ [[ -f "${DMENU_CACHE}" ]] && rm "${DMENU_CACHE}"; true; }
 
 .PHONY: nix-update
 nix-update:

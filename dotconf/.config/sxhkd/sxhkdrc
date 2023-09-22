@@ -20,7 +20,9 @@ ctrl + alt + w
 
 # lock screen
 ctrl + alt + l
-  $HOME/bin/run_i3lock_color
+  XSECURELOCK_PASSWORD_PROMPT=disco \
+  XSECURELOCK_PAM_SERVICE=login \
+  xsecurelock
 
 # lock screen
 ctrl + alt + h
