@@ -68,6 +68,9 @@ systemctl enable --now NetworkManager
 # Fonts
 "$PACKAGE_INSTALLER" -S --noconfirm noto-fonts
 
+# Security
+"$PACKAGE_INSTALLER" -S --noconfirm firejail
+
 
 # === npm
 npm install -g reveal-md

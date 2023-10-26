@@ -10,14 +10,17 @@
 
 pwd="$PWD"
 
+wineprefix=${1:-${HOME}/.wine}
+
 firejail --profile=<(
   cat << EOF
-whitelist ${HOME}/.wine
+whitelist ${wineprefix}
 whitelist ${HOME}/.nix-profile
 EOF
-) $@ << EOF
+) ${@:2} << EOF
 set -eu
 PATH="$HOME/.nix-profile/bin:$PATH"
 cd "$pwd"
+export WINEPREFIX=${wineprefix}
 exec < /dev/tty
 EOF

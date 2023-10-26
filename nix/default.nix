@@ -86,6 +86,7 @@ in with builtins; [
   pyright
   reveal-md
   ripgrep
+  rsync
   ruff
   rustc
   scrcpy

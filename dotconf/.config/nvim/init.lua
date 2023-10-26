@@ -12,7 +12,7 @@ require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -24,6 +24,7 @@ require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter-textobjects',
   }
   use 'mfussenegger/nvim-jdtls'
+  use 'preservim/nerdtree'
   use 'tpope/vim-commentary'
   use 'wbthomason/packer.nvim'
 
@@ -66,7 +67,10 @@ vim.g.mapleader = ','
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('v', '<leader>y', '"+y', {noremap=true, silent=true})
+vim.keymap.set('v', '<leader>y', '"+y', { noremap = true, silent = true })
+-- NERDTree
+vim.api.nvim_set_keymap('n', 'ft', ':NERDTree<CR>', {})
+vim.api.nvim_set_keymap('n', 'fv', ':NERDTreeFind<CR>', {})
 
 -- Go to most recent visited line in buffer
 vim.api.nvim_create_autocmd(
@@ -129,7 +133,7 @@ require('nvim-treesitter.configs').setup {
   }
 }
 
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -138,7 +142,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -213,17 +217,17 @@ cmp.setup({
   })
 })
 
-local date = function() return {os.date('%Y-%m-%d')} end
+local date = function() return { os.date('%Y-%m-%d') } end
 
 luasnip.add_snippets(nil, {
   all = {
     luasnip.snippet({
-      trig = "date",
-      namr = "Date",
-      dscr = "Date in the form of YYYY-MM-DD",
-    },
-    {
-      luasnip.function_node(date, {}),
-    }),
+        trig = "date",
+        namr = "Date",
+        dscr = "Date in the form of YYYY-MM-DD",
+      },
+      {
+        luasnip.function_node(date, {}),
+      }),
   },
 })

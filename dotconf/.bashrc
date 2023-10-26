@@ -21,7 +21,7 @@ PATH="$HOME/go/bin:$PATH"
 PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 PATH="$HOME/.nix-profile/bin:$PATH"
-export LD_LIBRARY_PATH=/home/user/.nix-profile/lib
+# export LD_LIBRARY_PATH=/home/user/.nix-profile/lib
 
 export EDITOR="nvim"
 
