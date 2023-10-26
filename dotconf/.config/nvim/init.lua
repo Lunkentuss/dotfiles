@@ -171,6 +171,7 @@ local servers = {
   'jdtls',
   'rust_analyzer',
   'pyright',
+  'ruff_lsp',
   'tsserver',
   'lua_ls',
   'gopls',
