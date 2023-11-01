@@ -13,6 +13,7 @@ in with builtins; [
   bat
   bluez
   bspwm
+  bws
   cargo
   coreutils
   cosign
