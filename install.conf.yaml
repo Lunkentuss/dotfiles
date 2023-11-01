@@ -26,9 +26,10 @@
     ~/bin/install-fonts: dotconf/bin/install-fonts
     ~/bin/jwt_decode: dotconf/bin/jwt_decode
     ~/bin/meme: dotconf/bin/meme
+    ~/bin/movies-fzf: dotconf/bin/movies-fzf
     ~/bin/random-wallpaper: dotconf/bin/random-wallpaper
     ~/bin/rsed: dotconf/bin/rsed
     ~/bin/setup_wine: dotconf/bin/setup_wine
     ~/bin/shellcheck_recursive: dotconf/bin/shellcheck_recursive
+    ~/bin/teams: dotconf/bin/teams
     ~/bin/up_harbor: dotconf/bin/up_harbor
-    ~/bin/movies-fzf: dotconf/bin/movies-fzf

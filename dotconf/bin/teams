@@ -1,0 +1,5 @@
+#!/bin/bash
+# Microsoft doesn't support the linux desktop version anymore, so the web
+# browser is used instead.
+
+"$BROWSER" https://teams.microsoft.com
