@@ -5,6 +5,7 @@ in with builtins; [
   acpi
   # OpenGL issues with alacritty
   # alacritty
+  android-studio
   android-tools
   ansible
   bash-completion
@@ -58,6 +59,7 @@ in with builtins; [
   kotlin
   krew
   kubectl
+  ktfmt
   kubepug
   kubernetes-helm
   lm_sensors
@@ -103,7 +105,6 @@ in with builtins; [
   sxhkd
   tcpdump
   terraform
-  teams
   gnome.nautilus
   transmission-gtk
   tree

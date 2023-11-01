@@ -10,7 +10,8 @@ with python; [
   pydantic
   pyjwt
   pytest
-  pyyaml
   pytest-sugar
+  pyyaml
   requests
+  structlog
 ]
