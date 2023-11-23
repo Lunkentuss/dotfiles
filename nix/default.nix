@@ -32,8 +32,9 @@ in with builtins; [
   flameshot
   fortune
   fzf
-  geos
   gdal
+  genxword
+  geos
   ghc
   git
   git-filter-repo
