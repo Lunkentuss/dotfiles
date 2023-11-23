@@ -24,9 +24,10 @@ ctrl + alt + l
   XSECURELOCK_PAM_SERVICE=login \
   xsecurelock
 
-# lock screen
+# screenshot
+# Flameshot must run in background for clipboard to work
 ctrl + alt + h
-  flameshot gui
+  bash -c 'nohup flameshot & flameshot gui'
 
 # make sxhkd reload its configuration files:
 super + Escape

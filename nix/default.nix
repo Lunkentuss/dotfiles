@@ -98,15 +98,18 @@ in with builtins; [
   siege
   skopeo
   slack
-  syncthing
   socat
   spotify
+  stack
   statix
   strace
   sxhkd
+  gnome.nautilus
+  syncthing
   tcpdump
   terraform
-  gnome.nautilus
+  # Tex is needed to run pandoc ... -o output.pdf
+  texlive.combined.scheme-full
   transmission-gtk
   tree
   unrar

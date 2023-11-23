@@ -27,6 +27,9 @@ nix-profile-install: nix-build
 	nix profile remove 0
 	${NIX} profile install --impure .
 	{ [[ -f "${DMENU_CACHE}" ]] && rm "${DMENU_CACHE}"; true; }
+	@[[ -f $$HOME/.cache/dmenu_run ]] \
+		&& rm $$HOME/.cache/dmenu_run \
+		&& dmenu_path > /dev/null
 
 .PHONY: nix-update
 nix-update:

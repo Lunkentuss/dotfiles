@@ -5,6 +5,7 @@ with python; [
   isort
   j2cli
   jsonnet
+  mypy
   nodeenv
   poetry-core
   pydantic
@@ -14,4 +15,5 @@ with python; [
   pyyaml
   requests
   structlog
+  types-pytz
 ]

@@ -9,6 +9,7 @@ require('packer').startup(function(use)
       'saadparwaiz1/cmp_luasnip',
     },
   }
+  -- use 'udalov/kotlin-vim'
   use 'nvim-lualine/lualine.nvim'
   use {
     'nvim-telescope/telescope.nvim',
@@ -49,6 +50,7 @@ vim.bo.tabstop = 2
 
 vim.api.nvim_command([[
   autocmd FileType go setlocal sw=2 ts=2 noexpandtab
+  autocmd FileType kotlin setlocal expandtab softtabstop=2 shiftwidth=2
 ]])
 
 -- Remove default gray color of sign column
@@ -88,7 +90,7 @@ require('lualine').setup {
 }
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'c', 'go', 'haskell', 'lua', 'nix', 'python' },
+  ensure_installed = { 'c', 'go', 'haskell', 'lua', 'nix', 'python', 'kotlin' },
   highlight = { enable = true },
   incremental_selection = {
     enable = true,
@@ -135,6 +137,7 @@ require('nvim-treesitter.configs').setup {
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<leader>w', vim.diagnostic.disable, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
@@ -167,14 +170,16 @@ require('mason').setup()
 local servers = {
   'bashls',
   'clangd',
-  -- 'hls',
+  'gopls',
   'jdtls',
-  'rust_analyzer',
+  -- 'kotlin_language_server',
+  -- 'detekt',
+  'lua_ls',
   'pyright',
   'ruff_lsp',
+  'rust_analyzer',
   'tsserver',
-  'lua_ls',
-  'gopls',
+  -- 'hls',
   -- 'yamlls',
 }
 
