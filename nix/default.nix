@@ -11,6 +11,7 @@ in with builtins; [
   bash-completion
   bashInteractive
   bat
+  bfg-repo-cleaner
   bluez
   bspwm
   bws
