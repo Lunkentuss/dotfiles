@@ -108,6 +108,7 @@ in with builtins; [
   sxhkd
   gnome.nautilus
   syncthing
+  tbls
   tcpdump
   terraform
   # Tex is needed to run pandoc ... -o output.pdf
