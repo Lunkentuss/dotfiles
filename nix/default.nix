@@ -19,6 +19,7 @@ in with builtins; [
   coreutils
   cosign
   cowsay
+  ctop
   curl
   dbeaver
   dhall
