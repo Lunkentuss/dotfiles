@@ -87,6 +87,7 @@ in with builtins; [
   (python310.withPackages pythonPackages)
   pandoc
   parallel
+  poetry
   postgresql
   pulsemixer
   pyright

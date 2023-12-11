@@ -10,7 +10,7 @@ buildGoModule {
     rev = "2e0344cb8e092177a75babf5be1d5699e31bb2c5";
     sha256 = "sha256-TyqSTZiMxqcURrOq2es3Ia9GQgbyp2QgbQlmcxhxi7s=";
   } + "/cacerts/jksutil";
-  vendorSha256 = null;
+  vendorHash = null;
   preBuild = ''
     go mod init jksutil
   '';
