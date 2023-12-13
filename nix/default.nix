@@ -123,10 +123,17 @@ in with builtins; [
   viddy
   wget
   wrk
+  yarn
   yj
   yq-go
   zathura
   xclip
+  (runCommand "node-packages-bin" {} ''
+    mkdir -p "$out/bin" \
+      && ln -sf \
+        "${import ./node pkgs}/libexec/local-packages/node_modules/.bin/"* \
+        "$out/bin"
+  '')
   # This package makes running "kubectl krew" work, instead of having to run
   # krew directly.
   (runCommand "kubectl-krew" { } ''
