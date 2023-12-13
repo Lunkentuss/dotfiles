@@ -2,6 +2,7 @@ python:
 with python; [
   beautifulsoup4
   black
+  django
   isort
   j2cli
   jsonnet
