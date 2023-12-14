@@ -22,6 +22,7 @@ in with builtins; [
   ctop
   curl
   dbeaver
+  delta
   dhall
   diff-pdf
   dmenu
