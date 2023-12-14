@@ -28,6 +28,7 @@
     ~/bin/meme: dotconf/bin/meme
     ~/bin/movies-fzf: dotconf/bin/movies-fzf
     ~/bin/random-wallpaper: dotconf/bin/random-wallpaper
+    ~/bin/record-to-gif-clipboard: dotconf/bin/record-to-gif-clipboard
     ~/bin/rsed: dotconf/bin/rsed
     ~/bin/setup_wine: dotconf/bin/setup_wine
     ~/bin/shellcheck_recursive: dotconf/bin/shellcheck_recursive
