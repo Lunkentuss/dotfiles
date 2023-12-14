@@ -28,6 +28,8 @@ in with builtins; [
   dmenu
   fd
   feh
+  ffcast
+  ffmpeg
   figlet
   firefox
   # Can't create SUID flag on binary.
@@ -101,6 +103,7 @@ in with builtins; [
   shellcheck
   shfmt
   siege
+  slop
   skopeo
   slack
   socat
