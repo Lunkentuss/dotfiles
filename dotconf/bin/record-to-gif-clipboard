@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eux
+set -eu
 
 start() {
 [[ -f /tmp/record.mp4 ]] && rm /tmp/record.mp4
@@ -20,6 +20,17 @@ ffmpeg \
   -vf "scale=512:-1,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
   /tmp/record.gif
 xclip -selection clipboard -target image/png -i /tmp/record.gif
+rm /tmp/record.mp4
+}
+
+toggle() {
+  if [[ -f /tmp/record.mp4 ]] ; then
+    echo "Stopping"
+    stop
+  else
+    echo "Starting"
+    start
+  fi
 }
 
 "$1"
