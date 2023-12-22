@@ -178,6 +178,7 @@ local servers = {
   'pyright',
   'ruff_lsp',
   'rust_analyzer',
+  'terraformls',
   'tsserver',
   -- 'hls',
   -- 'yamlls',
