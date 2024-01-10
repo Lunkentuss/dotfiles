@@ -12,6 +12,8 @@ __bash_completion="$__user_packages_share"/bash-completion/bash_completion
 [[ $PS1 && -f "$__bash_completion" ]] && \
   . "$__bash_completion"
 
+[[ -f "$HOME"/.env ]] && . "$HOME"/.env
+
 VISUAL="vim"
 PATH="$HOME/.krew/bin:$PATH"
 PATH="$HOME/local/ampl_linux_intel64/:$PATH"

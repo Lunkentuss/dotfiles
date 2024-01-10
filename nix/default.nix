@@ -16,6 +16,7 @@ in with builtins; [
   bspwm
   bws
   cargo
+  clippy
   coreutils
   cosign
   cowsay
@@ -99,6 +100,7 @@ in with builtins; [
   rsync
   ruff
   rustc
+  rustfmt
   scrcpy
   shellcheck
   shfmt
