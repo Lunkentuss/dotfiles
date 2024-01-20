@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -eu
+
+export PATH="/bin:$PATH"
+systemctl start evremap.service
+sed -i --follow-symlinks -E 's/(ctrl [+] alt [+]) l/\1 z/' ~/.config/sxhkd/sxhkdrc
+pkill -x sxhkd; sxhkd &
+. ~/.xinitrc &
+lutris
+sed -i --follow-symlinks -E 's/(ctrl [+] alt [+]) z/\1 l/' ~/.config/sxhkd/sxhkdrc
+pkill -x sxhkd; sxhkd &
+systemctl stop evremap.service
