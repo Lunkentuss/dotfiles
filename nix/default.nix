@@ -91,10 +91,12 @@ in with builtins; [
   (python310.withPackages pythonPackages)
   pandoc
   parallel
+  pip-audit
   poetry
   postgresql
   pulsemixer
   pyright
+  redis
   reveal-md
   ripgrep
   rsync
