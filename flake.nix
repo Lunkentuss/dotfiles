@@ -1,6 +1,6 @@
 {
   description = "Lunkentuss user environment";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.nixpkgs_22_05.url = "github:NixOS/nixpkgs/22.05";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
@@ -16,5 +16,16 @@
         paths = packages;
       };
     }
-  );
+  )
+  //
+  {
+    nixosConfigurations = {
+      "nixos-rp4" = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./nixos-rp4/configuration.nix
+        ];
+      };
+    };
+  };
 }
