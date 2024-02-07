@@ -1,8 +1,0 @@
-{
-  "name": "local-packages",
-  "version": "1.0.1",
-  "dependencies": {
-    "playwright": "^1.40.1",
-    "prettier": "^3.1.1"
-  }
-}

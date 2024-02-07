@@ -74,6 +74,7 @@ in with builtins; [
   lolcat
   lsof
   manix
+  mdbook
   minikube
   # Issues with nix neovim and treesitter, so disable for now
   # neovim
@@ -136,12 +137,22 @@ in with builtins; [
   yq-go
   zathura
   xclip
-  (runCommand "node-packages-bin" {} ''
-    mkdir -p "$out/bin" \
-      && ln -sf \
-        "${import ./node pkgs}/libexec/local-packages/node_modules/.bin/"* \
-        "$out/bin"
-  '')
+  (
+    runCommand
+    "playwright-with-browsers"
+    {
+      nativeBuildInputs = [
+        makeWrapper
+      ];
+    }
+    ''
+    mkdir -p $out/bin
+    makeWrapper \
+      ${playwright}/bin/playwright \
+      $out/bin/playwright \
+      --set PLAYWRIGHT_BROWSERS_PATH ${playwright-driver.browsers}
+    ''
+  )
   # This package makes running "kubectl krew" work, instead of having to run
   # krew directly.
   (runCommand "kubectl-krew" { } ''
