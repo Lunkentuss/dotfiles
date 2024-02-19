@@ -1,0 +1,6 @@
+[user]
+  email = peter.hansson17@gmail.com
+  name = Peter Hansson
+
+[push]
+  autoSetupRemote=true
