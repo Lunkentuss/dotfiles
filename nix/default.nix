@@ -53,6 +53,7 @@ in with builtins; [
   old_pkgs."22_05".hadolint
   hey
   hlint
+  hpack
   html-tidy
   htop
   iproute2
@@ -130,6 +131,7 @@ in with builtins; [
   unzip
   vlc
   viddy
+  websocat
   wget
   wrk
   yarn
