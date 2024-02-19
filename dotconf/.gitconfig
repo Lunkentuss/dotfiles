@@ -1,0 +1,5 @@
+[includeIf "gitdir:~/work"]
+  path = ~/work/.gitconfig
+
+[includeIf "gitdir:~/"]
+  path = ~/.gitconfig-root
