@@ -15,7 +15,7 @@
     ~/.config/nvim/init.lua: dotconf/.config/nvim/init.lua
     ~/.config/sxhkd/sxhkdrc: dotconf/.config/sxhkd/sxhkdrc
     ~/.gitconfig: dotconf/.gitconfig
-    ~/.gitconfig-root: dotconf/.gitconfig-root
+    ~/.gitconfig-oss: dotconf/.gitconfig-oss
     ~/.xinitrc: dotconf/.xinitrc
     ~/bin/arch_install_packages: dotconf/bin/arch_install_packages
     ~/bin/bluetoothctlw.py: dotconf/bin/bluetoothctlw.py

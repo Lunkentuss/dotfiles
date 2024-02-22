@@ -1,5 +1,8 @@
-[includeIf "gitdir:~/work"]
-  path = ~/work/.gitconfig
+[includeIf "gitdir:~/work/"]
+  path = ~/.gitconfig-work
 
-[includeIf "gitdir:~/"]
-  path = ~/.gitconfig-root
+[includeIf "gitdir:~/oss/"]
+  path = ~/.gitconfig-oss
+
+[includeIf "gitdir:~/.dotfiles/"]
+  path = ~/.gitconfig-oss
