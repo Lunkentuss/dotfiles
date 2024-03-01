@@ -150,7 +150,7 @@ in with builtins; [
     ''
     mkdir -p $out/bin
     makeWrapper \
-      ${playwright}/bin/playwright \
+      ${playwright-test}/bin/playwright \
       $out/bin/playwright \
       --set PLAYWRIGHT_BROWSERS_PATH ${playwright-driver.browsers}
     ''
