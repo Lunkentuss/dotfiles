@@ -139,22 +139,7 @@ in with builtins; [
   yq-go
   zathura
   xclip
-  (
-    runCommand
-    "playwright-with-browsers"
-    {
-      nativeBuildInputs = [
-        makeWrapper
-      ];
-    }
-    ''
-    mkdir -p $out/bin
-    makeWrapper \
-      ${playwright-test}/bin/playwright \
-      $out/bin/playwright \
-      --set PLAYWRIGHT_BROWSERS_PATH ${playwright-driver.browsers}
-    ''
-  )
+  playwright-test
   # This package makes running "kubectl krew" work, instead of having to run
   # krew directly.
   (runCommand "kubectl-krew" { } ''
