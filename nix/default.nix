@@ -91,6 +91,7 @@ in with builtins; [
   openssh
   openssl
   (python310.withPackages pythonPackages)
+  gnome.nautilus
   pandoc
   parallel
   pip-audit
@@ -106,19 +107,19 @@ in with builtins; [
   rustc
   rustfmt
   scrcpy
+  screen
   shellcheck
   shfmt
   siege
-  slop
   skopeo
   slack
+  slop
   socat
   spotify
   stack
   statix
   strace
   sxhkd
-  gnome.nautilus
   syncthing
   tbls
   tcpdump
