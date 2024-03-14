@@ -15,6 +15,7 @@ with python; [
   pytest-sugar
   pyyaml
   requests
+  result
   structlog
   types-pytz
 ]
