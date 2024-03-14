@@ -6,3 +6,6 @@
 
 [includeIf "gitdir:~/.dotfiles/"]
   path = ~/.gitconfig-oss
+
+; [includeIf "gitdir:/tmp/"]
+;   path = ~/.gitconfig-oss

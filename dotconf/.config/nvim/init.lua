@@ -180,6 +180,7 @@ local servers = {
   'rust_analyzer',
   'terraformls',
   'tsserver',
+  'wgsl_analyzer',
   -- 'hls',
   -- 'yamlls',
 }
