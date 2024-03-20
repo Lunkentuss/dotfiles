@@ -172,7 +172,7 @@ local servers = {
   'clangd',
   'gopls',
   'jdtls',
-  -- 'kotlin_language_server',
+  'kotlin_language_server',
   -- 'detekt',
   'lua_ls',
   'pyright',
