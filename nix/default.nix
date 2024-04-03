@@ -84,10 +84,11 @@ in with builtins; [
   nickel
   nix
   nixfmt
-  nodejs_20
-  nodePackages.markdownlint-cli
   mkcert
+  nodePackages.markdownlint-cli
   nodePackages.mermaid-cli
+  nodePackages.prettier
+  nodejs_20
   openssh
   openssl
   (python310.withPackages pythonPackages)
