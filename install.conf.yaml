@@ -8,6 +8,7 @@
     ~/.Xresources: dotconf/.Xresources
     ~/.bash_profile: dotconf/.bash_profile
     ~/.bashrc: dotconf/.bashrc
+    ~/.cargo/config: dotconf/.cargo/config
     ~/.config/alacritty/alacritty.toml: dotconf/.config/alacritty/alacritty.toml
     ~/.config/bspwmrc/bspwmrc: dotconf/.config/bspwmrc/bspwmrc
     ~/.config/cmds/cmds: dotconf/.config/cmds/cmds
