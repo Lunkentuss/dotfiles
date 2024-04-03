@@ -12,6 +12,7 @@ in with builtins; [
   bashInteractive
   bat
   bfg-repo-cleaner
+  blender
   bluez
   bspwm
   bws

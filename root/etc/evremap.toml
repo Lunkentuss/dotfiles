@@ -1,0 +1,19 @@
+# Configuration for running Starcraft 2 with the core hotkeys
+# https://tl.net/forum/sc2-strategy/341878-thecore-advanced-keyboard-layout
+
+# Pick from running: sudo evremap list-devices
+device_name = "Corsair Corsair K65 Gaming Keyboard"
+phys = "usb-0000:00:14.0-3.1/input2"
+
+# Key names:
+# https://github.com/ndesh26/evdev-rs/blob/4a844849a40168374d370a29d0854a482e83565f/src/enums.rs#L307
+# or
+# evremap list-keys
+
+[[remap]]
+input = ["KEY_COMPOSE"]
+output = ["KEY_LEFTALT"]
+
+[[remap]]
+input = ["KEY_RIGHTALT"]
+output = ["KEY_LEFTCTRL", "KEY_LEFTALT"]
