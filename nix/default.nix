@@ -81,11 +81,12 @@ in with builtins; [
   # Issues with nix neovim and treesitter, so disable for now
   # neovim
   netcat
-  nmap
+  mkcert
+  mysql
   nickel
   nix
   nixfmt
-  mkcert
+  nmap
   nodePackages.markdownlint-cli
   nodePackages.mermaid-cli
   nodePackages.prettier
