@@ -46,6 +46,7 @@ in with builtins; [
   git
   git-filter-repo
   gitlab-runner
+  gnome.nautilus
   gnumake
   gnused
   go
@@ -94,7 +95,6 @@ in with builtins; [
   openssh
   openssl
   (python310.withPackages pythonPackages)
-  gnome.nautilus
   pandoc
   parallel
   pip-audit
