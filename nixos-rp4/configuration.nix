@@ -1,4 +1,7 @@
 { config, lib, pkgs, ... }:
+let
+  mediaDir = "/media/96f47097-61e9-4234-b872-9daf8974b8dd";
+in
 {
   imports =
     [
@@ -51,6 +54,12 @@
     settings.PasswordAuthentication = false;
   };
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 53 ];
+    allowedUDPPorts = [ 53 ];
+  };
+
   services.transmission = {
     enable = true;
     openFirewall = true;
@@ -58,17 +67,17 @@
     openPeerPorts = true;
     user = "media";
     settings = {
-      download-dir = "/media/96f47097-61e9-4234-b872-9daf8974b8dd/torrent";
-      incomplete-dir = "/media/96f47097-61e9-4234-b872-9daf8974b8dd/torrent/.incomplete";
+      download-dir =   "${mediaDir}/torrent";
+      incomplete-dir = "${mediaDir}/torrent/.incomplete";
       rpc-bind-address = "0.0.0.0";
       rpc-whitelist-enabled = false;
     };
   };
 
-  # services.dnsproxy = {
-  #   enable = true;
-  #   flags = "-v -u 8.8.8.8:53";
-  # };
+  services.dnsproxy = {
+    enable = true;
+    flags = [ "-v" "-u" "8.8.8.8:53" ];
+  };
 
   # services.xserver.enable = true;
 
