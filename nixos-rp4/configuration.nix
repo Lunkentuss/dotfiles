@@ -21,15 +21,29 @@
     ];
   };
 
+  users.groups.media = {
+    gid = 1001;
+  };
+  users.users.media = {
+    group = "media";
+    uid = 1001;
+    isSystemUser = true;
+  };
+
   environment.systemPackages = with pkgs; [
     bashmount
     curl
     fd
     git
+    htop
     neofetch
     ripgrep
     vim
   ];
+
+  environment.sessionVariables = {
+    EDITOR = "vim";
+  };
   
   services.openssh = {
     enable = true;
@@ -42,6 +56,7 @@
     openFirewall = true;
     openRPCPort = true;
     openPeerPorts = true;
+    user = "media";
     settings = {
       download-dir = "/media/96f47097-61e9-4234-b872-9daf8974b8dd/torrent";
       incomplete-dir = "/media/96f47097-61e9-4234-b872-9daf8974b8dd/torrent/.incomplete";
@@ -49,6 +64,13 @@
       rpc-whitelist-enabled = false;
     };
   };
+
+  # services.dnsproxy = {
+  #   enable = true;
+  #   flags = "-v -u 8.8.8.8:53";
+  # };
+
+  # services.xserver.enable = true;
 
   services.jellyfin = {
     enable = true;
