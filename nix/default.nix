@@ -100,6 +100,7 @@ in with builtins; [
   pip-audit
   poetry
   postgresql
+  proxychains
   pulsemixer
   pyright
   redis
@@ -130,6 +131,7 @@ in with builtins; [
   # Tex is needed to run pandoc ... -o output.pdf
   texlive.combined.scheme-full
   transmission-gtk
+  traceroute
   tree
   unrar
   unzip
@@ -137,6 +139,7 @@ in with builtins; [
   viddy
   websocat
   wget
+  wireshark
   wrk
   yarn
   yj
