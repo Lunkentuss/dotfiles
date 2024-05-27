@@ -58,6 +58,7 @@ in with builtins; [
   hpack
   html-tidy
   htop
+  ipcalc
   iproute2
   iputils
   istioctl
