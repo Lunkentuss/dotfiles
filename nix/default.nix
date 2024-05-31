@@ -23,7 +23,7 @@ in with builtins; [
   cowsay
   ctop
   curl
-  dbeaver
+  dbeaver-bin
   delta
   dhall
   diff-pdf
@@ -62,7 +62,7 @@ in with builtins; [
   iproute2
   iputils
   istioctl
-  jdk19
+  jdk21
   jq
   jsonnet
   k6
