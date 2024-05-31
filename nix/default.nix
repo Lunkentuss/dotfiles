@@ -77,6 +77,7 @@ in with builtins; [
   lm_sensors
   lolcat
   lsof
+  lurk
   manix
   mdbook
   minikube
@@ -130,24 +131,26 @@ in with builtins; [
   tcpdump
   terraform
   # Tex is needed to run pandoc ... -o output.pdf
+  playwright-test
+  qemu
   texlive.combined.scheme-full
-  transmission-gtk
   traceroute
+  transmission-gtk
   tree
   unrar
   unzip
-  vlc
   viddy
+  vlc
   websocat
   wget
+  whois
   wireshark
   wrk
+  xclip
   yarn
   yj
   yq-go
   zathura
-  xclip
-  playwright-test
   # This package makes running "kubectl krew" work, instead of having to run
   # krew directly.
   (runCommand "kubectl-krew" { } ''
