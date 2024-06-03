@@ -38,3 +38,4 @@
     ~/bin/shellcheck_recursive: dotconf/bin/shellcheck_recursive
     ~/bin/teams: dotconf/bin/teams
     ~/bin/up_harbor: dotconf/bin/up_harbor
+    ~/qemu/opnsense/Makefile: dotconf/qemu/opnsense/Makefile
