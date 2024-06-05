@@ -137,6 +137,7 @@ in with builtins; [
   traceroute
   transmission-gtk
   tree
+  unixtools.arp
   unrar
   unzip
   viddy
