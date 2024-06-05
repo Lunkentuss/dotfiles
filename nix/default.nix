@@ -11,6 +11,7 @@ in with builtins; [
   bash-completion
   bashInteractive
   bat
+  bettercap
   bfg-repo-cleaner
   blender
   bluez
