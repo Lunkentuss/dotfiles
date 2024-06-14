@@ -1,6 +1,7 @@
 IMAGE := opensense.qcow2
 IMAGE_SIZE := 16G
-NIC := user,id=qe0,hostfwd=tcp::60080-:80,hostfwd=tcp::60022-:22
+# Forward HTTP, SSH and DNS ports
+NIC := user,id=qe0,hostfwd=tcp::60080-:80,hostfwd=tcp::60022-:22,hostfwd=tcp::60053-:53
 
 run:
 	qemu-system-x86_64 \
