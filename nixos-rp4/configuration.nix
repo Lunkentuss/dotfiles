@@ -47,6 +47,13 @@ in
   environment.sessionVariables = {
     EDITOR = "vim";
   };
+
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      "0 0 * * * root journalctl --vacuum-size=1000M"
+    ];
+  };
   
   services.openssh = {
     enable = true;
