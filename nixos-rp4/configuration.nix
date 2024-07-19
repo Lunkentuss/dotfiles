@@ -51,7 +51,7 @@ in
   services.cron = {
     enable = true;
     systemCronJobs = [
-      "0 0 * * * root journalctl --vacuum-size=1000M"
+      "0 0 * * * root journalctl --vacuum-size=5000M"
     ];
   };
   

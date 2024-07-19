@@ -2,6 +2,7 @@
 with pkgs;
 let pythonPackages = import ./python-packages.nix;
 in with builtins; [
+  acme-sh
   acpi
   # OpenGL issues with alacritty
   # alacritty
@@ -28,6 +29,7 @@ in with builtins; [
   delta
   dhall
   diff-pdf
+  dive
   dmenu
   fd
   feh
@@ -133,6 +135,7 @@ in with builtins; [
   terraform
   # Tex is needed to run pandoc ... -o output.pdf
   playwright-test
+  protoc-gen-go
   qemu
   texlive.combined.scheme-full
   traceroute
