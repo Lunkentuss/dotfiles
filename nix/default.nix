@@ -49,6 +49,7 @@ in with builtins; [
   git
   git-filter-repo
   gitlab-runner
+  glow
   gnome.nautilus
   gnumake
   gnused
@@ -61,6 +62,8 @@ in with builtins; [
   hpack
   html-tidy
   htop
+  # Contains telnet
+  inetutils
   ipcalc
   iproute2
   iputils
