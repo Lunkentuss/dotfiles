@@ -39,6 +39,8 @@ require('packer').startup(function(use)
   }
 end)
 
+vim.cmd 'set clipboard=unnamedplus'
+
 vim.cmd 'colorscheme solarized'
 
 vim.api.nvim_set_keymap('n', 'tn', ':tabnew<CR>', {})
@@ -179,7 +181,7 @@ local servers = {
   'ruff_lsp',
   'rust_analyzer',
   'terraformls',
-  'tsserver',
+  'ts_ls',
   'wgsl_analyzer',
   -- 'hls',
   -- 'yamlls',
