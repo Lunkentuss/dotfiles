@@ -69,6 +69,7 @@ in with builtins; [
   iputils
   istioctl
   jdk21
+  jinja2-cli
   jq
   jsonnet
   k6
@@ -102,7 +103,7 @@ in with builtins; [
   nodejs_20
   openssh
   openssl
-  (python310.withPackages pythonPackages)
+  (python312.withPackages pythonPackages)
   pandoc
   parallel
   pip-audit
@@ -146,6 +147,7 @@ in with builtins; [
   tree
   unrar
   unzip
+  vhs
   viddy
   vlc
   websocat
