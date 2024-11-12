@@ -180,6 +180,7 @@ local servers = {
   'pyright',
   'ruff_lsp',
   'rust_analyzer',
+  'jsonnet_ls',
   'terraformls',
   'ts_ls',
   'wgsl_analyzer',
