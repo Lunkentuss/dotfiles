@@ -221,6 +221,10 @@ end
 
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+local luasnip_extras = require 'luasnip.extras'
+local rep = luasnip_extras.rep
+local t = luasnip.text_node
+local i = luasnip.insert_node
 
 cmp.setup({
   window = {
@@ -257,5 +261,13 @@ luasnip.add_snippets(nil, {
       {
         luasnip.function_node(date, {}),
       }),
+    luasnip.snippet("html-tag", {
+      t("<"),
+      i(1),
+      t(">"),
+      t("</"),
+      rep(1),
+      t(">"),
+    }),
   },
 })
