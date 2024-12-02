@@ -45,10 +45,21 @@ vim.cmd 'colorscheme solarized'
 
 vim.api.nvim_set_keymap('n', 'tn', ':tabnew<CR>', {})
 
-vim.bo.expandtab = true
-vim.bo.softtabstop = 2
-vim.bo.shiftwidth = 2
-vim.bo.tabstop = 2
+-- Normally I have the following, but the BufReadPost fixes issues
+-- with Telescope that won't load buffer settings.
+-- vim.bo.expandtab = true
+-- vim.bo.softtabstop = 2
+-- vim.bo.shiftwidth = 2
+-- vim.bo.tabstop = 2
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function()
+    vim.bo.expandtab = true
+    vim.bo.tabstop = 2
+    vim.bo.shiftwidth = 2
+    vim.bo.softtabstop = 2
+  end,
+})
 
 vim.api.nvim_command([[
   autocmd FileType go setlocal sw=2 ts=2 noexpandtab
@@ -93,7 +104,11 @@ require('lualine').setup {
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = { 'c', 'go', 'haskell', 'lua', 'nix', 'python', 'kotlin' },
-  highlight = { enable = true },
+  highlight = {
+    enable = true,
+    -- Fix temporary issue with go
+    disable = { "go" },
+  },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -178,7 +193,7 @@ local servers = {
   -- 'detekt',
   'lua_ls',
   'pyright',
-  'ruff_lsp',
+  'ruff',
   'rust_analyzer',
   'jsonnet_ls',
   'terraformls',
