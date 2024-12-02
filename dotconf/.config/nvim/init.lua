@@ -11,6 +11,7 @@ require('packer').startup(function(use)
   }
   -- use 'udalov/kotlin-vim'
   use 'nvim-lualine/lualine.nvim'
+  use 'tpope/vim-surround'
   use {
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/plenary.nvim' } }
@@ -40,6 +41,7 @@ require('packer').startup(function(use)
 end)
 
 vim.cmd 'set clipboard=unnamedplus'
+vim.cmd 'set cc=80'
 
 vim.cmd 'colorscheme solarized'
 
