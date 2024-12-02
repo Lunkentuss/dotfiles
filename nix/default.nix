@@ -92,7 +92,7 @@ in with builtins; [
   # neovim
   netcat
   mkcert
-  mysql
+  mariadb
   nickel
   nix
   nixfmt
