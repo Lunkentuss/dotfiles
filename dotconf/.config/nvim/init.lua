@@ -44,6 +44,7 @@ vim.cmd 'set clipboard=unnamedplus'
 vim.cmd 'set cc=80'
 
 vim.cmd 'colorscheme solarized'
+vim.cmd('highlight Normal guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE')
 
 vim.api.nvim_set_keymap('n', 'tn', ':tabnew<CR>', {})
 
