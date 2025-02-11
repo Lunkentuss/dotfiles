@@ -50,7 +50,7 @@ in with builtins; [
   git-filter-repo
   gitlab-runner
   glow
-  gnome.nautilus
+  nautilus
   gnumake
   gnused
   go
@@ -147,6 +147,7 @@ in with builtins; [
   tree
   unrar
   unzip
+  uucp
   vhs
   viddy
   vlc
