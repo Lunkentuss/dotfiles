@@ -147,7 +147,8 @@ in with builtins; [
   tree
   unrar
   unzip
-  uucp
+  # Doesn't build
+  # uucp
   vhs
   viddy
   vlc
