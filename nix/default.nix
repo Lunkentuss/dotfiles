@@ -143,7 +143,7 @@ in with builtins; [
   qemu
   texlive.combined.scheme-full
   traceroute
-  transmission-gtk
+  transmission_4-gtk
   tree
   unrar
   unzip
