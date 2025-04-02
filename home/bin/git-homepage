@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# If the current working directory is in a git repository, this script will
+# open a web browser with the corresponding git wrapper homepage (Github,
+# Gitlab etc).
+
+set -eu
+
+git_root="$(git rev-parse --show-toplevel)"
+cd "$git_root"
+url=$(
+  grep -i url < .git/config \
+    | head -n 1 \
+    | sed -E 's/[ \t].*url[ ]*=[ ]*?//g'
+)
+# Probably not right parsing... but works for now.
+url_web=$(
+  sed -E 's/^git@//' <<< "$url" \
+    | sed -E 's/[.]git$//' \
+    | sed -E 's/(:)([^0-9])/\/\2/'
+)
+echo "Opening: $url_web"
+nohup "$BROWSER" "$url_web" > /dev/null 2>&1

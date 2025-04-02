@@ -4,8 +4,10 @@ let pythonPackages = import ./python-packages.nix;
 in with builtins; [
   acme-sh
   acpi
-  # OpenGL issues with alacritty
-  # alacritty
+  # TODO: remove from arch
+  alsa-utils
+  # OpenGL issues with alacritty: TODO, remove from arch
+  alacritty
   android-studio
   android-tools
   ansible
@@ -30,6 +32,7 @@ in with builtins; [
   dhall
   diff-pdf
   dive
+  dunst
   dmenu
   fd
   feh
@@ -78,6 +81,7 @@ in with builtins; [
   kotlin
   krew
   kubectl
+  # kubectl-tree
   ktfmt
   kubepug
   kubernetes-helm
@@ -151,6 +155,7 @@ in with builtins; [
   # uucp
   vhs
   viddy
+  vim neovim
   vlc
   websocat
   wget
@@ -161,6 +166,8 @@ in with builtins; [
   yarn
   yj
   yq-go
+  xorg.xset
+  xsecurelock
   zathura
   # This package makes running "kubectl krew" work, instead of having to run
   # krew directly.
@@ -168,4 +175,6 @@ in with builtins; [
     mkdir -p "$out/bin" && ln -sf "${krew}/bin/krew" "$out/bin/kubectl-krew"'')
   (import ./fortune-cow.nix { inherit pkgs; })
   (import ./jksutil.nix { inherit pkgs; })
+  (import ./kubectl-ctx.nix { inherit pkgs; })
+  (import ./kubectl-ns.nix { inherit pkgs; })
 ]
