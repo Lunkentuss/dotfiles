@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# Example usage:
+# up_harbor up
+# up_harbor down
+# up_harbor clean
+
+set -eu
+
+usage() {
+  bin="$(basename "$0")"
+  echo "$bin CMD
+
+Example usage:
+
+$bin up
+$bin down
+$bin clean"
+}
+
+if [[ $# == 0 ]]; then
+  usage
+  exit 0
+fi
+
+harbor_dir="$HOME/.up_harbor"
+
+cmd="$1"
+
+_cd_dir() {
+  mkdir -p "$harbor_dir"
+  cd "$harbor_dir"
+}
+
+up() {
+  _cd_dir
+  if [[ ! -d "$harbor_dir/config" ]]; then
+    curl -LO https://raw.githubusercontent.com/bitnami/containers/main/bitnami/harbor-portal/docker-compose.yml
+    curl -L https://github.com/bitnami/containers/archive/main.tar.gz \
+      | tar xz --strip=2 containers-main/bitnami/harbor-portal \
+      && cp -RL harbor-portal/config . \
+      && rm -rf harbor-portal
+  fi
+  compose_file="$harbor_dir/docker-compose.yml"
+  sed -E -i 's|(EXT_ENDPOINT=)(.*)|\1http://local.harbor|g' "$compose_file"
+  sed -E -i 's/(HARBOR_ADMIN_PASSWORD=)(.*)/\1admin/g' "$compose_file"
+  docker-compose up -d --wait
+  echo "user: admin
+password: admin
+url: http://local.harbor
+
+make sure to add
+127.0.0.1   local.harbor
+entry in /etc/hosts"
+}
+
+down() {
+  _cd_dir
+  docker-compose down
+}
+
+clean() {
+  rm -rf "$harbor_dir"
+}
+
+"$cmd"

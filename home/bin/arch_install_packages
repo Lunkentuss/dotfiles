@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+set -eu
+
+PACKAGE_INSTALLER="${1:-"pacman"}"
+
+echo "Using ${PACKAGE_INSTALLER} to install packages"
+echo "
+If using pacman as the installer, please note that some of the packages in this
+script are only available on the AUR.
+"
+
+# Notes for arch post installation
+# Keymaps:
+# Keymaps are set independently for virtual consoles
+# and xorg.
+
+# Package manager
+"$PACKAGE_INSTALLER" -S --noconfirm nix
+
+# Terminal
+"$PACKAGE_INSTALLER" -S --noconfirm alacritty
+
+# Services to enable
+systemctl enable --now NetworkManager
+
+# === X server related
+# xorg, implemetation of X11 (X Window System)
+"$PACKAGE_INSTALLER" -S --noconfirm xorg
+"$PACKAGE_INSTALLER" -S --noconfirm xorg-xinit
+
+# === Network related
+"$PACKAGE_INSTALLER" -S --noconfirm dhcpcd
+"$PACKAGE_INSTALLER" -S --noconfirm dnsutils
+
+# === Sound
+# Install alsa
+# Install pulseaudio or pipewire(pavucontrol)
+"$PACKAGE_INSTALLER" -S --noconfirm udev
+"$PACKAGE_INSTALLER" -S --noconfirm alsa-utils
+"$PACKAGE_INSTALLER" -S --noconfirm pulseaudio
+
+# === Etc
+# Not only of course useful for development,
+# but is a requirement for my config since
+# it is needed in perl for preprocessing
+# .Xresources file.
+"$PACKAGE_INSTALLER" -S --noconfirm base-devel
+"$PACKAGE_INSTALLER" -S --noconfirm ttyplot
+
+# === Bluetooth
+"$PACKAGE_INSTALLER" -S --noconfirm bluez
+"$PACKAGE_INSTALLER" -S --noconfirm pulseaudio-bluetooth
+
+# === Personal rice
+# Does not work on nix for some reason
+"$PACKAGE_INSTALLER" -S --noconfirm xsecurelock
+
+# OCI
+"$PACKAGE_INSTALLER" -S --noconfirm docker
+"$PACKAGE_INSTALLER" -S --noconfirm docker-scan
+"$PACKAGE_INSTALLER" -S --noconfirm docker-compose
+"$PACKAGE_INSTALLER" -S --noconfirm podman
+# Etc
+"$PACKAGE_INSTALLER" -S --noconfirm texlive-most
+"$PACKAGE_INSTALLER" -S --noconfirm bash-completion
+
+# Fonts
+"$PACKAGE_INSTALLER" -S --noconfirm noto-fonts
+
+# Security
+"$PACKAGE_INSTALLER" -S --noconfirm firejail
+
+
+# === npm
+npm install -g reveal-md
+
+# === Laptop
+pip install --user acpi
+
+# Commands
+timedatectl set-ntp true
+pulseaudio --start

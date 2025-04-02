@@ -12,6 +12,10 @@ endef
 
 export SUCCESS_MSG
 
+.PHONY: nixos-rebuild-switch
+nixos-rebuild-switch:
+	NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild --impure switch
+
 .PHONY: all
 all: nix-profile-install
 	./install
@@ -34,6 +38,10 @@ nix-profile-install: nix-build
 .PHONY: nix-update
 nix-update:
 	${NIX} flake update
+
+.PHONY: gen-issue
+gen-issue:
+	cowsay -f turkey lmao | lolcat --force | sed -E 's|\\|\\\\|g' > root/etc/issue
 
 .PHONY: fmt
 fmt:

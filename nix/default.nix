@@ -4,8 +4,10 @@ let pythonPackages = import ./python-packages.nix;
 in with builtins; [
   acme-sh
   acpi
-  # OpenGL issues with alacritty
-  # alacritty
+  # TODO: remove from arch
+  alsa-utils
+  # OpenGL issues with alacritty: TODO, remove from arch
+  alacritty
   android-studio
   android-tools
   ansible
@@ -151,6 +153,7 @@ in with builtins; [
   # uucp
   vhs
   viddy
+  vim neovim
   vlc
   websocat
   wget
@@ -161,6 +164,8 @@ in with builtins; [
   yarn
   yj
   yq-go
+  xorg.xset
+  xsecurelock
   zathura
   # This package makes running "kubectl krew" work, instead of having to run
   # krew directly.

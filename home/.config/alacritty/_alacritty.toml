@@ -1,0 +1,73 @@
+[colors.hints.start]
+background = "#93a1a1"
+foreground = "#000000"
+
+[cursor.style]
+shape = "Block"
+
+[hints]
+alphabet = "jfkdls;ahgurieowpq"
+
+[[hints.enabled]]
+command = "xdg-open"
+post_processing = true
+# This is the default and probably better, but fromTOML in nix doesn't seem to handle unicode characters
+# regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^ ]+"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = false
+mods = "None"
+
+[[hints.enabled]]
+action = "Paste"
+regex = "[^\\\\s]+"
+
+[hints.enabled.binding]
+key = "W"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = false
+mods = "None"
+
+[[hints.enabled]]
+action = "Paste"
+regex = "[^\\\\s].+"
+
+[hints.enabled.binding]
+key = "L"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = false
+mods = "None"
+
+[[hints.enabled]]
+action = "Copy"
+regex = "[^\\\\s]+"
+
+[hints.enabled.binding]
+key = "W"
+mods = "Alt"
+
+[hints.enabled.mouse]
+enabled = false
+mods = "None"
+
+[[hints.enabled]]
+action = "Copy"
+regex = "[^\\\\s].+"
+
+[hints.enabled.binding]
+key = "L"
+mods = "Alt"
+
+[hints.enabled.mouse]
+enabled = false
+mods = "None"

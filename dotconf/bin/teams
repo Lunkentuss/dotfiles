@@ -1,5 +1,0 @@
-#!/bin/bash
-# Microsoft doesn't support the linux desktop version anymore, so the web
-# browser is used instead.
-
-google-chrome-stable --kiosk https://teams.microsoft.com

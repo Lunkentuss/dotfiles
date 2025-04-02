@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# A simple script which can be used to run untrusted .exe files in a secure
+# environment with firejail. Further arguments are appended to the firejail
+# invocation. For example, the script can be runned with:
+#
+# firejail-wine --net=none
+#
+# to limit network access.
+
+pwd="$PWD"
+
+wineprefix=${1:-${HOME}/.wine}
+
+firejail --profile=<(
+  cat << EOF
+whitelist ${wineprefix}
+whitelist ${HOME}/.nix-profile
+EOF
+) ${@:2} << EOF
+set -eu
+PATH="$HOME/.nix-profile/bin:$PATH"
+cd "$pwd"
+export WINEPREFIX=${wineprefix}
+exec < /dev/tty
+EOF

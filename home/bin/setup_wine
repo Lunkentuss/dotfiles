@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pm="yay"
+
+set -eu
+
+"$pm" -S wine
+"$pm" -S winetricks
+"$pm" -S lib32-alsa-plugins lib32-libpulse lib32-openal
+"$pm" -S lib32-sdl2 # Joystick support
+winetricks dxvk
+
+# Maybe use
+# winetricks sound=pulse
