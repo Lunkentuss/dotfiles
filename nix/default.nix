@@ -32,6 +32,7 @@ in with builtins; [
   dhall
   diff-pdf
   dive
+  dunst
   dmenu
   fd
   feh

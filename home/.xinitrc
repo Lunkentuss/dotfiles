@@ -10,9 +10,5 @@ setxkbmap -layout se -variant nodeadkeys
 
 # Desktop environment(s)
 sxhkd &
+dunst &
 exec bspwm
-#exec gnome-session
-#exec i3
-
-# Daemons
-exec urxvtd

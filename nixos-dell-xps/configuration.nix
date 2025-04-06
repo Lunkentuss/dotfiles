@@ -100,6 +100,11 @@ in {
        	  extraConfig = builtins.readFile (home + "/.config/bspwm/_bspwmrc");
         };
 
+        # Enable notifications
+        services.dunst = {
+          enable = true;
+        };
+
         programs.nixvim = {
           enable = true;
         };
