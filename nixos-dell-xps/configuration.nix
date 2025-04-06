@@ -107,6 +107,72 @@ in {
 
         programs.nixvim = {
           enable = true;
+          plugins = {
+            lualine.enable = true;
+            telescope.enable = true;
+            treesitter.enable = true;
+            nvim-surround.enable = true;
+            commentary.enable = true;
+            cmp = {
+              enable = true;
+              autoEnableSources = true;
+              settings = {
+                sources = [
+                  { name = "nvim_lsp"; }
+                  { name = "luasnip"; }
+                ];
+              };
+            };
+            cmp-nvim-lsp.enable = true;
+            luasnip.enable = true;
+
+            lsp = {
+              enable = true;
+              servers = {
+                bashls.enable = true;
+                pylsp.enable = true;
+                jsonls.enable = true;
+                gopls.enable = true;
+                jsonnet_ls.enable = true;
+                terraformls.enable = true;
+                rust_analyzer = {
+                  enable = true;
+                  installCargo = false;
+                  installRustc = false;
+                };
+              };
+              onAttach = ''
+                vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+                local bufopts = { noremap = true, silent = true, buffer = bufnr }
+                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+                vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+                vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+                vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+                vim.keymap.set("n", "<leader>wl", function()
+                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                end, bufopts)
+                vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, bufopts)
+                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+                vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+                vim.keymap.set("n", "<leader>f", function()
+                    vim.lsp.buf.format({ async = true })
+                end, bufopts)
+              '';
+            };
+
+            # languageServers = {
+            #    rust-analyzer = true;
+            # };
+
+            # Intrinsic dependencies
+            web-devicons.enable = true;
+          };
+          extraConfigLua = builtins.readFile (home + "/.config/nvim/_init.lua");
         };
 
         # This makes sure stylix injects the theme, in contrast to simply copying the config

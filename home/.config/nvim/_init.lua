@@ -1,53 +1,9 @@
-require('packer').startup(function(use)
-  use 'abdalrahman-ali/vim-remembers'
-  use 'dense-analysis/ale'
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'hrsh7th/cmp-nvim-lsp',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-    },
-  }
-  -- use 'udalov/kotlin-vim'
-  use 'nvim-lualine/lualine.nvim'
-  use 'tpope/vim-surround'
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  }
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
-  }
-  use {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-  }
-  use 'mfussenegger/nvim-jdtls'
-  use 'preservim/nerdtree'
-  use 'tpope/vim-commentary'
-  use 'wbthomason/packer.nvim'
-
-  use {
-    'neovim/nvim-lspconfig',
-    requires = {
-      'j-hui/fidget.nvim',
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-    },
-  }
-end)
-
+vim.g.mapleader = ','
 vim.cmd 'set clipboard=unnamedplus'
 vim.cmd 'set cc=80'
 
-vim.cmd 'colorscheme solarized'
-vim.cmd('highlight Normal guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE')
-
 vim.api.nvim_set_keymap('n', 'tn', ':tabnew<CR>', {})
-
+--
 -- Normally I have the following, but the BufReadPost fixes issues
 -- with Telescope that won't load buffer settings.
 -- vim.bo.expandtab = true
@@ -81,7 +37,6 @@ vim.o.swapfile = true
 
 vim.wo.number = true
 
-vim.g.mapleader = ','
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
@@ -105,56 +60,6 @@ require('lualine').setup {
   },
 }
 
-require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'c', 'go', 'haskell', 'lua', 'nix', 'python', 'kotlin' },
-  highlight = {
-    enable = true,
-    -- Fix temporary issue with go
-    disable = { "go" },
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "vn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-  indent = { enable = true },
-  textobjects = {
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ['<leader>a'] = '@parameter.inner',
-      },
-      swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
-      },
-    },
-  }
-}
-
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '<leader>w', vim.diagnostic.disable, opts)
@@ -162,66 +67,10 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
-local on_attach = function(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-end
-
-require('mason').setup()
-
--- Subset of:
--- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-local servers = {
-  'bashls',
-  'clangd',
-  'gopls',
-  'jdtls',
-  'kotlin_language_server',
-  -- 'detekt',
-  'lua_ls',
-  'pyright',
-  'ruff',
-  'rust_analyzer',
-  'jsonnet_ls',
-  'terraformls',
-  'ts_ls',
-  'wgsl_analyzer',
-  -- 'hls',
-  -- 'yamlls',
-}
-
-require('mason-lspconfig').setup {
-  ensure_installed = servers,
-}
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-for _, lsp in ipairs(servers) do
-  require('lspconfig')[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-end
-
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
+local luasnip = require("luasnip")
 local luasnip_extras = require 'luasnip.extras'
 local rep = luasnip_extras.rep
 local t = luasnip.text_node
