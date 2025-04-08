@@ -1,6 +1,4 @@
-{
-  pkgs ? import <nixpkgs> {}
-}:
+{ pkgs ? import <nixpkgs> { } }:
 with pkgs;
 buildGoModule {
   name = "jksutil";

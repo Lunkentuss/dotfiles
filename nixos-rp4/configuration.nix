@@ -1,12 +1,7 @@
 { config, lib, pkgs, ... }:
-let
-  mediaDir = "/media/96f47097-61e9-4234-b872-9daf8974b8dd";
-in
-{
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+let mediaDir = "/media/96f47097-61e9-4234-b872-9daf8974b8dd";
+in {
+  imports = [ ./hardware-configuration.nix ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader.grub.enable = false;
@@ -18,15 +13,9 @@ in
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
-  users.users.root = {
-    openssh.authorizedKeys.keyFiles = [
-      ../id_rsa.pub
-    ];
-  };
+  users.users.root = { openssh.authorizedKeys.keyFiles = [ ../id_rsa.pub ]; };
 
-  users.groups.media = {
-    gid = 1001;
-  };
+  users.groups.media = { gid = 1001; };
   users.users.media = {
     group = "media";
     uid = 1001;
@@ -44,17 +33,13 @@ in
     vim
   ];
 
-  environment.sessionVariables = {
-    EDITOR = "vim";
-  };
+  environment.sessionVariables = { EDITOR = "vim"; };
 
   services.cron = {
     enable = true;
-    systemCronJobs = [
-      "0 0 * * * root journalctl --vacuum-size=5000M"
-    ];
+    systemCronJobs = [ "0 0 * * * root journalctl --vacuum-size=5000M" ];
   };
-  
+
   services.openssh = {
     enable = true;
     openFirewall = true;
@@ -74,7 +59,7 @@ in
     openPeerPorts = true;
     user = "media";
     settings = {
-      download-dir =   "${mediaDir}/torrent";
+      download-dir = "${mediaDir}/torrent";
       incomplete-dir = "${mediaDir}/torrent/.incomplete";
       rpc-bind-address = "0.0.0.0";
       rpc-whitelist-enabled = false;
@@ -104,9 +89,7 @@ in
   #   };
   # };
 
-  systemd.tmpfiles.rules = [
-    "d /media 755 root root"
-  ];
+  systemd.tmpfiles.rules = [ "d /media 755 root root" ];
 
   # Don't change
   system.stateVersion = "23.11";

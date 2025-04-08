@@ -78,9 +78,7 @@ in {
   };
 
   environment.systemPackages = packages;
-  environment.etc = {
-    issue.source = ../root/etc/issue;
-  };
+  environment.etc = { issue.source = ../root/etc/issue; };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -103,19 +101,15 @@ in {
     users = {
       user = {
 
-       imports = [
-         inputs.nixvim.homeManagerModules.nixvim
-       ];
+        imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
         xsession.windowManager.bspwm = {
-       	  enable = true;
-       	  extraConfig = builtins.readFile (home + "/.config/bspwm/_bspwmrc");
+          enable = true;
+          extraConfig = builtins.readFile (home + "/.config/bspwm/_bspwmrc");
         };
 
         # Enable notifications
-        services.dunst = {
-          enable = true;
-        };
+        services.dunst = { enable = true; };
 
         programs.nixvim = {
           enable = true;
@@ -129,10 +123,7 @@ in {
               enable = true;
               autoEnableSources = true;
               settings = {
-                sources = [
-                  { name = "nvim_lsp"; }
-                  { name = "luasnip"; }
-                ];
+                sources = [ { name = "nvim_lsp"; } { name = "luasnip"; } ];
               };
             };
             cmp-nvim-lsp.enable = true;
@@ -232,8 +223,7 @@ in {
   };
 
   stylix.enable = true;
-  stylix.base16Scheme =
-    "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
 
   stylix.image = pkgs.fetchurl {
     # Placeholder, not really used. Black background for now.
@@ -242,9 +232,7 @@ in {
     sha256 = "enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=";
   };
 
-  environment.sessionVariables = {
-    "EDITOR" = "nvim";
-  };
+  environment.sessionVariables = { "EDITOR" = "nvim"; };
 
   # Don't change
   system.stateVersion = "24.11";

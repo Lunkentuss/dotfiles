@@ -155,7 +155,8 @@ in with builtins; [
   # uucp
   vhs
   viddy
-  vim neovim
+  vim
+  neovim
   vlc
   websocat
   wget
