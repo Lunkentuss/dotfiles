@@ -99,7 +99,7 @@ in with builtins; [
   mariadb
   nickel
   nix
-  nixfmt
+  nixfmt-classic
   nmap
   nodePackages.markdownlint-cli
   nodePackages.mermaid-cli
