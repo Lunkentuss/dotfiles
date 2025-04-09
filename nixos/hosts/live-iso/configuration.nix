@@ -2,6 +2,8 @@
 with pkgs; {
   networking.networkmanager.enable = true;
   networking.wireless.enable = false;
-  environment.systemPackages =
-    [ (writeShellScriptBin "nixos-bootstrap" (rootDir + "/nixos-bootstrap")) ];
+  environment.systemPackages = [
+    (writeShellScriptBin "nixos-bootstrap" (rootDir + "/nixos-bootstrap"))
+    git
+  ];
 }

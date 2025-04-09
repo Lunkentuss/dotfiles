@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Script used to partition the a block device and mount the partiotions in
-# order to initialize a nixos-installation.
+# Script used to partition a device and mount the partitions under /mnt in
+# order to complete a nixos-installation from a nixos installation drive.
 
 set -eu
 
@@ -38,4 +38,6 @@ sudo swapon "/dev/${blk_device_partion}2"
 sudo nixos-generate-config --root /mnt
 
 echo "Now edit /mnt/etc/nixos/configuration.nix"
+echo "You can run the following to copy to /mnt/etc/nixos and run make:"
+echo 'git clone https://github.com/Lunkentuss/dotfiles.git'
 echo "Then run: sudo nixos-install"

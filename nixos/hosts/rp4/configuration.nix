@@ -12,7 +12,9 @@ in {
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
-  users.users.root = { openssh.authorizedKeys.keyFiles = [ (rootDir + "/id_rsa.pub") ]; };
+  users.users.root = {
+    openssh.authorizedKeys.keyFiles = [ (rootDir + "/id_rsa.pub") ];
+  };
 
   users.groups.media = { gid = 1001; };
   users.users.media = {
