@@ -1,18 +1,17 @@
-{ config, lib, pkgs, inputs, packages, ... }:
+{ config, lib, pkgs, inputs, packages, rootDir, ... }:
 let
   sourceCodeProRepo = pkgs.fetchgit {
     url = "https://github.com/adobe-fonts/source-code-pro.git";
     rev = "d3f1a59";
     sha256 = "sha256-Pl7cuBFtbk9tPv421ejKnKFKdsW6oezMnAGCWKI3OVY=";
   };
-  home = ../home;
+  homeDir = rootDir + "/home";
   # https://tinted-theming.github.io/tinted-gallery/
   theme = "eighties";
   emptyHashedPassword =
     "$6$q2mvN2/cRoRFPuKp$DeFijIG2QsjysPMajtHUUavdk7St/FqXg0HejIpW1CsaqrlfDkLZ2tERX7CF.PeA0Zxw51LJnFrjEpohTbt7l/";
 in {
   imports = [
-    ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.stylix.nixosModules.stylix
   ];
@@ -86,7 +85,7 @@ in {
   };
 
   environment.systemPackages = packages;
-  environment.etc = { issue.source = ../root/etc/issue; };
+  environment.etc = { issue.source = rootDir + "/root/etc/issue"; };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -117,7 +116,7 @@ in {
 
         xsession.windowManager.bspwm = {
           enable = true;
-          extraConfig = builtins.readFile (home + "/.config/bspwm/_bspwmrc");
+          extraConfig = builtins.readFile (homeDir + "/.config/bspwm/_bspwmrc");
         };
 
         # Enable notifications
@@ -184,14 +183,14 @@ in {
             # Intrinsic dependencies
             web-devicons.enable = true;
           };
-          extraConfigLua = builtins.readFile (home + "/.config/nvim/_init.lua");
+          extraConfigLua = builtins.readFile (homeDir + "/.config/nvim/_init.lua");
         };
 
         # This makes sure stylix injects the theme, in contrast to simply copying the config
         programs.alacritty = {
           enable = true;
           settings = builtins.fromTOML
-            (builtins.readFile (home + "/.config/alacritty/_alacritty.toml"));
+            (builtins.readFile (homeDir + "/.config/alacritty/_alacritty.toml"));
         };
 
         programs.k9s.enable = true;
@@ -211,11 +210,11 @@ in {
           # We have to make an exception for .config, since home manager saves files in this directory.
           file = {
             "Pictures" = {
-              source = ../images;
+              source = rootDir + "/images";
               recursive = true;
             };
             ".config" = {
-              source = home + "/.config";
+              source = homeDir + "/.config";
               recursive = true;
             };
             ".local/share/fonts/ttf/SourceCodePro" = {
@@ -223,9 +222,9 @@ in {
             };
           } // builtins.listToAttrs (map (name: {
             name = name;
-            value = { source = home + "/${name}"; };
+            value = { source = homeDir + "/${name}"; };
           }) (builtins.filter (name: name != ".config")
-            ((builtins.attrNames (builtins.readDir home)))));
+            ((builtins.attrNames (builtins.readDir homeDir)))));
         };
       };
     };

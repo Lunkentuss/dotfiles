@@ -24,9 +24,11 @@ vm-build:
 vm-run: vm-build
 	./result/bin/*
 
+# All available formats can be found here:
+# https://github.com/nix-community/nixos-generators?tab=readme-ov-file#supported-formats
 .PHONY: vm-build-virtualbox
 vm-build-virtualbox:
-	nixos-rebuild --impure build-vm-with-bootloader --image nixos.qcow2
+	nix build --impure .#nixosConfigurations.nixos-desktop-vm.config.formats.virtualbox
 
 .PHONY: all
 all: nix-profile-install

@@ -91,13 +91,12 @@ in with builtins; [
   lsof
   lurk
   manix
+  mariadb
   mdbook
   minikube
-  # Issues with nix neovim and treesitter, so disable for now
-  # neovim
-  netcat
   mkcert
-  mariadb
+  netcat
+  nixos-generators
   nickel
   nix
   nixfmt-classic
