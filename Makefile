@@ -26,17 +26,20 @@ vm-run: vm-build
 
 # All available formats can be found here:
 # https://github.com/nix-community/nixos-generators?tab=readme-ov-file#supported-formats
-# Run the following to write it to a drive
-# dd if=nixos.iso of=/dev/sdX bs=4M status=progress conv=fdatasync
 .PHONY: vm-build-virtualbox
 vm-build-virtualbox:
 	nix build --impure .#nixosConfigurations.nixos-desktop-vm.config.formats.virtualbox
 
 # Builds a live image iso image used to bootstrap a nixos installation. It
 # contains the usual nixos iso image tools and some extra utilities.
+# Run the following to write it to a drive
+# dd if=nixos.iso of=/dev/sdX bs=4M status=progress conv=fdatasync
 .PHONY: live-iso-image
 live-iso-image:
 	nix build --impure .#nixosConfigurations.live-iso.config.system.build.isoImage
+	@echo "Success!"
+	@echo "Run the following and substitute the block device:"
+	@echo 'dd if=$$(echo "$$PWD/result/iso/"*) of=/dev/sdXXX bs=4M status=progress conv=fdatasync'
 
 .PHONY: all
 all: nix-profile-install
