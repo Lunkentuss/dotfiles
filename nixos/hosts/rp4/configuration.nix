@@ -1,7 +1,6 @@
 { config, lib, pkgs, rootDir, ... }:
 let mediaDir = "/media/96f47097-61e9-4234-b872-9daf8974b8dd";
 in {
-  imports = [ ./hardware-configuration.nix ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader.grub.enable = false;
@@ -13,7 +12,7 @@ in {
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
-  users.users.root = { openssh.authorizedKeys.keyFiles = [ rootDir + "/id_rsa.pub" ]; };
+  users.users.root = { openssh.authorizedKeys.keyFiles = [ (rootDir + "/id_rsa.pub") ]; };
 
   users.groups.media = { gid = 1001; };
   users.users.media = {

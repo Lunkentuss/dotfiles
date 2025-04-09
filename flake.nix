@@ -43,6 +43,9 @@
               ./nixos/hosts/rp4/configuration.nix
               ./nixos/hardware/rp4/configuration.nix
             ];
+            specialArgs = {
+              rootDir = ./.;
+            };
           };
           "nixos-dell-xps" = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
