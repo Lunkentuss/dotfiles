@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Script used to partition the a block device and mount the partiotions in
+# order to initialize a nixos-installation.
+
+set -eu
+
+export test_ping_domain="google.se"
+export blk_device="nvme0n1"
+export blk_device_partion="${blk_device}p"
+export swap_size="32GB"
+
+sudo loadkeys sv-latin1
+
+ping -c 1 "$test_ping_domain" || {
+  echo "Failed to ping $test_ping_domain"
+  echo "Run the following to connec to wifi:"
+  echo "  nmtui"
+  exit 1
+}
+
+echo "Successfully pinged $test_ping_domain. Continuing with installation"
+ 
+sudo parted "/dev/$blk_device" -- mklabel gpt
+sudo parted "/dev/$blk_device" -- mkpart root ext4 512MB -"$swap_size"
+sudo parted "/dev/$blk_device" -- mkpart swap linux-swap -"$swap_size" 100%
+sudo parted "/dev/$blk_device" -- mkpart ESP fat32 1MB 512MB
+sudo parted "/dev/$blk_device" -- set 3 esp on
+
+sudo mkfs.ext4 -L nixos "/dev/${blk_device_partion}1"
+sudo mkswap -L swap "/dev/${blk_device_partion}2"
+
+sudo mount /dev/disk/by-label/nixos /mnt
+sudo mkdir -p /mnt/boot
+sudo mount -o umask=077 /dev/disk/by-label/boot /mnt/boot
+sudo swapon "/dev/${blk_device_partion}2"
+
+sudo nixos-generate-config --root /mnt
+
+echo "Now edit /mnt/etc/nixos/configuration.nix"
+echo "Then run: sudo nixos-install"

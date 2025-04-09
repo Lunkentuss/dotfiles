@@ -66,7 +66,6 @@ in {
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-
   # Enable sound.
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
@@ -183,14 +182,15 @@ in {
             # Intrinsic dependencies
             web-devicons.enable = true;
           };
-          extraConfigLua = builtins.readFile (homeDir + "/.config/nvim/_init.lua");
+          extraConfigLua =
+            builtins.readFile (homeDir + "/.config/nvim/_init.lua");
         };
 
         # This makes sure stylix injects the theme, in contrast to simply copying the config
         programs.alacritty = {
           enable = true;
-          settings = builtins.fromTOML
-            (builtins.readFile (homeDir + "/.config/alacritty/_alacritty.toml"));
+          settings = builtins.fromTOML (builtins.readFile
+            (homeDir + "/.config/alacritty/_alacritty.toml"));
         };
 
         programs.k9s.enable = true;
