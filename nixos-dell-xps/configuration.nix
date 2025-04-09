@@ -8,6 +8,8 @@ let
   home = ../home;
   # https://tinted-theming.github.io/tinted-gallery/
   theme = "eighties";
+  emptyHashedPassword =
+    "$6$q2mvN2/cRoRFPuKp$DeFijIG2QsjysPMajtHUUavdk7St/FqXg0HejIpW1CsaqrlfDkLZ2tERX7CF.PeA0Zxw51LJnFrjEpohTbt7l/";
 in {
   imports = [
     ./hardware-configuration.nix
@@ -59,9 +61,12 @@ in {
   services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "user" ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
 
   # Enable sound.
   hardware.pulseaudio.enable = true;
@@ -71,10 +76,13 @@ in {
     pulse.enable = true;
   };
 
+  users.users.root = { initialHashedPassword = emptyHashedPassword; };
+
   users.users.user = {
     isNormalUser = true;
     extraGroups = [ "wheel" "audio" "docker" ];
     packages = packages;
+    initialHashedPassword = emptyHashedPassword;
   };
 
   environment.systemPackages = packages;

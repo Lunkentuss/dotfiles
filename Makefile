@@ -1,7 +1,7 @@
 NIX := nix --extra-experimental-features flakes --extra-experimental-features nix-command
 NIXPKGS_ALLOW_UNFREE := 1
 DMENU_CACHE := $(shell echo "$$HOME/.config/dmenu_run")
-export NIXPKGS_ALLOW_UNFREE
+export NIXPKGS_ALLOW_UNFREE=1
 
 define SUCCESS_MSG
 Successfully initialized environment
@@ -14,7 +14,19 @@ export SUCCESS_MSG
 
 .PHONY: nixos-rebuild-switch
 nixos-rebuild-switch:
-	NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild --impure switch
+	nixos-rebuild --impure switch
+
+.PHONY: vm-build
+vm-build:
+	nixos-rebuild --impure build-vm
+
+.PHONY: vm-run
+vm-run: vm-build
+	./result/bin/*
+
+.PHONY: vm-build-virtualbox
+vm-build-virtualbox:
+	nixos-rebuild --impure build-vm-with-bootloader --image nixos.qcow2
 
 .PHONY: all
 all: nix-profile-install
