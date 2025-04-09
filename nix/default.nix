@@ -31,9 +31,10 @@ in with builtins; [
   delta
   dhall
   diff-pdf
+  dig
   dive
-  dunst
   dmenu
+  dunst
   fd
   feh
   ffcast

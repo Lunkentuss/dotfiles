@@ -95,7 +95,11 @@ in {
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   programs.steam.enable = true;
+  hardware.xpadneo.enable = true;
 
   home-manager = {
     users = {
@@ -138,6 +142,7 @@ in {
                 gopls.enable = true;
                 jsonnet_ls.enable = true;
                 terraformls.enable = true;
+                nixd.enable = true;
                 rust_analyzer = {
                   enable = true;
                   installCargo = false;
@@ -167,10 +172,6 @@ in {
                 end, bufopts)
               '';
             };
-
-            # languageServers = {
-            #    rust-analyzer = true;
-            # };
 
             # Intrinsic dependencies
             web-devicons.enable = true;
