@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, rootDir, ... }:
 let mediaDir = "/media/96f47097-61e9-4234-b872-9daf8974b8dd";
 in {
   imports = [ ./hardware-configuration.nix ];
@@ -13,7 +13,7 @@ in {
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
-  users.users.root = { openssh.authorizedKeys.keyFiles = [ ../id_rsa.pub ]; };
+  users.users.root = { openssh.authorizedKeys.keyFiles = [ rootDir + "/id_rsa.pub" ]; };
 
   users.groups.media = { gid = 1001; };
   users.users.media = {
@@ -71,8 +71,6 @@ in {
     flags = [ "-v" "-u" "8.8.8.8:53" ];
   };
 
-  # services.xserver.enable = true;
-
   services.jellyfin = {
     enable = true;
     openFirewall = true;
@@ -82,12 +80,6 @@ in {
     enable = true;
     mountOnMedia = true;
   };
-
-  # environment.etc = {
-  #   "test.conf" = {
-  #     text = "test";
-  #   };
-  # };
 
   systemd.tmpfiles.rules = [ "d /media 755 root root" ];
 

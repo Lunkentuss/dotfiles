@@ -39,7 +39,10 @@
         nixosConfigurations = {
           "nixos-rp4" = nixpkgs.lib.nixosSystem {
             system = "aarch64-linux";
-            modules = [ ./nixos-rp4/configuration.nix ];
+            modules = [
+              ./nixos/hosts/rp4/configuration.nix
+              ./nixos/hardware/rp4/configuration.nix
+            ];
           };
           "nixos-dell-xps" = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
