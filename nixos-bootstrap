@@ -7,7 +7,7 @@ set -eu
 
 export test_ping_domain="google.se"
 export blk_device="nvme0n1"
-export blk_device_partion="${blk_device}p"
+export blk_device_partition="${blk_device}p"
 export swap_size="32GB"
 
 sudo loadkeys sv-latin1
@@ -27,13 +27,14 @@ sudo parted "/dev/$blk_device" -- mkpart swap linux-swap -"$swap_size" 100%
 sudo parted "/dev/$blk_device" -- mkpart ESP fat32 1MB 512MB
 sudo parted "/dev/$blk_device" -- set 3 esp on
 
-sudo mkfs.ext4 -L nixos "/dev/${blk_device_partion}1"
-sudo mkswap -L swap "/dev/${blk_device_partion}2"
+sudo mkfs.ext4 -L nixos "/dev/${blk_device_partition}1"
+sudo mkswap -L swap "/dev/${blk_device_partition}2"
+sudo mkfs.fat -F 32 -n boot /dev/${blk_device_partition}3
 
 sudo mount /dev/disk/by-label/nixos /mnt
 sudo mkdir -p /mnt/boot
 sudo mount -o umask=077 /dev/disk/by-label/boot /mnt/boot
-sudo swapon "/dev/${blk_device_partion}2"
+sudo swapon "/dev/${blk_device_partition}2"
 
 sudo nixos-generate-config --root /mnt
 
