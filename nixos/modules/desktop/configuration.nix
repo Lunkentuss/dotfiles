@@ -21,7 +21,7 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos-dell-xps";
+  networking.hostName = "vm-virtualbox-tmp";
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -60,8 +60,6 @@ in {
   services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "user" ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

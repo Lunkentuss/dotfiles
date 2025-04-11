@@ -11,6 +11,7 @@ in with builtins; [
   android-studio
   android-tools
   ansible
+  awscli2
   bash-completion
   bashInteractive
   bat

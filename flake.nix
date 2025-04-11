@@ -40,17 +40,18 @@
           "nixos-rp4" = nixpkgs.lib.nixosSystem {
             system = "aarch64-linux";
             modules = [
-              ./nixos/hosts/rp4/configuration.nix
               ./nixos/hardware/rp4/configuration.nix
+              ./nixos/modules/rp4/configuration.nix
             ];
             specialArgs = { rootDir = ./.; };
           };
           "nixos-dell-xps" = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
-              ./nixos/hosts/desktop/configuration.nix
               ./nixos/hardware/dell-xps-15-9520/configuration.nix
               nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
+              ./nixos/modules/desktop/configuration.nix
+              ./nixos/modules/virtualbox_host/configuration.nix
             ];
             specialArgs = {
               inherit inputs stylix nixvim;
@@ -58,23 +59,39 @@
               rootDir = ./.;
             };
           };
+          "vm-virtualbox-tmp" = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              ./nixos/hardware/virtualbox/configuration.nix
+              ./nixos/modules/desktop/configuration.nix
+              ./nixos/modules/virtualbox_guest/configuration.nix
+            ];
+            specialArgs = {
+              inherit inputs stylix nixvim;
+              packages = allPackages "x86_64-linux";
+              rootDir = ./.;
+            };
+
+          };
           "nixos-desktop-vm" = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
-              ./nixos/hosts/desktop/configuration.nix
+              ./nixos/modules/desktop/configuration.nix
+              ./nixos/modules/virtualbox_guest/configuration.nix
               nixos-generators.nixosModules.all-formats
             ];
             specialArgs = {
               inherit inputs stylix nixvim;
               packages = allPackages "x86_64-linux";
               rootDir = ./.;
+              users = [ "root" "user" ];
             };
           };
           "live-iso" = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
               "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-              ./nixos/hosts/live-iso/configuration.nix
+              ./nixos/modules/live-iso/configuration.nix
             ];
             specialArgs = { rootDir = ./.; };
           };
