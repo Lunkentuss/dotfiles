@@ -40,9 +40,9 @@ in {
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    xkb.variant = "";
+    xkb.variant = "nodeadkeys";
     displayManager.startx.enable = true;
-    windowManager.bspwm.enable = true;
+    # windowManager.bspwm.enable = true;
     # Use libinput instead for now.
     # synaptics = {
     #   enable = true;
@@ -111,6 +111,16 @@ in {
 
         imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
+        programs.bash = {
+          enable = true;
+          profileExtra = builtins.readFile (homeDir + "/.bash_profile");
+          bashrcExtra = builtins.readFile (homeDir + "/.bashrc");
+        };
+
+        xsession.enable = true;
+        xsession.profileExtra = ''
+          ${pkgs.sxhkd}/bin/sxhkd &
+        '';
         xsession.windowManager.bspwm = {
           enable = true;
           extraConfig = builtins.readFile (homeDir + "/.config/bspwm/_bspwmrc");
@@ -221,7 +231,8 @@ in {
           } // builtins.listToAttrs (map (name: {
             name = name;
             value = { source = homeDir + "/${name}"; };
-          }) (builtins.filter (name: name != ".config")
+          }) (builtins.filter (name:
+            !(builtins.elem name [ ".config" ".bash_profile" ".bashrc" ]))
             ((builtins.attrNames (builtins.readDir homeDir)))));
         };
       };
@@ -231,12 +242,7 @@ in {
   stylix.enable = true;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
 
-  stylix.image = pkgs.fetchurl {
-    # Placeholder, not really used. Black background for now.
-    url =
-      "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
-    sha256 = "enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=";
-  };
+  stylix.image = rootDir + "/images/kyoto.avif";
 
   environment.sessionVariables = { "EDITOR" = "nvim"; };
 

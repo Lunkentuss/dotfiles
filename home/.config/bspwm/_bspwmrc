@@ -26,9 +26,7 @@ bspc config gapless_monocle		true
 bspc config focus_by_distance		true
 bspc config focus_follows_pointer	false
 
-feh --no-fehbg --bg-scale /home/user/Pictures/kyoto.avif
-
-bspc rule -a urxvt floating=off
+bpc rule -a urxvt floating=off
 bspc rule -a feh floating=on
 bspc rule -a nemo floating=on
 
