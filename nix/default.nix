@@ -87,6 +87,7 @@ in with builtins; [
   ktfmt
   kubepug
   kubernetes-helm
+  libimobiledevice
   lm_sensors
   lolcat
   lsof

@@ -72,6 +72,14 @@ in {
     pulse.enable = true;
   };
 
+  # Configurations for enabling support for accessing iOS devices.
+  services.usbmuxd = {
+    enable = true;
+    package = pkgs.usbmuxd2;
+  };
+  services.gvfs.enable = true;
+  programs.gphoto2.enable = true;
+
   users.users.root = { initialHashedPassword = emptyHashedPassword; };
 
   users.users.user = {
