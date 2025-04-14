@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, packages, rootDir, ... }:
+{ config, lib, pkgs, inputs, hostname, packages, rootDir, ... }:
 let
   sourceCodeProRepo = pkgs.fetchgit {
     url = "https://github.com/adobe-fonts/source-code-pro.git";
@@ -21,7 +21,7 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "vm-virtualbox-tmp";
+  networking.hostName = hostname;
   networking.networkmanager.enable = true;
 
   # Set your time zone.

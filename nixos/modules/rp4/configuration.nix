@@ -1,4 +1,4 @@
-{ config, lib, pkgs, rootDir, ... }:
+{ config, lib, pkgs, rootDir, hostname, ... }:
 let mediaDir = "/media/96f47097-61e9-4234-b872-9daf8974b8dd";
 in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -6,7 +6,7 @@ in {
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
 
-  networking.hostName = "nixos-rp4";
+  networking.hostName = hostname;
   networking.networkmanager.enable = true;
 
   # Set your time zone.

@@ -35,17 +35,27 @@
           name = "lunkentuss-user-environment";
           paths = allPackages system;
         };
-      }) // {
-        nixosConfigurations = {
-          "nixos-rp4" = nixpkgs.lib.nixosSystem {
+      }) // (let
+        simplifyNixosConfigurations = nixpkgs.lib.concatMapAttrs
+          (hostname: config: {
+            ${hostname} = nixpkgs.lib.nixosSystem (config // {
+              specialArgs = {
+                inherit inputs stylix nixvim hostname;
+                packages = allPackages "x86_64-linux";
+                rootDir = ./.;
+              };
+            });
+          });
+      in {
+        nixosConfigurations = simplifyNixosConfigurations {
+          "nixos-rp4" = {
             system = "aarch64-linux";
             modules = [
               ./nixos/hardware/rp4/configuration.nix
               ./nixos/modules/rp4/configuration.nix
             ];
-            specialArgs = { rootDir = ./.; };
           };
-          "nixos-dell-xps" = nixpkgs.lib.nixosSystem {
+          "nixos-dell-xps" = {
             system = "x86_64-linux";
             modules = [
               ./nixos/hardware/dell-xps-15-9520/configuration.nix
@@ -53,48 +63,30 @@
               ./nixos/modules/desktop/configuration.nix
               ./nixos/modules/virtualbox_host/configuration.nix
             ];
-            specialArgs = {
-              inherit inputs stylix nixvim;
-              packages = allPackages "x86_64-linux";
-              rootDir = ./.;
-            };
           };
-          "vm-virtualbox-tmp" = nixpkgs.lib.nixosSystem {
+          "vm-virtualbox-tmp" = {
             system = "x86_64-linux";
             modules = [
               ./nixos/hardware/virtualbox/configuration.nix
               ./nixos/modules/desktop/configuration.nix
               ./nixos/modules/virtualbox_guest/configuration.nix
             ];
-            specialArgs = {
-              inherit inputs stylix nixvim;
-              packages = allPackages "x86_64-linux";
-              rootDir = ./.;
-            };
-
           };
-          "nixos-desktop-vm" = nixpkgs.lib.nixosSystem {
+          "nixos-desktop-vm" = {
             system = "x86_64-linux";
             modules = [
               ./nixos/modules/desktop/configuration.nix
               ./nixos/modules/virtualbox_guest/configuration.nix
               nixos-generators.nixosModules.all-formats
             ];
-            specialArgs = {
-              inherit inputs stylix nixvim;
-              packages = allPackages "x86_64-linux";
-              rootDir = ./.;
-              users = [ "root" "user" ];
-            };
           };
-          "live-iso" = nixpkgs.lib.nixosSystem {
+          "live-iso" = {
             system = "x86_64-linux";
             modules = [
               "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
               ./nixos/modules/live-iso/configuration.nix
             ];
-            specialArgs = { rootDir = ./.; };
           };
         };
-      };
+      });
 }
