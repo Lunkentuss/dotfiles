@@ -4,6 +4,7 @@ with python; [
   black
   django
   isort
+  jc
   jsonnet
   mypy
   nodeenv
