@@ -143,6 +143,7 @@ in with builtins; [
   tbls
   tcpdump
   terraform
+  p11-kit
   # Tex is needed to run pandoc ... -o output.pdf
   playwright-test
   protoc-gen-go

@@ -1,7 +1,7 @@
 {
   description = "Lunkentuss user environment";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs_22_05.url = "github:NixOS/nixpkgs/22.05";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     stylix.url = "github:danth/stylix/release-24.11";
