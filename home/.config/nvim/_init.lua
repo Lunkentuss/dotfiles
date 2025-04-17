@@ -3,6 +3,7 @@ vim.cmd 'set clipboard=unnamedplus'
 vim.cmd 'set cc=80'
 
 vim.api.nvim_set_keymap('n', 'tn', ':tabnew<CR>', {})
+vim.keymap.set('x', '<leader>w', ":normal @w<CR>", {})
 --
 -- Normally I have the following, but the BufReadPost fixes issues
 -- with Telescope that won't load buffer settings.
