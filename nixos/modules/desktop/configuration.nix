@@ -73,10 +73,11 @@ in {
   services.printing.enable = true;
 
   # Enable sound.
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
+  hardware.pulseaudio.enable = false;
   services.pipewire = {
-    enable = false;
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
   };
 
