@@ -5,6 +5,7 @@ let
     rev = "d3f1a59";
     sha256 = "sha256-Pl7cuBFtbk9tPv421ejKnKFKdsW6oezMnAGCWKI3OVY=";
   };
+
   homeDir = rootDir + "/home";
   # https://tinted-theming.github.io/tinted-gallery/
   theme = "eighties";
@@ -23,6 +24,13 @@ in {
 
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
+
+  security.pki.certificateFiles = lib.pipe (rootDir + "/ca") [
+    builtins.readDir
+    builtins.attrNames
+    (builtins.filter (file: file != "README.md"))
+    (lib.map (file: rootDir + "/ca/${file}"))
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
