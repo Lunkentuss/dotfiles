@@ -62,6 +62,7 @@
               nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
               ./nixos/modules/desktop/configuration.nix
               ./nixos/modules/virtualbox_host/configuration.nix
+              (_: {hardware.nvidia.powerManagement.enable = true;})
             ];
           };
           "vm-virtualbox-tmp" = {
