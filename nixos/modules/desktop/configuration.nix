@@ -238,19 +238,37 @@ in {
               source = rootDir + "/images";
               recursive = true;
             };
-            ".config" = {
-              source = homeDir + "/.config";
-              recursive = true;
-            };
             ".local/share/fonts/ttf/SourceCodePro" = {
               source = sourceCodeProRepo + "/TTF";
             };
-          } // builtins.listToAttrs (map (name: {
-            name = name;
-            value = { source = homeDir + "/${name}"; };
-          }) (builtins.filter (name:
-            !(builtins.elem name [ ".config" ".bash_profile" ".bashrc" ]))
-            ((builtins.attrNames (builtins.readDir homeDir)))));
+          } // (
+            # Copy directories
+            lib.pipe homeDir [
+              builtins.readDir
+              (lib.filterAttrs (name: value: value == "directory"))
+              builtins.attrNames
+              (map (name: {
+                name = name;
+                value = {
+                  source = homeDir + "/${name}";
+                  recursive = true;
+                };
+              }))
+              builtins.listToAttrs
+            ]) // (
+              # Copy regular files
+              lib.pipe homeDir [
+                builtins.readDir
+                (lib.filterAttrs (name: value: value == "regular"))
+                builtins.attrNames
+                (builtins.filter
+                  (name: !(builtins.elem name [ ".bash_profile" ".bashrc" ])))
+                (map (name: {
+                  name = name;
+                  value = { source = homeDir + "/${name}"; };
+                }))
+                builtins.listToAttrs
+              ]);
         };
       };
     };
