@@ -16,6 +16,11 @@ export SUCCESS_MSG
 nixos-rebuild-switch:
 	nixos-rebuild --impure switch
 
+.PHONY: nixos-remove-old-generations
+nixos-remove-old-generations:
+	nix-env --delete-generations +5
+	nix store gc
+
 .PHONY: vm-build
 vm-build:
 	nixos-rebuild --impure build-vm
