@@ -251,7 +251,8 @@ in {
                 name = name;
                 value = {
                   source = homeDir + "/${name}";
-                  recursive = true;
+                  # We make bin only readable for security reasons
+                  recursive = !(builtins.elem name [ "bin" ]);
                 };
               }))
               builtins.listToAttrs
