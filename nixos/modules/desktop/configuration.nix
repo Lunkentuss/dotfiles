@@ -122,6 +122,19 @@ in {
   programs.steam.enable = true;
   hardware.xpadneo.enable = true;
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+      xorg.libX11
+      xorg.libXcursor
+      xorg.libxcb
+      xorg.libXi
+      libxkbcommon
+      alsa-lib
+      udev
+      vulkan-loader
+      xorg.libXrandr
+  ];
+
   home-manager = {
     users = {
       user = {

@@ -50,6 +50,7 @@ in with builtins; [
   gdal
   genxword
   geos
+  gcc
   ghc
   git
   git-filter-repo
@@ -113,6 +114,7 @@ in with builtins; [
   pandoc
   parallel
   pip-audit
+  pkg-config
   poetry
   postgresql
   proxychains
