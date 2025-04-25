@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, hostname, packages, rootDir, ... }:
+{ config, lib, pkgs, inputs, hostname, packages, rootDir, customConfig, ... }:
 let
   sourceCodeProRepo = pkgs.fetchgit {
     url = "https://github.com/adobe-fonts/source-code-pro.git";
@@ -254,6 +254,11 @@ in {
             ".local/share/fonts/ttf/SourceCodePro" = {
               source = sourceCodeProRepo + "/TTF";
             };
+            ".gitconfig-work" = {
+              source = pkgs.runCommand "gitconfig-custom" {} ''
+                sed -E "s/WORK_EMAIL/${customConfig.workEmail}/g" "${homeDir + "/.gitconfig-work"}" > $out
+              '';
+            };
           } // (
             # Copy directories
             lib.pipe homeDir [
@@ -276,7 +281,7 @@ in {
                 (lib.filterAttrs (name: value: value == "regular"))
                 builtins.attrNames
                 (builtins.filter
-                  (name: !(builtins.elem name [ ".bash_profile" ".bashrc" ])))
+                  (name: !(builtins.elem name [ ".bash_profile" ".bashrc" ".gitconfig-work" ])))
                 (map (name: {
                   name = name;
                   value = { source = homeDir + "/${name}"; };

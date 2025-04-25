@@ -1,0 +1,6 @@
+[user]
+  email = WORK_EMAIL
+  name = Peter Hansson
+
+[push]
+  autoSetupRemote=true

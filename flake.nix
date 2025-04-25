@@ -45,6 +45,7 @@
                 inherit inputs stylix nixvim hostname;
                 packages = allPackages "x86_64-linux";
                 rootDir = ./.;
+                customConfig = import ./custom-config.nix;
               };
             });
           });
