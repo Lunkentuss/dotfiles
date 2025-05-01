@@ -118,6 +118,8 @@ in with builtins; [
   poetry
   postgresql
   proxychains
+  # Contains fuser
+  psmisc
   pulsemixer
   pyright
   redis
