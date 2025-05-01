@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { }, old_pkgs }:
+{ pkgs, override_pkgs }:
 with pkgs;
 let pythonPackages = import ./python-packages.nix;
 in with builtins; [
@@ -21,7 +21,7 @@ in with builtins; [
   bluez
   bspwm
   bws
-  cargo
+  override_pkgs.unstable.cargo
   clippy
   coreutils
   cosign
@@ -62,7 +62,7 @@ in with builtins; [
   go
   google-chrome
   google-java-format
-  old_pkgs."22_05".hadolint
+  override_pkgs."22_05".hadolint
   hey
   hlint
   hpack
@@ -127,7 +127,7 @@ in with builtins; [
   ripgrep
   rsync
   ruff
-  rustc
+  override_pkgs.unstable.rustc
   rustfmt
   scrcpy
   screen

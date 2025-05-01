@@ -2,7 +2,8 @@
   description = "Lunkentuss user environment";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs_22_05.url = "github:NixOS/nixpkgs/22.05";
+    nixpkgs_unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs_22_05.url = "github:NixOS/nixpkgs/nixos-22.05";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     stylix.url = "github:danth/stylix/release-24.11";
     nixvim.url = "github:nix-community/nixvim/nixos-24.11";
@@ -14,20 +15,21 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs_22_05, home-manager, stylix, nixvim
-    , nixos-hardware, nixos-generators, flake-utils }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs_unstable, nixpkgs_22_05
+    , home-manager, stylix, nixvim, nixos-hardware, nixos-generators
+    , flake-utils }:
     let
       allPackages = (system:
         with import nixpkgs { inherit system; };
         let
           pkgs_22_05 = import nixpkgs_22_05 { inherit system; };
-          packages = import nix/default.nix {
-            inherit pkgs;
-            old_pkgs = { "22_05" = pkgs_22_05; };
-          };
+          pkgs_unstable = import nixpkgs_unstable { inherit system; };
         in import nix/default.nix {
           inherit pkgs;
-          old_pkgs = { "22_05" = pkgs_22_05; };
+          override_pkgs = {
+            unstable = pkgs_unstable;
+            "22_05" = pkgs_22_05;
+          };
         });
     in flake-utils.lib.eachDefaultSystem (system:
       with import nixpkgs { inherit system; }; {
