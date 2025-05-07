@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+jira_input="$(mktemp)"
+trap 'rm $jira_input' EXIT
+
+$EDITOR "$jira_input"
+
+pandoc -f markdown -t jira "$jira_input" | clipboard

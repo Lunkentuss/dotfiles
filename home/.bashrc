@@ -46,7 +46,6 @@ __fetch_cmd() {
 bind '"\ee":"cmd=\"$(__fetch_cmd)\" && history -s \"$cmd\" && eval \"$cmd\"\n"'
 
 alias t="alacritty &"
-alias clipboard="xclip -sel clip"
 alias matlab='wmname LG3D ; matlab $1'
 alias matlab-vim='wmname LG3D ; python2 $HOME/.config/nvim/plugged/vim-matlab/scripts/vim-matlab-server.py'
 alias cp='cp -i'
