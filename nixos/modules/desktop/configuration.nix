@@ -164,7 +164,14 @@ in {
           plugins = {
             lualine.enable = true;
             telescope.enable = true;
-            treesitter.enable = true;
+            treesitter = {
+              enable = true;
+              settings = {
+                highlight = {
+                  enable  = true;
+                };
+              };
+            };
             nvim-surround.enable = true;
             commentary.enable = true;
             cmp = {
