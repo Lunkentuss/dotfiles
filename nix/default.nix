@@ -68,6 +68,7 @@ in with builtins; [
   hpack
   html-tidy
   htop
+  httptap
   # Contains telnet
   inetutils
   ipcalc

@@ -300,10 +300,12 @@ in {
     };
   };
 
-  stylix.enable = true;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
-
-  stylix.image = rootDir + "/images/kyoto.avif";
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
+    targets.qt.enable = true;
+    image = rootDir + "/images/kyoto.avif";
+  };
 
   environment.sessionVariables = { "EDITOR" = "nvim"; };
 
