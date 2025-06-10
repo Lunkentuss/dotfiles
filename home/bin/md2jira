@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+tmp="$(mktemp)"
+trap 'rm $tmp' EXIT
+
+nvim "$tmp"
+pandoc --from 'markdown' --to 'jira' < "$tmp" | clipboard
