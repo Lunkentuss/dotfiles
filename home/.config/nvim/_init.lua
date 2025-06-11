@@ -26,6 +26,11 @@ vim.api.nvim_command([[
   autocmd FileType kotlin setlocal expandtab softtabstop=2 shiftwidth=2
 ]])
 
+-- Show editable carriage return (^M)
+vim.schedule(function()
+  vim.cmd('edit ++ff=unix')
+end)
+
 -- Remove default gray color of sign column
 vim.api.nvim_command([[
   highlight clear SignColumn

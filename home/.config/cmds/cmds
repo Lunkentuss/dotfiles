@@ -20,3 +20,4 @@ Get my ip: curl https://ifconfig.me
 yay -Sy archlinux-keyring
 nmap -p 443 --script ssl-cert example.com
 xrandr --output eDP-1 --brightness 1.0
+Check SSL/TLS certificate from domain: nmap -p 443 --script ssl-cert
