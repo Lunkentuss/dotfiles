@@ -12,6 +12,7 @@ in with builtins; [
   android-tools
   ansible
   awscli2
+  aws-sam-cli
   bash-completion
   bashInteractive
   bat
@@ -108,6 +109,7 @@ in with builtins; [
   nodePackages.markdownlint-cli
   nodePackages.mermaid-cli
   nodePackages.prettier
+  nodePackages.aws-cdk
   nodejs_20
   openssh
   openssl
