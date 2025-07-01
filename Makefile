@@ -16,9 +16,11 @@ export SUCCESS_MSG
 nixos-rebuild-switch:
 	nixos-rebuild --impure switch
 
+# Listing generations can be done with the following:
+# nix profile history --profile /nix/var/nix/profiles/system
 .PHONY: nixos-remove-old-generations
 nixos-remove-old-generations:
-	nix-env --delete-generations +5
+	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 14d
 	nix store gc
 
 .PHONY: vm-build
