@@ -148,7 +148,9 @@ in with builtins; [
   parallel
   pip-audit
   pkg-config
-  poetry
+  (poetry.withPlugins (_p: with _p; [
+      poetry-plugin-export
+  ]))
   postgresql
   proxychains
   # Contains fuser
