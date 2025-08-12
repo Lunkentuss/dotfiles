@@ -131,15 +131,16 @@ in with builtins; [
   minikube
   mkcert
   netcat
-  nixos-generators
   nickel
   nix
   nixfmt-classic
+  nixos-generators
   nmap
+  nodePackages."@angular/cli"
+  nodePackages.aws-cdk
   nodePackages.markdownlint-cli
   nodePackages.mermaid-cli
   nodePackages.prettier
-  nodePackages.aws-cdk
   nodejs_20
   openssh
   openssl
