@@ -27,9 +27,10 @@ vim.api.nvim_command([[
 ]])
 
 -- Show editable carriage return (^M)
-vim.schedule(function()
-  vim.cmd('edit ++ff=unix')
-end)
+-- Currently not working with telescope
+-- vim.schedule(function()
+--   vim.cmd('edit ++ff=unix')
+-- end)
 
 -- Remove default gray color of sign column
 vim.api.nvim_command([[
