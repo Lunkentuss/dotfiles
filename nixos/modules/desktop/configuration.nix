@@ -309,6 +309,13 @@ in {
 
   environment.sessionVariables = { "EDITOR" = "nvim"; };
 
+  system.activationScripts.binbash = {
+    text = ''
+      mkdir -p /bin
+      ln -sf ${pkgs.bash}/bin/bash /bin/bash
+    '';
+  };
+
   # Don't change
   system.stateVersion = "24.11";
 }
