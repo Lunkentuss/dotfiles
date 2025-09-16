@@ -12,5 +12,5 @@ buildGoModule {
   preBuild = ''
     go mod init jksutil
   '';
-  CGO_ENABLED = 0;
+  env.CGO_ENABLED = 0;
 }

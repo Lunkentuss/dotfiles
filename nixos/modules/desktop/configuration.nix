@@ -1,11 +1,5 @@
 { config, lib, pkgs, inputs, hostname, packages, rootDir, customConfig, ... }:
 let
-  sourceCodeProRepo = pkgs.fetchgit {
-    url = "https://github.com/adobe-fonts/source-code-pro.git";
-    rev = "d3f1a59";
-    sha256 = "sha256-Pl7cuBFtbk9tPv421ejKnKFKdsW6oezMnAGCWKI3OVY=";
-  };
-
   homeDir = rootDir + "/home";
   # https://tinted-theming.github.io/tinted-gallery/
   theme = "eighties";
@@ -39,7 +33,14 @@ in {
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  i18n.defaultLocale = "sv_SE.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ALL = "en_US.UTF-8";
+      LANG = "en_US.UTF-8";
+    };
+  };
+
   console = {
     font = "Lat2-Terminus16";
     useXkbConfig = true;
@@ -257,9 +258,6 @@ in {
             "Pictures" = {
               source = rootDir + "/images";
               recursive = true;
-            };
-            ".local/share/fonts/ttf/SourceCodePro" = {
-              source = sourceCodeProRepo + "/TTF";
             };
             ".gitconfig-work" = {
               source = pkgs.runCommand "gitconfig-custom" {} ''

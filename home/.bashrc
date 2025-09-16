@@ -1,7 +1,5 @@
 [[ $- != *i* ]] && return
 
-export LANG="C"
-export LC_ALL="C"
 alias ssh='TERM=xterm-256color ssh'
 
 PS1='[\u:\[\e[1;36m\]\W\[\e[1;0m\]]\$ '
