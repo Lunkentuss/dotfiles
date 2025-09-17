@@ -125,6 +125,7 @@ in with builtins; [
   lolcat
   lsof
   lurk
+  lutris
   manix
   mariadb
   mdbook
