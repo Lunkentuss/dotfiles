@@ -163,6 +163,7 @@ in with builtins; [
   ripgrep
   rsync
   ruff
+  oras
   override_pkgs.unstable.rustc
   rustfmt
   scrcpy
