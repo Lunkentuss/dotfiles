@@ -195,6 +195,7 @@ in with builtins; [
   tree
   unrar
   unzip
+  uv
   # Doesn't build
   # uucp
   vhs
