@@ -42,6 +42,7 @@ in with builtins; [
   ffcast
   ffmpeg
   figlet
+  file
   firefox
   # Can't create SUID flag on binary.
   # firejail
