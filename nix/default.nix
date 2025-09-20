@@ -50,14 +50,14 @@ in with builtins; [
   fzf
   gdal
   genxword
-  geos
   gcc
+  geos
   ghc
+  gimp
   git
   git-filter-repo
   gitlab-runner
   glow
-  nautilus
   gnumake
   gnused
   go
@@ -101,6 +101,7 @@ in with builtins; [
   mdbook
   minikube
   mkcert
+  nautilus
   netcat
   nickel
   nix
