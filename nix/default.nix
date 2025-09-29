@@ -195,6 +195,7 @@ in with builtins; [
   (import ./fortune-cow.nix { inherit pkgs; })
   (import ./jksutil.nix { inherit pkgs; })
   (import ./jrsonnet.nix { inherit pkgs; })
+  (import ./tfctl.nix { inherit pkgs; })
   (import ./kubectl-ctx.nix { inherit pkgs; })
   (import ./kubectl-ns.nix { inherit pkgs; })
 ]
