@@ -92,6 +92,7 @@ in with builtins; [
   kubepug
   kubernetes-helm
   libimobiledevice
+  libnotify
   lm_sensors
   lolcat
   lsof
