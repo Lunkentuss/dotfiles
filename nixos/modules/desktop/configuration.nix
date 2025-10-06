@@ -5,6 +5,162 @@ let
   theme = "eighties";
   emptyHashedPassword =
     "$6$q2mvN2/cRoRFPuKp$DeFijIG2QsjysPMajtHUUavdk7St/FqXg0HejIpW1CsaqrlfDkLZ2tERX7CF.PeA0Zxw51LJnFrjEpohTbt7l/";
+  userConfig = {
+    imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+
+    programs.bash = {
+      enable = true;
+      profileExtra = builtins.readFile (homeDir + "/.bash_profile");
+      bashrcExtra = builtins.readFile (homeDir + "/.bashrc");
+    };
+
+    xsession.enable = true;
+    xsession.profileExtra = ''
+      ${pkgs.sxhkd}/bin/sxhkd &
+    '';
+    xsession.windowManager.bspwm = {
+      enable = true;
+      extraConfig = builtins.readFile (homeDir + "/.config/bspwm/_bspwmrc");
+    };
+
+    # Enable notifications
+    services.dunst = { enable = true; };
+
+    programs.nixvim = {
+      enable = true;
+      plugins = {
+        lualine.enable = true;
+        telescope.enable = true;
+        treesitter = {
+          enable = true;
+          settings = {
+            highlight = {
+              enable  = true;
+            };
+          };
+        };
+        nvim-surround.enable = true;
+        commentary.enable = true;
+        cmp = {
+          enable = true;
+          autoEnableSources = true;
+          settings = {
+            sources = [ { name = "nvim_lsp"; } { name = "luasnip"; } ];
+          };
+        };
+        cmp-nvim-lsp.enable = true;
+        luasnip.enable = true;
+
+        lsp = {
+          enable = true;
+          servers = {
+            bashls.enable = true;
+            pylsp.enable = true;
+            jsonls.enable = true;
+            gopls.enable = true;
+            jsonnet_ls.enable = true;
+            terraformls.enable = true;
+            nixd.enable = true;
+            rust_analyzer = {
+              enable = true;
+              installCargo = false;
+              installRustc = false;
+            };
+          };
+          onAttach = ''
+            vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+            local bufopts = { noremap = true, silent = true, buffer = bufnr }
+            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+            vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+            vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+            vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+            vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+            vim.keymap.set("n", "<leader>wl", function()
+                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            end, bufopts)
+            vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, bufopts)
+            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+            vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+            vim.keymap.set("n", "<leader>f", function()
+                vim.lsp.buf.format({ async = true })
+            end, bufopts)
+          '';
+        };
+
+        # Intrinsic dependencies
+        web-devicons.enable = true;
+      };
+      extraConfigLua =
+        builtins.readFile (homeDir + "/.config/nvim/_init.lua");
+    };
+
+    # This makes sure stylix injects the theme, in contrast to simply copying the config
+    programs.alacritty = {
+      enable = true;
+      settings = builtins.fromTOML (builtins.readFile
+        (homeDir + "/.config/alacritty/_alacritty.toml"));
+    };
+
+    programs.k9s.enable = true;
+    programs.zathura.enable = true;
+    programs.rofi.enable = true;
+    programs.fzf.enable = true;
+
+    xresources.properties = {
+      "Xft.dpi" = "110";
+      "Xft.rgba" = "none";
+      "Xft.hintstyle" = "hintslight";
+    };
+
+    home = {
+      stateVersion = "24.11";
+
+      # We have to make an exception for .config, since home manager saves files in this directory.
+      file = {
+        "Pictures" = {
+          source = rootDir + "/images";
+          recursive = true;
+        };
+        ".gitconfig-work" = {
+          source = pkgs.runCommand "gitconfig-custom" {} ''
+            sed -E "s/WORK_EMAIL/${customConfig.workEmail}/g" "${homeDir + "/.gitconfig-work"}" > $out
+          '';
+        };
+      } // (
+        # Copy directories
+        lib.pipe homeDir [
+          builtins.readDir
+          (lib.filterAttrs (name: value: value == "directory"))
+          builtins.attrNames
+          (map (name: {
+            name = name;
+            value = {
+              source = homeDir + "/${name}";
+              # We make bin only readable for security reasons
+              recursive = !(builtins.elem name [ "bin" ]);
+            };
+          }))
+          builtins.listToAttrs
+        ]) // (
+          # Copy regular files
+          lib.pipe homeDir [
+            builtins.readDir
+            (lib.filterAttrs (name: value: value == "regular"))
+            builtins.attrNames
+            (builtins.filter
+              (name: !(builtins.elem name [ ".bash_profile" ".bashrc" ".gitconfig-work" ])))
+            (map (name: {
+              name = name;
+              value = { source = homeDir + "/${name}"; };
+            }))
+            builtins.listToAttrs
+          ]);
+    };
+  };
 in {
   imports = [
     inputs.home-manager.nixosModules.home-manager
@@ -99,6 +255,13 @@ in {
     initialHashedPassword = emptyHashedPassword;
   };
 
+  users.users.insecure = {
+    isNormalUser = true;
+    extraGroups = [ "audio" ];
+    packages = packages;
+    initialHashedPassword = emptyHashedPassword;
+  };
+
   environment.systemPackages = packages;
   environment.etc = { issue.source = rootDir + "/root/etc/issue"; };
 
@@ -136,165 +299,12 @@ in {
       xorg.libXrandr
   ];
 
+  programs.firejail.enable = true;
+
   home-manager = {
     users = {
-      user = {
-
-        imports = [ inputs.nixvim.homeManagerModules.nixvim ];
-
-        programs.bash = {
-          enable = true;
-          profileExtra = builtins.readFile (homeDir + "/.bash_profile");
-          bashrcExtra = builtins.readFile (homeDir + "/.bashrc");
-        };
-
-        xsession.enable = true;
-        xsession.profileExtra = ''
-          ${pkgs.sxhkd}/bin/sxhkd &
-        '';
-        xsession.windowManager.bspwm = {
-          enable = true;
-          extraConfig = builtins.readFile (homeDir + "/.config/bspwm/_bspwmrc");
-        };
-
-        # Enable notifications
-        services.dunst = { enable = true; };
-
-        programs.nixvim = {
-          enable = true;
-          plugins = {
-            lualine.enable = true;
-            telescope.enable = true;
-            treesitter = {
-              enable = true;
-              settings = {
-                highlight = {
-                  enable  = true;
-                };
-              };
-            };
-            nvim-surround.enable = true;
-            commentary.enable = true;
-            cmp = {
-              enable = true;
-              autoEnableSources = true;
-              settings = {
-                sources = [ { name = "nvim_lsp"; } { name = "luasnip"; } ];
-              };
-            };
-            cmp-nvim-lsp.enable = true;
-            luasnip.enable = true;
-
-            lsp = {
-              enable = true;
-              servers = {
-                bashls.enable = true;
-                pylsp.enable = true;
-                jsonls.enable = true;
-                gopls.enable = true;
-                jsonnet_ls.enable = true;
-                terraformls.enable = true;
-                nixd.enable = true;
-                rust_analyzer = {
-                  enable = true;
-                  installCargo = false;
-                  installRustc = false;
-                };
-              };
-              onAttach = ''
-                vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-                local bufopts = { noremap = true, silent = true, buffer = bufnr }
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-                vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-                vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-                vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-                vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-                vim.keymap.set("n", "<leader>wl", function()
-                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                end, bufopts)
-                vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, bufopts)
-                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-                vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-                vim.keymap.set("n", "<leader>f", function()
-                    vim.lsp.buf.format({ async = true })
-                end, bufopts)
-              '';
-            };
-
-            # Intrinsic dependencies
-            web-devicons.enable = true;
-          };
-          extraConfigLua =
-            builtins.readFile (homeDir + "/.config/nvim/_init.lua");
-        };
-
-        # This makes sure stylix injects the theme, in contrast to simply copying the config
-        programs.alacritty = {
-          enable = true;
-          settings = builtins.fromTOML (builtins.readFile
-            (homeDir + "/.config/alacritty/_alacritty.toml"));
-        };
-
-        programs.k9s.enable = true;
-        programs.zathura.enable = true;
-        programs.rofi.enable = true;
-        programs.fzf.enable = true;
-
-        xresources.properties = {
-          "Xft.dpi" = "110";
-          "Xft.rgba" = "none";
-          "Xft.hintstyle" = "hintslight";
-        };
-
-        home = {
-          stateVersion = "24.11";
-
-          # We have to make an exception for .config, since home manager saves files in this directory.
-          file = {
-            "Pictures" = {
-              source = rootDir + "/images";
-              recursive = true;
-            };
-            ".gitconfig-work" = {
-              source = pkgs.runCommand "gitconfig-custom" {} ''
-                sed -E "s/WORK_EMAIL/${customConfig.workEmail}/g" "${homeDir + "/.gitconfig-work"}" > $out
-              '';
-            };
-          } // (
-            # Copy directories
-            lib.pipe homeDir [
-              builtins.readDir
-              (lib.filterAttrs (name: value: value == "directory"))
-              builtins.attrNames
-              (map (name: {
-                name = name;
-                value = {
-                  source = homeDir + "/${name}";
-                  # We make bin only readable for security reasons
-                  recursive = !(builtins.elem name [ "bin" ]);
-                };
-              }))
-              builtins.listToAttrs
-            ]) // (
-              # Copy regular files
-              lib.pipe homeDir [
-                builtins.readDir
-                (lib.filterAttrs (name: value: value == "regular"))
-                builtins.attrNames
-                (builtins.filter
-                  (name: !(builtins.elem name [ ".bash_profile" ".bashrc" ".gitconfig-work" ])))
-                (map (name: {
-                  name = name;
-                  value = { source = homeDir + "/${name}"; };
-                }))
-                builtins.listToAttrs
-              ]);
-        };
-      };
+      user = userConfig;
+      insecure = userConfig;
     };
   };
 

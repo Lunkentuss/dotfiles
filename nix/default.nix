@@ -44,8 +44,6 @@ in with builtins; [
   figlet
   file
   firefox
-  # Can't create SUID flag on binary.
-  # firejail
   flameshot
   fortune
   fzf
@@ -180,6 +178,7 @@ in with builtins; [
   websocat
   wget
   whois
+  wineWowPackages.stable
   wireshark
   wrk
   xclip
