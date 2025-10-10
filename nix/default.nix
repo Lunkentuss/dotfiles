@@ -105,7 +105,7 @@ in with builtins; [
   netcat
   nickel
   nix
-  nixfmt-classic
+  nixfmt-tree
   nixos-generators
   nmap
   nodePackages."@angular/cli"
