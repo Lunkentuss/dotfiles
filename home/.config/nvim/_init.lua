@@ -47,6 +47,7 @@ vim.wo.number = true
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.git_bcommits, {})
 vim.keymap.set('v', '<leader>y', '"+y', { noremap = true, silent = true })
 -- NERDTree
 vim.api.nvim_set_keymap('n', 'ft', ':NERDTree<CR>', {})
