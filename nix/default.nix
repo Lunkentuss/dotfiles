@@ -89,6 +89,7 @@ in with builtins; [
   ktfmt
   kubepug
   kubernetes-helm
+  lazygit
   libimobiledevice
   libnotify
   lm_sensors
