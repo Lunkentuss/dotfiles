@@ -19,6 +19,7 @@ in with builtins; [
   bettercap
   bfg-repo-cleaner
   blender
+  bluetui
   bluez
   bspwm
   bws
