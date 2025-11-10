@@ -18,10 +18,11 @@ url=$(
     | sed -E 's/[ \t].*url[ ]*=[ ]*?//g'
 )
 
-if grep -q '^http' <<< "$url" ; then
+if grep -q '^http' <<< "$url"; then
   # HTTP/HTTPS url
-  url_web=$(sed -E "$SED_REMOVE_DOT_GIT_SUFFIX" <<< "$url" \
-    | sed -E "$SED_REMOVE_HTTP_AUTH"
+  url_web=$(
+    sed -E "$SED_REMOVE_DOT_GIT_SUFFIX" <<< "$url" \
+      | sed -E "$SED_REMOVE_HTTP_AUTH"
   )
 else
   # SSH url
