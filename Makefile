@@ -48,12 +48,6 @@ live-iso-image:
 	@echo "Run the following and substitute the block device:"
 	@echo 'dd if=$$(echo "$$PWD/result/iso/"*) of=/dev/sdXXX bs=4M status=progress conv=fdatasync'
 
-.PHONY: all
-all: nix-profile-install
-	./install
-	./setup/install_external
-	@cowsay -f turkey "$${SUCCESS_MSG}" | lolcat
-
 .PHONY: nix-build
 nix-build:
 	${NIX} build --impure .
