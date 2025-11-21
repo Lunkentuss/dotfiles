@@ -120,6 +120,7 @@ in with builtins; [
   nodejs_20
   openssh
   openssl
+  opentofu
   (python312.withPackages pythonPackages)
   pandoc
   parallel

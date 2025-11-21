@@ -85,7 +85,7 @@ let
             vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
             vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
             vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-            vim.keymap.set("n", "<leader>f", function()
+            vim.keymap.set("n", "<leader>F", function()
                 vim.lsp.buf.format({ async = true })
             end, bufopts)
           '';
@@ -272,10 +272,6 @@ in {
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -304,6 +300,15 @@ in {
   ];
 
   programs.firejail.enable = true;
+
+  # Fixes GPG generation
+  programs.gnupg.agent = {
+    enable = true;
+    # TODO: Fix
+    # This fixes "no pinentry" issue
+    # pinentryPackage = pkgs.curses;
+    enableSSHSupport = true;
+  };
 
   home-manager = {
     users = {
