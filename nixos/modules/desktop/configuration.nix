@@ -55,7 +55,7 @@ let
           enable = true;
           servers = {
             bashls.enable = true;
-            pylsp.enable = true;
+            ruff.enable = true;
             jsonls.enable = true;
             gopls.enable = true;
             jsonnet_ls.enable = true;
