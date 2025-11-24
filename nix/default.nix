@@ -153,6 +153,7 @@ in with builtins; [
   slop
   socat
   spotify
+  ssm-session-manager-plugin
   stack
   statix
   strace
