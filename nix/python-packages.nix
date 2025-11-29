@@ -8,6 +8,8 @@ with python; [
   jsonnet
   mypy
   nodeenv
+  numpy
+  pillow
   poetry-core
   pydantic
   pyjwt
@@ -16,6 +18,8 @@ with python; [
   pyyaml
   requests
   result
+  rtree
   structlog
+  trimesh
   types-pytz
 ]
