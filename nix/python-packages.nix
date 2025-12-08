@@ -6,12 +6,14 @@ with python; [
   isort
   jc
   jsonnet
+  matplotlib
   mypy
   nodeenv
   numpy
   pillow
   poetry-core
   pydantic
+  pyglet
   pyjwt
   pytest
   pytest-sugar
