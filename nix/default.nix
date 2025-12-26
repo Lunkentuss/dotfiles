@@ -18,7 +18,7 @@ in with builtins; [
   bat
   bettercap
   bfg-repo-cleaner
-  blender
+  override_pkgs.unstable.blender
   bluetui
   bluez
   bspwm
