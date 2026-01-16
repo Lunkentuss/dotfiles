@@ -12,7 +12,7 @@ in with builtins; [
   android-tools
   ansible
   awscli2
-  aws-sam-cli
+  # aws-sam-cli
   bash-completion
   bashInteractive
   bat
