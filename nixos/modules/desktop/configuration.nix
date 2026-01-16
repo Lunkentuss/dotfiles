@@ -6,7 +6,7 @@ let
   emptyHashedPassword =
     "$6$q2mvN2/cRoRFPuKp$DeFijIG2QsjysPMajtHUUavdk7St/FqXg0HejIpW1CsaqrlfDkLZ2tERX7CF.PeA0Zxw51LJnFrjEpohTbt7l/";
   userConfig = {
-    imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+    imports = [ inputs.nixvim.homeModules.nixvim ];
 
     programs.bash = {
       enable = true;
