@@ -169,6 +169,10 @@ in {
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Makes sure we can use the unstable nixpkgs registry
+  # for example using: nix shell nixpkgs-unstable#hello
+  nix.registry.nixpkgs-unstable.flake = inputs.nixpkgs_unstable;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
