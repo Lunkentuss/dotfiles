@@ -29,6 +29,7 @@ in {
     fd
     git
     htop
+    gnumake
     neofetch
     ripgrep
     vim
@@ -55,6 +56,7 @@ in {
 
   services.transmission = {
     enable = true;
+    package = pkgs.transmission_4;
     openFirewall = true;
     openRPCPort = true;
     openPeerPorts = true;
