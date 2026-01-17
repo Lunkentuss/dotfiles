@@ -1,6 +1,8 @@
 { pkgs, override_pkgs }:
 with pkgs;
-let pythonPackages = import ./python-packages.nix;
+let
+    pythonPackages = import ./python-packages.nix;
+    unstable = override_pkgs.unstable;
 in with builtins; [
   acme-sh
   acpi
@@ -12,7 +14,7 @@ in with builtins; [
   android-tools
   ansible
   awscli2
-  # aws-sam-cli
+  unstable.aws-sam-cli
   bash-completion
   bashInteractive
   bat
