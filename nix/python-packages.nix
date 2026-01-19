@@ -7,6 +7,7 @@ with python; [
   jc
   jsonnet
   matplotlib
+  jwcrypto
   mypy
   nodeenv
   numpy
