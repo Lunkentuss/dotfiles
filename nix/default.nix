@@ -121,7 +121,7 @@ in with builtins; [
   openssh
   openssl
   opentofu
-  (python312.withPackages pythonPackages)
+  (python3.withPackages pythonPackages)
   pandoc
   parallel
   pip-audit
