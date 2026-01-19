@@ -13,6 +13,7 @@ in with builtins; [
   android-studio
   android-tools
   ansible
+  unstable.aws-cdk-cli
   awscli2
   unstable.aws-sam-cli
   bash-completion
