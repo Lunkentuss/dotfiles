@@ -131,6 +131,7 @@ in with builtins; [
       poetry-plugin-export
   ]))
   postgresql
+  pre-commit
   proxychains
   # Contains fuser
   psmisc
