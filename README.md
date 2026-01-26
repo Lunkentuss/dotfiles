@@ -5,7 +5,7 @@
 - Editor: [neovim](https://github.com/neovim/neovim)
 - OS: [nixos](https://nixos.org/)
 - Terminal: [alacritty](https://github.com/alacritty/alacritty)
-- Theme: [solarized](https://ethanschoonover.com/solarized/)
+- Theme: [eighties](https://tinted-theming.github.io/tinted-gallery/#base16-eighties)
 - WM: [bspwm](https://github.com/baskerville/bspwm)
 
 ## Using the nix flake for installing packages
