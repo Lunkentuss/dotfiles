@@ -1,5 +1,7 @@
 # dotfiles
 
+![nixos](/images/nixos.png)
+
 - Editor: [neovim](https://github.com/neovim/neovim)
 - OS: [nixos](https://nixos.org/)
 - Terminal: [alacritty](https://github.com/alacritty/alacritty)

@@ -321,7 +321,7 @@ in {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
     targets.qt.enable = true;
-    image = rootDir + "/images/kyoto.avif";
+    image = rootDir + "/images/nixos.png";
   };
 
   environment.sessionVariables = { "EDITOR" = "nvim"; };
