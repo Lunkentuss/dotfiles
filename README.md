@@ -1,6 +1,6 @@
 # dotfiles
 
-![nixos](/images/nixos.png)
+![nixos](/images/nixos_username.png)
 
 - Editor: [neovim](https://github.com/neovim/neovim)
 - OS: [nixos](https://nixos.org/)
