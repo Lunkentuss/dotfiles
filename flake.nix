@@ -49,12 +49,19 @@
               };
             });
           });
-      in {
         nixosConfigurations = simplifyNixosConfigurations {
           "nixos-rp4" = {
             system = "aarch64-linux";
             modules = [
               ./nixos/hardware/rp4/configuration.nix
+              ./nixos/modules/rp4/configuration.nix
+            ];
+          };
+          # Used to build the installer image for rp4
+          "nixos-rp4-image" = {
+            system = "aarch64-linux";
+            modules = [
+             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
               ./nixos/modules/rp4/configuration.nix
             ];
           };
@@ -92,5 +99,8 @@
             ];
           };
         };
+      in {
+        inherit nixosConfigurations;
+        image.rp4 = nixosConfigurations.nixos-rp4.config.system.build.sdImage;
       });
 }

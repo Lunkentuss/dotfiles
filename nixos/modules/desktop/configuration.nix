@@ -173,6 +173,7 @@ in {
   # for example using: nix shell nixpkgs-unstable#hello
   nix.registry.nixpkgs-unstable.flake = inputs.nixpkgs_unstable;
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
