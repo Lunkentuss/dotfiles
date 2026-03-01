@@ -12,6 +12,8 @@ endef
 
 export SUCCESS_MSG
 
+# First time, do the following instead of running make directly.
+# nixos-rebuild switch --flake /etc/nixos#initial-hostname
 .PHONY: nixos-rebuild-switch
 nixos-rebuild-switch:
 	nixos-rebuild --impure switch
