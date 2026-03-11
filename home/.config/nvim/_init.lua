@@ -53,6 +53,9 @@ vim.keymap.set('v', '<leader>y', '"+y', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'ft', ':NERDTree<CR>', {})
 vim.api.nvim_set_keymap('n', 'fv', ':NERDTreeFind<CR>', {})
 
+-- LazyGit
+vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>')
+
 -- Go to most recent visited line in buffer
 vim.api.nvim_create_autocmd(
   "BufReadPost",

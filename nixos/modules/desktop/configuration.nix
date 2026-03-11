@@ -49,6 +49,7 @@ let
           };
         };
         cmp-nvim-lsp.enable = true;
+        lazygit.enable = true;
         luasnip.enable = true;
 
         lsp = {
