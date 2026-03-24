@@ -17,6 +17,7 @@ let
     xsession.enable = true;
     xsession.profileExtra = ''
       ${pkgs.sxhkd}/bin/sxhkd &
+      sh -c '[[ -f ~/.Xmodmap ]] && sleep 6 && xmodmap ~/.Xmodmap' &
     '';
     xsession.windowManager.bspwm = {
       enable = true;
@@ -174,7 +175,7 @@ in {
   # for example using: nix shell nixpkgs-unstable#hello
   nix.registry.nixpkgs-unstable.flake = inputs.nixpkgs_unstable;
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = [ ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -233,24 +234,24 @@ in {
   virtualisation.docker.enable = true;
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # services.printing.enable = true;
 
   # Enable sound.
-  services.pulseaudio.enable = false;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
+  # services.pulseaudio.enable = false;
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  # };
+ 
   # Configurations for enabling support for accessing iOS devices.
-  services.usbmuxd = {
-    enable = true;
-    package = pkgs.usbmuxd2;
-  };
-  services.gvfs.enable = true;
-  programs.gphoto2.enable = true;
+  # services.usbmuxd = {
+  #   enable = true;
+  #   package = pkgs.usbmuxd2;
+  # };
+  # services.gvfs.enable = true;
+  # programs.gphoto2.enable = true;
 
   users.users.root = { initialHashedPassword = emptyHashedPassword; };
 
@@ -280,28 +281,28 @@ in {
   networking.firewall.enable = false;
 
   hardware.graphics.enable = true;
-  hardware.graphics.enable32Bit = true;
+  # hardware.graphics.enable32Bit = true;
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
-  programs.steam.enable = true;
+  # programs.steam.enable = true;
   hardware.xpadneo.enable = true;
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libxcb
-      xorg.libXi
-      libxkbcommon
-      alsa-lib
-      udev
-      vulkan-loader
-      xorg.libXrandr
-  ];
+  #programs.nix-ld.libraries = with pkgs; [
+  #    xorg.libX11
+  #    xorg.libXcursor
+  #    xorg.libxcb
+  #    xorg.libXi
+  #    libxkbcommon
+  #    alsa-lib
+  #    udev
+  #    vulkan-loader
+  #    xorg.libXrandr
+  #];
 
-  programs.firejail.enable = true;
+  # programs.firejail.enable = true;
 
   # Fixes GPG generation
   programs.gnupg.agent = {
