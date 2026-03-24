@@ -8,10 +8,8 @@ in with builtins; [
   acpi
   # TODO: remove from arch
   alsa-utils
-  # OpenGL issues with alacritty: TODO, remove from arch
-  alacritty
-  android-studio
-  android-tools
+  # android-studio
+  # android-tools
   ansible
   unstable.aws-cdk-cli
   awscli2
@@ -64,7 +62,7 @@ in with builtins; [
   gnumake
   gnused
   go
-  google-chrome
+  # google-chrome
   google-java-format
   override_pkgs."22_05".hadolint
   hey
@@ -100,7 +98,7 @@ in with builtins; [
   lolcat
   lsof
   lurk
-  lutris
+  # lutris
   manix
   mariadb
   mdbook
@@ -123,6 +121,7 @@ in with builtins; [
   openssh
   openssl
   opentofu
+  openvpn3
   (python3.withPackages pythonPackages)
   pandoc
   parallel
@@ -152,10 +151,10 @@ in with builtins; [
   shfmt
   siege
   skopeo
-  slack
+  # slack
   slop
   socat
-  spotify
+  # spotify
   ssm-session-manager-plugin
   stack
   statix
@@ -187,15 +186,16 @@ in with builtins; [
   websocat
   wget
   whois
-  wineWowPackages.stable
+  # wineWowPackages.stable
   wireshark
   wrk
   xclip
   yarn
-  yj
-  yq-go
+  xmodmap
   xorg.xset
   xsecurelock
+  yj
+  yq-go
   zathura
   # This package makes running "kubectl krew" work, instead of having to run
   # krew directly.

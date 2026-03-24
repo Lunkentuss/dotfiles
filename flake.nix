@@ -83,6 +83,13 @@
               ./nixos/modules/virtualbox_guest/configuration.nix
             ];
           };
+          "nixos-macbook-qemu" = {
+            system = "aarch64-linux";
+            modules = [
+              ./nixos/hardware/qemu-macbook/configuration.nix
+              ./nixos/modules/desktop/configuration.nix
+            ];
+          };
           "nixos-desktop-vm" = {
             system = "x86_64-linux";
             modules = [
