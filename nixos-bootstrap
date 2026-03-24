@@ -41,4 +41,4 @@ sudo nixos-generate-config --root /mnt
 echo "Now edit /mnt/etc/nixos/configuration.nix"
 echo "You can run the following to copy to /mnt/etc/nixos and run make:"
 echo 'git clone https://github.com/Lunkentuss/dotfiles.git'
-echo "Then run: sudo nixos-install"
+echo "Then run: sudo nixos-install --impure --flake /mnt/etc/nixos#<host-name>"
