@@ -83,6 +83,7 @@ in with builtins; [
   jsonnet
   k6
   k9s
+  keepassxc
   kazam
   kotlin
   krew
@@ -121,7 +122,7 @@ in with builtins; [
   openssh
   openssl
   opentofu
-  openvpn3
+  openvpn
   (python3.withPackages pythonPackages)
   pandoc
   parallel
