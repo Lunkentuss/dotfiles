@@ -171,6 +171,10 @@ in {
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  services.spice-vdagentd.enable = true;
+  services.spice-webdavd.enable = true;
+  services.qemuGuest.enable = true;
+
   # Makes sure we can use the unstable nixpkgs registry
   # for example using: nix shell nixpkgs-unstable#hello
   nix.registry.nixpkgs-unstable.flake = inputs.nixpkgs_unstable;
