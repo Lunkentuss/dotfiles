@@ -119,6 +119,7 @@ in with builtins; [
   nodePackages.mermaid-cli
   nodePackages.prettier
   nodejs_20
+  unstable.opencode
   openssh
   openssl
   opentofu
