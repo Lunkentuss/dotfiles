@@ -47,7 +47,7 @@
                 packages = allPackages config.system;
                 rootDir = ./.;
                 customConfig = import ./custom-config.nix;
-              };
+              } // config.specialArgs or {};
             });
           });
         nixosConfigurations = simplifyNixosConfigurations {
@@ -90,6 +90,9 @@
               ./nixos/hardware/qemu-macbook/configuration.nix
               ./nixos/modules/desktop/configuration.nix
             ];
+            specialArgs = {
+              isMacOsGuest = true;
+            };
           };
           "nixos-desktop-vm" = {
             system = "x86_64-linux";

@@ -1,4 +1,16 @@
-{ config, system, lib, pkgs, inputs, hostname, packages, rootDir, customConfig, ... }:
+{
+  config,
+  system,
+  lib,
+  pkgs,
+  inputs,
+  hostname,
+  packages,
+  rootDir,
+  customConfig,
+  isMacOsGuest ? false,
+  ...
+}:
 let
   homeDir = rootDir + "/home";
   isAarch64Linux = system == "aarch64-linux";
@@ -134,7 +146,12 @@ let
             sed -E "s/WORK_EMAIL/${customConfig.workEmail}/g" "${homeDir + "/.gitconfig-work"}" > $out
           '';
         };
-      } // (
+      } // (if !isMacOsGuest then {} else {
+         ".Xmodmap" = {
+           source = homeDir + "/.Xmodmap_macos_guest";
+         };
+      })
+      // (
         # Copy directories
         lib.pipe homeDir [
           builtins.readDir
@@ -173,9 +190,9 @@ in {
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  services.spice-vdagentd.enable = true;
-  services.spice-webdavd.enable = true;
-  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = isMacOsGuest;
+  services.spice-webdavd.enable = isMacOsGuest;
+  services.qemuGuest.enable = isMacOsGuest;
 
   # Makes sure we can use the unstable nixpkgs registry
   # for example using: nix shell nixpkgs-unstable#hello
