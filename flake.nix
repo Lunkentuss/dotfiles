@@ -25,7 +25,7 @@
           pkgs_22_05 = import nixpkgs_22_05 { inherit system; };
           pkgs_unstable = import nixpkgs_unstable { inherit system; };
         in import nix/default.nix {
-          inherit pkgs;
+          inherit system pkgs;
           override_pkgs = {
             unstable = pkgs_unstable;
             "22_05" = pkgs_22_05;

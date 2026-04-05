@@ -1,211 +1,224 @@
-{ pkgs, override_pkgs }:
+{ system, pkgs, override_pkgs }:
 with pkgs;
+with builtins;
 let
-    pythonPackages = import ./python-packages.nix;
-    unstable = override_pkgs.unstable;
-in with builtins; [
-  acme-sh
-  acpi
-  # TODO: remove from arch
-  alsa-utils
-  # android-studio
-  # android-tools
-  ansible
-  unstable.aws-cdk-cli
-  awscli2
-  unstable.aws-sam-cli
-  bash-completion
-  bashInteractive
-  bat
-  bettercap
-  bfg-repo-cleaner
-  override_pkgs.unstable.blender
-  bluetui
-  bluez
-  bspwm
-  bws
-  override_pkgs.unstable.cargo
-  clippy
-  coreutils
-  cosign
-  cowsay
-  ctop
-  curl
-  dbeaver-bin
-  delta
-  dhall
-  diff-pdf
-  dig
-  dive
-  dmenu
-  dunst
-  fd
-  feh
-  ffcast
-  ffmpeg
-  figlet
-  file
-  firefox
-  flameshot
-  fortune
-  fzf
-  gdal
-  genxword
-  gcc
-  geos
-  ghc
-  gimp
-  git
-  git-filter-repo
-  gitlab-runner
-  glow
-  gnumake
-  gnused
-  go
-  # google-chrome
-  google-java-format
-  override_pkgs."22_05".hadolint
-  hey
-  hlint
-  hpack
-  html-tidy
-  htop
-  httptap
-  # Contains telnet
-  inetutils
-  ipcalc
-  iproute2
-  iputils
-  istioctl
-  jdk21
-  jinja2-cli
-  jq
-  jsonnet
-  k6
-  k9s
-  keepassxc
-  kazam
-  kotlin
-  krew
-  kubectl
-  # kubectl-tree
-  ktfmt
-  kubepug
-  kubernetes-helm
-  lazygit
-  libimobiledevice
-  libnotify
-  lm_sensors
-  lolcat
-  lsof
-  lurk
-  # lutris
-  manix
-  mariadb
-  mdbook
-  minikube
-  mkcert
-  nautilus
-  netcat
-  nickel
-  nix
-  nixfmt-tree
-  nixos-generators
-  nmap
-  nodePackages."@angular/cli"
-  nodePackages.aws-cdk
-  nodePackages.markdownlint-cli
-  nodePackages.mermaid-cli
-  nodePackages.prettier
-  nodejs_20
-  unstable.opencode
-  openssh
-  openssl
-  opentofu
-  openvpn
-  (python3.withPackages pythonPackages)
-  pandoc
-  parallel
-  pip-audit
-  pkg-config
-  (poetry.withPlugins (_p: with _p; [
-      poetry-plugin-export
-  ]))
-  postgresql
-  pre-commit
-  proxychains
-  # Contains fuser
-  psmisc
-  pulsemixer
-  pyright
-  redis
-  reveal-md
-  ripgrep
-  rsync
-  ruff
-  oras
-  override_pkgs.unstable.rustc
-  rustfmt
-  scrcpy
-  screen
-  shellcheck
-  shfmt
-  siege
-  skopeo
-  # slack
-  slop
-  socat
-  # spotify
-  ssm-session-manager-plugin
-  stack
-  statix
-  strace
-  sxhkd
-  syncthing
-  tbls
-  tcpdump
-  terraform
-  p11-kit
-  # Tex is needed to run pandoc ... -o output.pdf
-  playwright-test
-  protoc-gen-go
-  qemu
-  texlive.combined.scheme-full
-  traceroute
-  transmission_4-gtk
-  tree
-  unrar
-  unzip
-  uv
-  # Doesn't build
-  # uucp
-  vhs
-  viddy
-  vim
-  neovim
-  vlc
-  websocat
-  wget
-  whois
-  # wineWowPackages.stable
-  wireshark
-  wrk
-  xclip
-  yarn
-  xmodmap
-  xorg.xset
-  xsecurelock
-  yj
-  yq-go
-  zathura
-  # This package makes running "kubectl krew" work, instead of having to run
-  # krew directly.
-  (runCommand "kubectl-krew" { } ''
-    mkdir -p "$out/bin" && ln -sf "${krew}/bin/krew" "$out/bin/kubectl-krew"'')
-  (import ./fortune-cow.nix { inherit pkgs; })
-  (import ./jksutil.nix { inherit pkgs; })
-  (import ./jrsonnet.nix { inherit pkgs; })
-  (import ./tfctl.nix { inherit pkgs; })
-  (import ./kubectl-ctx.nix { inherit pkgs; })
-  (import ./kubectl-ns.nix { inherit pkgs; })
-]
+  pythonPackages = import ./python-packages.nix;
+  unstable = override_pkgs.unstable;
+  filterPkgTags = filter (pkgTags: let
+    pkg = elemAt pkgTags 0;
+    tags = elemAt pkgTags 1;
+    in
+      !(system == "aarch64-linux" && lib.any (tag: tag == "no-aarch64-linux") tags)
+    );
+  mapPackagesOnly = map (pkgTags: elemAt pkgTags 0);
+  packages =
+    [
+      [acme-sh []]
+      [acpi []]
+      [alsa-utils []]
+      [android-studio ["no-aarch64-linux"]]
+      [android-tools ["no-aarch64-linux"]]
+      [ansible []]
+      [unstable.aws-cdk-cli []]
+      [awscli2 []]
+      [unstable.aws-sam-cli []]
+      [bash-completion []]
+      [bashInteractive []]
+      [bat []]
+      [bettercap []]
+      [bfg-repo-cleaner []]
+      [override_pkgs.unstable.blender []]
+      [bluetui []]
+      [bluez []]
+      [bspwm []]
+      [bws []]
+      [override_pkgs.unstable.cargo []]
+      [clippy []]
+      [coreutils []]
+      [cosign []]
+      [cowsay []]
+      [ctop []]
+      [curl []]
+      [dbeaver-bin []]
+      [delta []]
+      [dhall []]
+      [diff-pdf []]
+      [dig []]
+      [dive []]
+      [dmenu []]
+      [dunst []]
+      [fd []]
+      [feh []]
+      [ffcast []]
+      [ffmpeg []]
+      [figlet []]
+      [file []]
+      [firefox []]
+      [flameshot []]
+      [fortune []]
+      [fzf []]
+      [gdal []]
+      [genxword []]
+      [gcc []]
+      [geos []]
+      [ghc []]
+      [gimp []]
+      [git []]
+      [git-filter-repo []]
+      [gitlab-runner []]
+      [glow []]
+      [gnumake []]
+      [gnused []]
+      [go []]
+      [google-chrome ["no-aarch64-linux"]]
+      [google-java-format []]
+      [override_pkgs."22_05".hadolint []]
+      [hey []]
+      [hlint []]
+      [hpack []]
+      [html-tidy []]
+      [htop []]
+      [httptap []]
+      # Contains telnet
+      [inetutils []]
+      [ipcalc []]
+      [iproute2 []]
+      [iputils []]
+      [istioctl []]
+      [jdk21 []]
+      [jinja2-cli []]
+      [jq []]
+      [jsonnet []]
+      [k6 []]
+      [k9s []]
+      [keepassxc []]
+      [kazam []]
+      [kotlin []]
+      [krew []]
+      [kubectl []]
+      # kubectl-tree
+      [ktfmt []]
+      [kubepug []]
+      [kubernetes-helm []]
+      [lazygit []]
+      [libimobiledevice []]
+      [libnotify []]
+      [lm_sensors []]
+      [lolcat []]
+      [lsof []]
+      [lurk []]
+      [lutris ["no-aarch64-linux"]]
+      [manix []]
+      [mariadb []]
+      [mdbook []]
+      [minikube []]
+      [mkcert []]
+      [nautilus []]
+      [netcat []]
+      [nickel []]
+      [nix []]
+      [nixfmt-tree []]
+      [nixos-generators []]
+      [nmap []]
+      [nodePackages."@angular/cli" []]
+      [nodePackages.aws-cdk []]
+      [nodePackages.markdownlint-cli []]
+      [nodePackages.mermaid-cli []]
+      [nodePackages.prettier []]
+      [nodejs_20 []]
+      [unstable.opencode []]
+      [openssh []]
+      [openssl []]
+      [opentofu []]
+      [openvpn  []]
+      [(python3.withPackages pythonPackages) []]
+      [pandoc []]
+      [parallel []]
+      [pip-audit []]
+      [pkg-config []]
+      [(poetry.withPlugins (_p: with _p; [
+          poetry-plugin-export
+      ])) []]
+      [postgresql []]
+      [pre-commit []]
+      [proxychains []]
+      # Contains fuser
+      [psmisc []]
+      [pulsemixer []]
+      [pyright []]
+      [redis []]
+      [reveal-md []]
+      [ripgrep []]
+      [rsync []]
+      [ruff []]
+      [oras []]
+      [override_pkgs.unstable.rustc []]
+      [rustfmt []]
+      [scrcpy []]
+      [screen []]
+      [shellcheck []]
+      [shfmt []]
+      [siege []]
+      [skopeo []]
+      [slack ["no-aarch64-linux"]]
+      [slop []]
+      [socat []]
+      [spotify ["no-aarch64-linux"]]
+      [ssm-session-manager-plugin []]
+      [stack []]
+      [statix []]
+      [strace []]
+      [sxhkd []]
+      [syncthing []]
+      [tbls []]
+      [tcpdump []]
+      [terraform []]
+      [p11-kit []]
+      # Tex is needed to run pandoc ... -o output.pdf
+      [playwright-test []]
+      [protoc-gen-go []]
+      [qemu []]
+      [texlive.combined.scheme-full []]
+      [traceroute []]
+      [transmission_4-gtk []]
+      [tree []]
+      [unrar []]
+      [unzip []]
+      [uv []]
+      # Doesn't build
+      # uucp
+      [vhs []]
+      [viddy []]
+      [vim []]
+      [neovim []]
+      [vlc []]
+      [websocat []]
+      [wget []]
+      [whois []]
+      [wineWowPackages.stable ["no-aarch64-linux"]]
+      [wireshark []]
+      [wrk []]
+      [xclip []]
+      [yarn []]
+      [xmodmap []]
+      [xorg.xset []]
+      [xsecurelock []]
+      [yj []]
+      [yq-go []]
+      [zathura []]
+      # This package makes running "kubectl krew" work, instead of having to run
+      # krew directly.
+      [(runCommand "kubectl-krew" { } ''
+        mkdir -p "$out/bin" && ln -sf "${krew}/bin/krew" "$out/bin/kubectl-krew"'') []]
+      [(import ./fortune-cow.nix { inherit pkgs; }) []]
+      [(import ./jksutil.nix { inherit pkgs; }) []]
+      [(import ./jrsonnet.nix { inherit pkgs; }) []]
+      [(import ./tfctl.nix { inherit pkgs; }) []]
+      [(import ./kubectl-ctx.nix { inherit pkgs; }) []]
+      [(import ./kubectl-ns.nix { inherit pkgs; }) []]
+    ];
+  in
+    lib.pipe packages [
+      filterPkgTags
+      mapPackagesOnly
+    ]
