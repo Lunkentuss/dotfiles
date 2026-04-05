@@ -8,7 +8,7 @@
   packages,
   rootDir,
   customConfig,
-  isMacOsGuest ? false,
+  isMacOsGuest,
   ...
 }:
 let
@@ -173,7 +173,7 @@ let
             (lib.filterAttrs (name: value: value == "regular"))
             builtins.attrNames
             (builtins.filter
-              (name: !(builtins.elem name [ ".bash_profile" ".bashrc" ".gitconfig-work" ])))
+              (name: !(builtins.elem name [ ".bash_profile" ".bashrc" ".gitconfig-work" ".Xmodmap_macos_guest" ])))
             (map (name: {
               name = name;
               value = { source = homeDir + "/${name}"; };

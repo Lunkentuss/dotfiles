@@ -47,7 +47,8 @@
                 packages = allPackages config.system;
                 rootDir = ./.;
                 customConfig = import ./custom-config.nix;
-              } // config.specialArgs or {};
+                isMacOsGuest = config.specialArgs.isMacOsGuest or false;
+              };
             });
           });
         nixosConfigurations = simplifyNixosConfigurations {
