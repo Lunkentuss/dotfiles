@@ -43,6 +43,7 @@
             ${hostname} = nixpkgs.lib.nixosSystem (config // {
               specialArgs = {
                 inherit inputs stylix nixvim hostname;
+                system = config.system;
                 packages = allPackages config.system;
                 rootDir = ./.;
                 customConfig = import ./custom-config.nix;

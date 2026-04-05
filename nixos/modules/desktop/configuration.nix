@@ -1,6 +1,7 @@
-{ config, lib, pkgs, inputs, hostname, packages, rootDir, customConfig, ... }:
+{ config, system, lib, pkgs, inputs, hostname, packages, rootDir, customConfig, ... }:
 let
   homeDir = rootDir + "/home";
+  isAarch64Linux = system == "aarch64-linux";
   # https://tinted-theming.github.io/tinted-gallery/
   theme = "eighties";
   emptyHashedPassword =
@@ -17,6 +18,7 @@ let
     xsession.enable = true;
     xsession.profileExtra = ''
       ${pkgs.sxhkd}/bin/sxhkd &
+      # This is for guest systems on MacOS hypervisors to map keys
       sh -c '[[ -f ~/.Xmodmap ]] && sleep 6 && xmodmap ~/.Xmodmap' &
     '';
     xsession.windowManager.bspwm = {
@@ -179,7 +181,7 @@ in {
   # for example using: nix shell nixpkgs-unstable#hello
   nix.registry.nixpkgs-unstable.flake = inputs.nixpkgs_unstable;
 
-  boot.binfmt.emulatedSystems = [ ];
+  boot.binfmt.emulatedSystems = if isAarch64Linux then [ ] else [ "aarch64-linux" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -247,21 +249,21 @@ in {
   services.printing.enable = true;
 
   # Enable sound.
-  # services.pulseaudio.enable = false;
-  # services.pipewire = {
-  #   enable = true;
-  #   alsa.enable = true;
-  #   alsa.support32Bit = true;
-  #   pulse.enable = true;
-  # };
+  services.pulseaudio.enable = false;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
  
   # Configurations for enabling support for accessing iOS devices.
-  # services.usbmuxd = {
-  #   enable = true;
-  #   package = pkgs.usbmuxd2;
-  # };
-  # services.gvfs.enable = true;
-  # programs.gphoto2.enable = true;
+  services.usbmuxd = {
+    enable = true;
+    package = pkgs.usbmuxd2;
+  };
+  services.gvfs.enable = true;
+  programs.gphoto2.enable = true;
 
   users.users.root = { initialHashedPassword = emptyHashedPassword; };
 
@@ -291,28 +293,28 @@ in {
   networking.firewall.enable = false;
 
   hardware.graphics.enable = true;
-  # hardware.graphics.enable32Bit = true;
+  hardware.graphics.enable32Bit = !isAarch64Linux;
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
-  # programs.steam.enable = true;
+  programs.steam.enable = !isAarch64Linux;
   hardware.xpadneo.enable = true;
 
   programs.nix-ld.enable = true;
-  #programs.nix-ld.libraries = with pkgs; [
-  #    xorg.libX11
-  #    xorg.libXcursor
-  #    xorg.libxcb
-  #    xorg.libXi
-  #    libxkbcommon
-  #    alsa-lib
-  #    udev
-  #    vulkan-loader
-  #    xorg.libXrandr
-  #];
+  programs.nix-ld.libraries = with pkgs; if isAarch64Linux then [] else [
+      xorg.libX11
+      xorg.libXcursor
+      xorg.libxcb
+      xorg.libXi
+      libxkbcommon
+      alsa-lib
+      udev
+      vulkan-loader
+      xorg.libXrandr
+  ];
 
-  # programs.firejail.enable = true;
+  programs.firejail.enable = !isAarch64Linux;
 
   # Fixes GPG generation
   programs.gnupg.agent = {
