@@ -41,6 +41,7 @@
         simplifyNixosConfigurations = nixpkgs.lib.concatMapAttrs
           (hostname: config: {
             ${hostname} = nixpkgs.lib.nixosSystem (config // {
+              modules = config.modules ++ [ (import ./custom-config.nix).module ];
               specialArgs = {
                 inherit inputs stylix nixvim hostname;
                 system = config.system;

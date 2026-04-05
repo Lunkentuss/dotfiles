@@ -204,12 +204,6 @@ in {
 
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
-  environment.etc = {
-    "resolv.conf".text = ''
-      nameserver 10.135.153.108
-      nameserver 8.8.8.8
-    '';
-  };
 
   security.pki.certificateFiles = lib.pipe (rootDir + "/ca") [
     builtins.readDir
