@@ -127,6 +127,7 @@ let
       [nodePackages.prettier []]
       [nodejs_20 []]
       [unstable.opencode []]
+      [openbao []]
       [openssh []]
       [openssl []]
       [opentofu []]
