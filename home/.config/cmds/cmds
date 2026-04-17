@@ -21,3 +21,4 @@ yay -Sy archlinux-keyring
 nmap -p 443 --script ssl-cert example.com
 xrandr --output eDP-1 --brightness 1.0
 Check SSL/TLS certificate from domain: nmap -p 443 --script ssl-cert
+Execute an OIDC authorization code grant: openid-client authorization_code --issuer https://my.example.idp.com --client_id XXX --client_secret XXX --scope "openid"

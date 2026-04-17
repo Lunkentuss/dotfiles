@@ -29,7 +29,7 @@ export EDITOR="nvim"
 # options
 # set -o vi
 
-HISTCONTROL=erasedups
+HISTCONTROL=erasedups:ignorespace
 export HISTSIZE=100000
 
 . "$__user_packages_share"/fzf/completion.bash
