@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [[ $# != 1 ]] ; then
+  echo "Usage $0 <branch>"
+fi
+
+branch="$1"
+
+worktree_dir="../worktrees"
+git_root="$(git rev-parse --show-toplevel)"
+git_repo_name="$(basename "$git_root")"
+
+mkdir -p "$worktree_dir"
+directory="$worktree_dir/$git_repo_name-$branch"
+git worktree add -b "$branch" "$directory"
+echo "Created worktree in: $directory"
+echo "Run the following to cd into the directory:"
+echo ""
+echo "cd $directory"
