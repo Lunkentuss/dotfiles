@@ -13,6 +13,7 @@ with python; [
   numpy
   pillow
   poetry-core
+  proxmoxer
   pydantic
   pyglet
   pyjwt
