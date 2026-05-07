@@ -18,7 +18,6 @@ let
       [alsa-utils []]
       [android-studio ["no-aarch64-linux"]]
       [android-tools ["no-aarch64-linux"]]
-      [ansible []]
       [unstable.aws-cdk-cli []]
       [awscli2 []]
       [unstable.aws-sam-cli []]
