@@ -141,8 +141,24 @@ let
           source = rootDir + "/images";
           recursive = true;
         };
+        ".gitconfig" = {
+          text = builtins.readFile (homeDir + "/.gitconfig")
+          + (if customConfig.ghCliAuthLogin
+               then ''
+
+                 [credential "https://github.com"]
+                   helper =
+                   helper = !${pkgs.gh}/bin/gh auth git-credential
+
+                 [credential "https://gist.github.com"]
+                   helper =
+                   helper = !${pkgs.gh}/bin/gh auth git-credential
+               ''
+               else ""
+            );
+        };
         ".gitconfig-work" = {
-          source = pkgs.runCommand "gitconfig-custom" {} ''
+          source = pkgs.runCommand "gitconfig-work-custom" {} ''
             sed -E "s/WORK_EMAIL/${customConfig.workEmail}/g" "${homeDir + "/.gitconfig-work"}" > $out
           '';
         };
@@ -173,13 +189,21 @@ let
             (lib.filterAttrs (name: value: value == "regular"))
             builtins.attrNames
             (builtins.filter
-              (name: !(builtins.elem name [ ".bash_profile" ".bashrc" ".gitconfig-work" ".Xmodmap_macos_guest" ])))
+              (name: !(builtins.elem name [".bash_profile" ".bashrc" ".gitconfig" ".gitconfig-work" ".Xmodmap_macos_guest" ])))
             (map (name: {
               name = name;
               value = { source = homeDir + "/${name}"; };
             }))
             builtins.listToAttrs
           ]);
+    };
+
+
+    stylix = {
+      targets = {
+        # Gnome fails to build currently.
+        gnome.enable = false;
+      };
     };
   };
 in {
@@ -346,7 +370,7 @@ in {
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
-    targets.qt.enable = true;
+    autoEnable = true;
     image = rootDir + "/images/nixos.png";
   };
 

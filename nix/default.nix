@@ -32,6 +32,7 @@ let
       [bspwm []]
       [bws []]
       [override_pkgs.unstable.cargo []]
+      [claude-code []]
       [clippy []]
       [coreutils []]
       [cosign []]
@@ -41,6 +42,7 @@ let
       [dbeaver-bin []]
       [delta []]
       [dhall []]
+      [envsubst []]
       [diff-pdf []]
       [dig []]
       [dive []]
@@ -60,6 +62,7 @@ let
       [genxword []]
       [gcc []]
       [geos []]
+      [gh []]
       [ghc []]
       [gimp []]
       [git []]
@@ -95,6 +98,7 @@ let
       [kotlin []]
       [krew []]
       [kubectl []]
+      [kubectl-cnpg []]
       # kubectl-tree
       [ktfmt []]
       [kubepug []]
@@ -188,6 +192,7 @@ let
       # Doesn't build
       # uucp
       [vhs []]
+      [vegeta []]
       [viddy []]
       [vim []]
       [neovim []]

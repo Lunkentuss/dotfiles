@@ -6,8 +6,8 @@
 set -eu
 
 export test_ping_domain="google.se"
-export blk_device="nvme0n1"
-export blk_device_partition="${blk_device}p"
+export blk_device="vda"
+export blk_device_partition="${blk_device}"
 export swap_size="32GB"
 
 sudo loadkeys sv-latin1

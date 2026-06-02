@@ -78,6 +78,15 @@
               (_: { hardware.nvidia.powerManagement.enable = true; })
             ];
           };
+          "nixos-work-vm" = {
+            system = "x86_64-linux";
+            modules = [
+              ./nixos/hardware/virt-manager/configuration.nix
+              ./nixos/modules/desktop/configuration.nix
+              ./nixos/modules/qemu_guest/configuration.nix
+              "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
+            ];
+          };
           "vm-virtualbox-tmp" = {
             system = "x86_64-linux";
             modules = [
