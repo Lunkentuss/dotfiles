@@ -42,7 +42,7 @@ let
       [dbeaver-bin []]
       [delta []]
       [dhall []]
-      [envsubst []]
+      [gettext []]
       [diff-pdf []]
       [dig []]
       [dive []]
