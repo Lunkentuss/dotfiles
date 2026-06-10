@@ -338,15 +338,15 @@ in {
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; if isAarch64Linux then [] else [
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libxcb
-      xorg.libXi
+      libX11
+      libXcursor
+      libxcb
+      libXi
       libxkbcommon
       alsa-lib
       udev
       vulkan-loader
-      xorg.libXrandr
+      libXrandr
   ];
 
   programs.firejail.enable = !isAarch64Linux;

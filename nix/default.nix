@@ -206,7 +206,7 @@ let
       [xclip []]
       [yarn []]
       [xmodmap []]
-      [xorg.xset []]
+      [xset []]
       [xsecurelock []]
       [yj []]
       [yq-go []]
