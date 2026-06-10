@@ -8,6 +8,17 @@
   ghCliAuthLogin = true;
 
   # A module used for all nixos configurations
+  # Some useful examples used previously in the past:
+  #
+  # Use static name servers
+  # module = (_: {
+  #   environment.etc = {
+  #     "resolv.conf".text = ''
+  #       nameserver 3.3.3.3
+  #       nameserver 8.8.8.8
+  #     '';
+  #   };
+  # });
   module = (_: {
   });
 }
