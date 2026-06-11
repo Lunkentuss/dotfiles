@@ -30,7 +30,7 @@ in {
     git
     htop
     gnumake
-    neofetch
+    hyfetch
     ripgrep
     vim
   ];
