@@ -19,6 +19,13 @@
   #     '';
   #   };
   # });
+  # Use custom ntp servers
+  # module = (_: {
+  #   services.timesyncd = {
+  #     enable = true;
+  #     servers = [ "my.custom.ntp-server.com" "se.pool.ntp.org" ];
+  #   };
+  # });
   module = (_: {
   });
 }
