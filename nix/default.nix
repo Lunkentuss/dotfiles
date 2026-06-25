@@ -188,6 +188,7 @@ let
       [tree []]
       [unrar []]
       [unzip []]
+      [updatecli []]
       [uv []]
       # Doesn't build
       # uucp
