@@ -32,7 +32,7 @@ let
       [bspwm []]
       [bws []]
       [override_pkgs.unstable.cargo []]
-      [claude-code []]
+      [unstable.claude-code []]
       [clippy []]
       [coreutils []]
       [cosign []]
