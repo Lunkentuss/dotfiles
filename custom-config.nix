@@ -5,7 +5,7 @@
   workEmail = "peter.hansson17@gmail.com";
 
   # Use gh cli to authenticate to https://github.com
-  ghCliAuthLogin = true;
+  ghCliAuthLogin = false;
 
   # A module used for all nixos configurations
   # Some useful examples used previously in the past:
