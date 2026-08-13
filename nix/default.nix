@@ -144,7 +144,9 @@ let
       [(poetry.withPlugins (_p: with _p; [
           poetry-plugin-export
       ])) []]
+      [pnpm[]]
       [postgresql []]
+      [postgresql.pg_config []]
       [pre-commit []]
       [proxychains []]
       # Contains fuser
