@@ -96,6 +96,7 @@ let
       [keepassxc []]
       [kazam []]
       [kotlin []]
+      [unstable.kftray []]
       [krew []]
       [kubectl []]
       [kubectl-cnpg []]
@@ -119,7 +120,7 @@ let
       [nautilus []]
       [netcat []]
       [nickel []]
-      [nix []]
+      [unstable.nix []]
       [nixfmt-tree []]
       [nixos-generators []]
       [nmap []]
@@ -188,7 +189,7 @@ let
       [tree []]
       [unrar []]
       [unzip []]
-      [updatecli []]
+      [unstable.updatecli []]
       [uv []]
       # Doesn't build
       # uucp
