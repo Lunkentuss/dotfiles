@@ -3,3 +3,6 @@
 
 [includeIf "gitdir:~/oss/"]
   path = ~/.gitconfig-oss
+
+[include]
+  path = ~/.gitconfig-work
