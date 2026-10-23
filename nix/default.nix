@@ -20,7 +20,7 @@ let
       [android-tools ["no-aarch64-linux"]]
       [unstable.aws-cdk-cli []]
       [awscli2 []]
-      [unstable.aws-sam-cli []]
+      # [unstable.aws-sam-cli []]
       [bash-completion []]
       [bashInteractive []]
       [bat []]
