@@ -222,9 +222,12 @@ in {
   # for example using: nix shell nixpkgs-unstable#hello
   nix.registry.nixpkgs-unstable.flake = inputs.nixpkgs_unstable;
 
-  boot.binfmt.emulatedSystems = if isAarch64Linux then [ ] else [ "aarch64-linux" ];
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    # kernelPackages = pkgs.linuxPackages_7_2;
+    binfmt.emulatedSystems = if isAarch64Linux then [ ] else [ "aarch64-linux" ];
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+  };
 
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
