@@ -121,6 +121,7 @@ let
       [nautilus []]
       [netcat []]
       [nickel []]
+      [nixpkgs-review []]
       [unstable.nix []]
       [nixfmt-tree []]
       [nixos-generators []]
