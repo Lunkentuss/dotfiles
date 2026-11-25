@@ -303,7 +303,9 @@ in {
   services.gvfs.enable = true;
   programs.gphoto2.enable = true;
 
-  users.users.root = { initialHashedPassword = emptyHashedPassword; };
+  users.users.root = {
+    initialHashedPassword = emptyHashedPassword;
+  };
 
   users.users.user = {
     isNormalUser = true;
