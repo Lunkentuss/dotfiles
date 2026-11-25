@@ -369,6 +369,18 @@ in {
     users = {
       user = userConfig;
       insecure = userConfig;
+      root = {
+        home = {
+          stateVersion = "24.11";
+          file = {
+            ".gitconfig".text = ''
+              [user]
+                email = peter.hansson17@gmail.com
+                name = Peter Hansson
+            '';
+          };
+        };
+      };
     };
   };
 
