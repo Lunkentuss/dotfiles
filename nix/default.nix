@@ -97,7 +97,7 @@ let
       [keepassxc []]
       [kazam []]
       [kotlin []]
-      # [unstable.kftray []]
+      [unstable.kftray []]
       [krew []]
       [kubectl []]
       [kubectl-cnpg []]
